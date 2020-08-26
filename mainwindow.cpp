@@ -32,9 +32,7 @@ void MainWindow::on_openButton_clicked()
 
 void MainWindow::initVariable()
 {
-    found = false;
-    isFirstTime = true;
-    count = 0;
+    _found = false;
 }
 
 void MainWindow::on_clearButton_clicked()
@@ -53,7 +51,5 @@ void MainWindow::on_findButton_clicked()
 
 void MainWindow::on_nextButton_clicked()
 {
-    count += 1;
-
-    qDebug()<<count<<'\n';
+    findKeywordSequence();
 }

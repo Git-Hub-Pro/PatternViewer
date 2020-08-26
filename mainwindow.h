@@ -48,11 +48,17 @@ public:
     void findAllKeyword();
     void findKeywordSequence();
 
+    void setCursorNum(int cursorNum){_cursorNum = cursorNum;}
+    int  getCursorNum(){return _cursorNum;}
+
+    void setCursorPosition(int cursorPosition){_cursorPosition = cursorPosition;}
+    int  getCursorPosition(){return _cursorPosition;}
+
 private:
     File Obj;
-    bool found;
-    bool isFirstTime;
-    int count;
+    bool _found;
+    int _cursorNum;
+    int _cursorPosition;
 
 };
 
