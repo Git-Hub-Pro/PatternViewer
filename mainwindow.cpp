@@ -20,58 +20,40 @@ void MainWindow::on_openButton_clicked()
     // Print File information.
     Obj.readPatFile();
 
-    QByteArray fileData = Obj.readAll();
+    initVariable();
 
-
-    int row = fileData.size()/10;
-    int column = 10;
-
-     ui->originTableWidget->setRowCount(row);
-     ui->originTableWidget->setColumnCount(column);
-
-    int cnt = 0;
-
-    for(int i=0;i<row;i++){
-        for(int j=0;j<column;j++){
-           QTableWidgetItem *item = ui->originTableWidget->item(i,j);
-           if(!item){
-               item = new QTableWidgetItem();
-               ui->originTableWidget->setItem(i,j,item);
-           }
-
-           QByteArray hexDataOne;
-           hexDataOne.append(fileData.at(i+j));
-           item->setText(hexDataOne.toHex());
-           cnt++;
-
-           if(cnt==fileData.size()){
-               break;
-           }
-
-        }
-    }
-
+    printHexFileInTableWidget();
     printFileInformationInLabel();
+
+    printFileHeaderInTextEdit();
+    printCommonHeaderInTextEdit();
+
 }
 
-void MainWindow::printFileInformationInLabel()
+void MainWindow::initVariable()
 {
-    QString informationFile;
-
-    QByteArray fileData = Obj.readAll();
-
-    informationFile.append("File Name : ");
-    informationFile.append(Obj.readFileHeaderSourceFileName());
-    informationFile.append("  File size : ");
-    informationFile.append(QString::number(fileData.size()));
-    informationFile.append("Byte");
-
-    ui->informationLabel->setText(informationFile);
+    found = false;
+    isFirstTime = true;
+    count = 0;
 }
-
 
 void MainWindow::on_clearButton_clicked()
 {
-    ui->originTableWidget->setRowCount(0);
-    ui->originTableWidget->setColumnCount(0);
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setColumnCount(0);
+
+    ui->textEdit->clear();
+}
+
+void MainWindow::on_findButton_clicked()
+{
+    initVariable();
+    findAllKeyword();
+}
+
+void MainWindow::on_nextButton_clicked()
+{
+    count += 1;
+
+    qDebug()<<count<<'\n';
 }

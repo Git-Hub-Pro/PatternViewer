@@ -25,7 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    file.cpp
+    file.cpp \
+    print.cpp \
+    search.cpp
 
 HEADERS  += mainwindow.h \
     file.h

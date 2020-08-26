@@ -40,9 +40,9 @@ public:
     QByteArray readFileHeaderReserved();              // 13. readFileHeaderReserved | size : 16 byte | scope : 672~688| HEX
 
     //Common Header 688 ~ 704
-    QByteArray readCommonHeaderOpcodeNDataSet32();   // 14.  readCommonHeaderOpcodeNDataSet32 format | size : 4 byte  | scope : 688~692    | HEX
-    QByteArray readCommonHeaderOpcodeNDataSet64();   // 15.  readCommonHeaderOpcodeNDataSet64 format | size : 4 byte | scope : 692~696   | HEX
-    QByteArray readCommonHeaderReserved();           // 16.  readCommonHeaderReserved format | size : 8 byte  | scope : 696~704  | HEX
+    QByteArray readCommonHeaderOpcodeNDataSet32();    // 14.  readCommonHeaderOpcodeNDataSet32 format | size : 4 byte  | scope : 688~692    | HEX
+    QByteArray readCommonHeaderOpcodeNDataSet64();    // 15.  readCommonHeaderOpcodeNDataSet64 format | size : 4 byte | scope : 692~696   | HEX
+    QByteArray readCommonHeaderReserved();            // 16.  readCommonHeaderReserved format | size : 8 byte  | scope : 696~704  | HEX
 
 
 

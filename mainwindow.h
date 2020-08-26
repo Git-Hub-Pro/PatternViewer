@@ -8,7 +8,10 @@
 #include <QByteArray>
 #include <QLabel>
 #include <QStandardItem>
-
+#include <QTextDocument>
+#include <QMessageBox>
+#include <QTextCursor>
+#include <QTextCharFormat>
 
 namespace Ui {
 class MainWindow;
@@ -24,17 +27,32 @@ public:
 
 private slots:
     void on_openButton_clicked();
-
     void on_clearButton_clicked();
+    void on_findButton_clicked();
+
+
+    void on_nextButton_clicked();
 
 private:
     Ui::MainWindow *ui;
 
 public:
     void printFileInformationInLabel();
+    void printHexFileInTableWidget();
+
+    void printFileHeaderInTextEdit();
+    void printCommonHeaderInTextEdit();
+
+    void initVariable();
+
+    void findAllKeyword();
+    void findKeywordSequence();
 
 private:
     File Obj;
+    bool found;
+    bool isFirstTime;
+    int count;
 
 };
 
