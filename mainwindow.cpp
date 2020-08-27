@@ -81,7 +81,9 @@ void MainWindow::on_modifyFindButton_clicked()
     FindDialog *dialog =new FindDialog(this);
 
     dialog->show();
+
     dialog->raise();
+
     dialog->activateWindow();
 
 }

@@ -36,6 +36,11 @@ void FindDialog::on_nextButton_clicked()
 
 void FindDialog::closeEvent(QCloseEvent *event)
 {
+    QString keyword = ui->lineEdit->text();
+
+    if(keyword.length()==0)
+        return;
+
     connect(this,SIGNAL(sendDialogEndSignal()),parent(),SLOT(receiveDialogEndSignal()));
     emit sendDialogEndSignal();
     disconnect(this,0,0,0);
