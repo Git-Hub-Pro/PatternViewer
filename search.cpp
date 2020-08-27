@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-void MainWindow::findAllKeyword()
+void MainWindow::findAllKeyword(QString keyword)
 {
-    QString keyword = ui->lineEdit->text();
 
     QTextDocument *document = ui->textEdit->document();
 
@@ -49,17 +48,14 @@ void MainWindow::findAllKeyword()
 
         setCursorNum(cursorCnt);
         setCursorPosition(0);
+
 }
 
-void MainWindow::findKeywordSequence()
+void MainWindow::findKeywordSequence(QString keyword)
 {
-    QString keyword = ui->lineEdit->text();
-
-    qDebug()<<keyword<<'\n';
 
     QTextDocument *document = ui->textEdit->document();
 
-    _found = false;
 
         if (keyword.isEmpty()) {
             QMessageBox::information(this, tr("Empty Search Field"),
@@ -109,4 +105,5 @@ void MainWindow::findKeywordSequence()
             }
             cursor.endEditBlock();
         }
+
 }

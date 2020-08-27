@@ -14,6 +14,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::receiveKeyword(QString keyword)
+{
+    initVariable();
+    findAllKeyword(keyword);
+
+}
+
+void MainWindow::receiveNextButtonSignal(QString keyword)
+{
+   findKeywordSequence(keyword);
+}
+
 void MainWindow::on_openButton_clicked()
 {
     // ASCII : value name / Hex : value name.toHex()
@@ -43,13 +55,14 @@ void MainWindow::on_clearButton_clicked()
     ui->textEdit->clear();
 }
 
-void MainWindow::on_findButton_clicked()
+void MainWindow::on_modifyFindButton_clicked()
 {
-    initVariable();
-    findAllKeyword();
+
+    FindDialog *dialog =new FindDialog(this);
+
+    dialog->show();
+    dialog->raise();
+    dialog->activateWindow();
+
 }
 
-void MainWindow::on_nextButton_clicked()
-{
-    findKeywordSequence();
-}

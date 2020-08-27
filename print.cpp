@@ -20,7 +20,7 @@ void MainWindow::printHexFileInTableWidget()
 {
     QByteArray fileData = Obj.readAll();
 
-    int column = 15;
+    int column = 10;
 
     int row = fileData.size()/column;
 

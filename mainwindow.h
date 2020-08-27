@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "file.h"
+#include "finddialog.h"
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
@@ -26,12 +27,13 @@ public:
     ~MainWindow();
 
 private slots:
+
+    void receiveKeyword(QString keyword);
+    void receiveNextButtonSignal(QString keyword);
+
     void on_openButton_clicked();
     void on_clearButton_clicked();
-    void on_findButton_clicked();
-
-
-    void on_nextButton_clicked();
+    void on_modifyFindButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -45,8 +47,8 @@ public:
 
     void initVariable();
 
-    void findAllKeyword();
-    void findKeywordSequence();
+    void findAllKeyword(QString keyword);
+    void findKeywordSequence(QString keyword);
 
     void setCursorNum(int cursorNum){_cursorNum = cursorNum;}
     int  getCursorNum(){return _cursorNum;}
@@ -54,11 +56,13 @@ public:
     void setCursorPosition(int cursorPosition){_cursorPosition = cursorPosition;}
     int  getCursorPosition(){return _cursorPosition;}
 
+
 private:
     File Obj;
     bool _found;
     int _cursorNum;
     int _cursorPosition;
+    int _count =0;
 
 };
 

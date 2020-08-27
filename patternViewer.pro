@@ -27,9 +27,12 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     file.cpp \
     print.cpp \
-    search.cpp
+    search.cpp \
+    finddialog.cpp
 
 HEADERS  += mainwindow.h \
-    file.h
+    file.h \
+    finddialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    finddialog.ui
