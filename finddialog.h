@@ -5,6 +5,7 @@
 #include "ui_finddialog.h"
 #include <QDebug>
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class FindDialog;
@@ -21,6 +22,7 @@ public:
 signals:
         void sendKeyword(QString keyword);
         void sendNextButtonSignal(QString keyword);
+        void sendDialogEndSignal();
 
 
 private slots:
@@ -32,6 +34,9 @@ private:
     Ui::FindDialog *ui;
 
 private:
+
+public:
+    void closeEvent(QCloseEvent *event);
 
 };
 

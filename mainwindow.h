@@ -30,6 +30,7 @@ private slots:
 
     void receiveKeyword(QString keyword);
     void receiveNextButtonSignal(QString keyword);
+    void receiveDialogEndSignal();
 
     void on_openButton_clicked();
     void on_clearButton_clicked();

@@ -23,7 +23,22 @@ void MainWindow::receiveKeyword(QString keyword)
 
 void MainWindow::receiveNextButtonSignal(QString keyword)
 {
-   findKeywordSequence(keyword);
+    findKeywordSequence(keyword);
+}
+
+void MainWindow::receiveDialogEndSignal()
+{
+
+    QTextCharFormat fmt;
+    fmt.setBackground(QBrush(Qt::white));
+    ui->textEdit->mergeCurrentCharFormat(fmt);
+
+    printHexFileInTableWidget();
+    printFileInformationInLabel();
+
+    printFileHeaderInTextEdit();
+    printCommonHeaderInTextEdit();
+
 }
 
 void MainWindow::on_openButton_clicked()
@@ -53,6 +68,9 @@ void MainWindow::on_clearButton_clicked()
     ui->tableWidget->setColumnCount(0);
 
     ui->textEdit->clear();
+
+    ui->informationLabel->setText("");
+
 }
 
 void MainWindow::on_modifyFindButton_clicked()

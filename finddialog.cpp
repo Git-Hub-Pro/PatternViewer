@@ -33,3 +33,12 @@ void FindDialog::on_nextButton_clicked()
 
     disconnect(this, 0, 0, 0);
 }
+
+void FindDialog::closeEvent(QCloseEvent *event)
+{
+    connect(this,SIGNAL(sendDialogEndSignal()),parent(),SLOT(receiveDialogEndSignal()));
+    emit sendDialogEndSignal();
+    disconnect(this,0,0,0);
+
+    QDialog::closeEvent(event);
+}
