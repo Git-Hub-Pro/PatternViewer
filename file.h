@@ -18,7 +18,7 @@ private:
 public:
     QString getFilePath();
 
-    void readPatFile(); // Open patFile
+    bool readPatFile(); // Open patFile
     void setPatFile(QByteArray data);
 
 

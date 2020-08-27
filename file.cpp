@@ -2,13 +2,14 @@
 
 QString File::getFilePath()
 {
+
     QString filePath = QFileDialog::getOpenFileName(this,
           tr("Open Image"), "/home/unitest/Documents/QT", tr("Image Files (*.png *.jpg *.bmp *.pat);;Text files (*.txt)"));
 
     return filePath;
 }
 
-void File::readPatFile()
+bool File::readPatFile()
 {
     File Obj;
 
@@ -16,11 +17,12 @@ void File::readPatFile()
 
     QFile file(filePath);
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
+    if (filePath.length()==0 || !file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
 
     _patFile  = file.readAll();
 
+    return true;
 }
 
 

@@ -45,16 +45,18 @@ void MainWindow::on_openButton_clicked()
 {
     // ASCII : value name / Hex : value name.toHex()
     // Print File information.
-    Obj.readPatFile();
+
 
     initVariable();
+
+    if(Obj.readPatFile()){
 
     printHexFileInTableWidget();
     printFileInformationInLabel();
 
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
-
+   }
 }
 
 void MainWindow::initVariable()
