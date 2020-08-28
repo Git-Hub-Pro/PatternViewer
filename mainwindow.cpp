@@ -56,6 +56,7 @@ void MainWindow::on_openButton_clicked()
 
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
+    printBlockHeaderInTextEdit();
    }
 }
 

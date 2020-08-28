@@ -45,6 +45,7 @@ public:
 
     void printFileHeaderInTextEdit();
     void printCommonHeaderInTextEdit();
+    void printBlockHeaderInTextEdit();
 
     void initVariable();
 
