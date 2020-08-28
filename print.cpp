@@ -38,7 +38,7 @@ void MainWindow::printHexFileInTableWidget()
            }
 
            QByteArray hexDataOne;
-           hexDataOne.append(fileData.at(i+j));
+           hexDataOne.append(fileData.at(i*column+j));
            item->setText(hexDataOne.toHex());
            cnt++;
 
@@ -73,7 +73,7 @@ void MainWindow::printFileHeaderInTextEdit()
     ui->textEdit->append("10. FileHeaderStartAddressArray: ");
     ui->textEdit->append(Obj. readFileHeaderStartAddressArray().toHex());
     ui->textEdit->append("11. FileHeaderRemark : ");
-    ui->textEdit->append(Obj. readFileHeaderRemark().toHex());
+    ui->textEdit->append(Obj. readFileHeaderRemark());
     ui->textEdit->append("12. FileHeaderDataOfIlMode : ");
     ui->textEdit->append(Obj. readFileHeaderDataOfIlMode().toHex());
     ui->textEdit->append("13. FileHeaderReserved : ");
@@ -82,10 +82,26 @@ void MainWindow::printFileHeaderInTextEdit()
 
 void MainWindow::printCommonHeaderInTextEdit()
 {
-    ui->textEdit->append("14. readCommonHeaderOpcodeNDataSet32 : ");
-    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet32().toHex());
-    ui->textEdit->append("15. readCommonHeaderOpcodeNDataSet64 : ");
-    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet64().toHex());
+    ui->textEdit->append("14. readCommonHeaderOpcodeNDataSet32_r : ");
+    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet32_r().toHex());
+    ui->textEdit->append("15. readCommonHeaderOpcodeNDataSet64_s : ");
+    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet64_s().toHex());
     ui->textEdit->append("16. readCommonHeaderReserved : ");
     ui->textEdit->append(Obj.readCommonHeaderReserved().toHex());
 }
+
+void MainWindow::printBlockHeaderInTextEdit()
+{
+    ui->textEdit->append("17. readBlock1StartAddress : ");
+    ui->textEdit->append(Obj.readBlock1StartAddress().toHex());
+    ui->textEdit->append("18. readBlock1HeaderOpcodeNDataSet32_r : ");
+    ui->textEdit->append(Obj.readBlock1HeaderOpcodeNDataSet32_r().toHex());
+    ui->textEdit->append("19. readBlock1HeaderOpcodeNDataSet64_s : ");
+    ui->textEdit->append(Obj.readBlock1HeaderOpcodeNDataSet64_s().toHex());
+    ui->textEdit->append("20. readBlock1HeaderMicroPatternCount : ");
+    ui->textEdit->append(Obj.readBlock1HeaderMicroPatternCount().toHex());
+    ui->textEdit->append("21. readBlock1HeaderReaserverd : ");
+    ui->textEdit->append(Obj.readBlock1HeaderReaserverd().toHex());
+
+}
+

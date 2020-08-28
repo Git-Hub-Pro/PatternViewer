@@ -52,11 +52,11 @@ public:
 
 
     //Block Header
-     QByteArray readBlock1StartAddress();             // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33552 ~ 33556 |
-     QByteArray readBlock1HeaderOpcodeNDataSet32_r(); // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33556 ~ 33560 |
-     QByteArray readBlock1HeaderOpcodeNDataSet64_s(); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33560 ~ 33564 |
-     QByteArray readBlock1HeaderMicroPatternCount();  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33564 ~ 33568 |
-     QByteArray readBlock1HeaderReaserverd();         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33568 ~ 33584 |
+     QByteArray readBlock1StartAddress();             // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 |
+     QByteArray readBlock1HeaderOpcodeNDataSet32_r(); // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 |
+     QByteArray readBlock1HeaderOpcodeNDataSet64_s(); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 |
+     QByteArray readBlock1HeaderMicroPatternCount();  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 |
+     QByteArray readBlock1HeaderReaserverd();         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 |
 
 
 };

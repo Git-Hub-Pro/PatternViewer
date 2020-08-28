@@ -262,10 +262,10 @@ QByteArray File::readCommonHeaderReserved()
 
 QByteArray File::readBlock1StartAddress()
 {
-    // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33552 ~ 33556 |
+    // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 |
     QByteArray block1StartAddress;
 
-    for(int i=33552;i<33556;i++)
+    for(int i=33567;i<33571;i++)
     {
          block1StartAddress.append(_patFile.at(i));
     }
@@ -275,10 +275,10 @@ QByteArray File::readBlock1StartAddress()
 
 QByteArray File::readBlock1HeaderOpcodeNDataSet32_r()
 {
-    // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33556 ~ 33560 |
+    // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 |
     QByteArray block1HeaderOpcodeNDataSet32_r;
 
-    for(int i=33556;i<33560;i++)
+    for(int i=33571;i<33575;i++)
     {
        block1HeaderOpcodeNDataSet32_r.append(_patFile.at(i));
     }
@@ -288,10 +288,10 @@ QByteArray File::readBlock1HeaderOpcodeNDataSet32_r()
 
 QByteArray File::readBlock1HeaderOpcodeNDataSet64_s()
 {
-    // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33560 ~ 33564 |
+    // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 |
     QByteArray block1HeaderOpcodeNDataSet64_s;
 
-    for(int i=33560;i<33564;i++)
+    for(int i=33575;i<33579;i++)
     {
        block1HeaderOpcodeNDataSet64_s.append(_patFile.at(i));
     }
@@ -302,10 +302,10 @@ QByteArray File::readBlock1HeaderOpcodeNDataSet64_s()
 
 QByteArray File::readBlock1HeaderMicroPatternCount()
 {
-    // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33564 ~ 33568 |
+    // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 |
     QByteArray block1HeaderMicroPatternCount;
 
-    for(int i=33564;i<33568;i++)
+    for(int i=33579;i<33583;i++)
     {
        block1HeaderMicroPatternCount.append(_patFile.at(i));
     }
@@ -316,10 +316,10 @@ QByteArray File::readBlock1HeaderMicroPatternCount()
 
 QByteArray File::readBlock1HeaderReaserverd()
 {
-    // 21. readBlock1HeaderReaserverd        format | size : 16 byte| scope : 33568 ~ 33584 |
+    // 21. readBlock1HeaderReaserverd        format | size : 16 byte| scope : 33583 ~ 33598 |
     QByteArray block1HeaderReaserverd;
 
-    for(int i=33568;i<33584;i++)
+    for(int i=33583;i<33598;i++)
     {
        block1HeaderReaserverd.append(_patFile.at(i));
     }
