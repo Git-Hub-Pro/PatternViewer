@@ -52,32 +52,20 @@ void MainWindow::printHexFileInTableWidget()
 
 void MainWindow::printFileHeaderInTextEdit()
 {
-    ui->textEdit->setPlainText("1. FileHeaderDiscemmentCode : ");
-    ui->textEdit->append(Obj.readFileHeaderDiscemmentCode().toHex());
-    ui->textEdit->append("2. FileHeaderSourceFileName : ");
-    ui->textEdit->append(Obj.readFileHeaderSourceFileName());
-    ui->textEdit->append("3. FileHeaderCompileDate : ");
-    ui->textEdit->append(Obj.readFileHeaderCompileDate());
-    ui->textEdit->append("4. FileHeaderCompileTime : ");
-    ui->textEdit->append(Obj.readFileHeaderCompileTime());
-    ui->textEdit->append("5. FileHeaderCompilerVersion : ");
-    ui->textEdit->append(Obj.readFileHeaderCompilerVersion());
-    ui->textEdit->append("6. FileHeaderFlagCommonModuleExist : ");
-    ui->textEdit->append(Obj.readFileHeaderFlagCommonModuleExist().toHex());
-    ui->textEdit->append("7. FileHeaderCountOfBlock : ");
-    ui->textEdit->append(Obj.readFileHeaderCountOfBlock().toHex());
-    ui->textEdit->append("8. FileHeaderOffsetsOfCommon : ");
-    ui->textEdit->append(Obj.readFileHeaderCountOfBlock().toHex());
-    ui->textEdit->append("9. FileHeaderOffsetsOfBlocks : ");
-    ui->textEdit->append(Obj. readFileHeaderOffsetsOfBlocks().toHex());
-    ui->textEdit->append("10. FileHeaderStartAddressArray: ");
-    ui->textEdit->append(Obj. readFileHeaderStartAddressArray().toHex());
-    ui->textEdit->append("11. FileHeaderRemark : ");
-    ui->textEdit->append(Obj. readFileHeaderRemark());
-    ui->textEdit->append("12. FileHeaderDataOfIlMode : ");
-    ui->textEdit->append(Obj. readFileHeaderDataOfIlMode().toHex());
-    ui->textEdit->append("13. FileHeaderReserved : ");
-    ui->textEdit->append(Obj. readFileHeaderReserved().toHex());
+    printFileHeaderDiscemmentCode();
+    printFileHeaderSourceFileName();
+    printFileHeaderCompileDate();
+    printFileHeaderCompileTime();
+    printFileHeaderCompilerVersion();
+
+    printFileHeaderFlagCommonModuleExist();
+    printFileHeaderCountOfBlock();
+    printFileHeaderOffsetsOfCommon();
+    printFileHeaderOffsetsOfBlocks();
+    printFileHeaderRemark();
+    printFileHeaderDataOfIlMode();
+    printFileHeaderReserved();
+
 }
 
 void MainWindow::printCommonHeaderInTextEdit()
@@ -105,3 +93,208 @@ void MainWindow::printBlockHeaderInTextEdit()
 
 }
 
+void MainWindow::printFileHeaderDiscemmentCode()
+{
+    ui->textEdit->insertPlainText("1. FileHeaderDiscemmentCode : ");
+
+    QByteArray data = Obj.readFileHeaderDiscemmentCode().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderSourceFileName()
+{
+    ui->textEdit->insertPlainText("\n2. FileHeaderSourceFileName : \n");
+    ui->textEdit->insertPlainText(Obj.readFileHeaderSourceFileName());
+}
+
+void MainWindow::printFileHeaderCompileDate()
+{
+    ui->textEdit->insertPlainText("\n3. FileHeaderCompileDate : \n");
+    ui->textEdit->insertPlainText(Obj.readFileHeaderCompileDate());
+}
+
+void MainWindow::printFileHeaderCompileTime()
+{
+    ui->textEdit->insertPlainText("\n4. FileHeaderCompileTime : \n");
+    ui->textEdit->insertPlainText(Obj.readFileHeaderCompileTime());
+}
+
+void MainWindow::printFileHeaderCompilerVersion()
+{
+    ui->textEdit->insertPlainText("\n5. FileHeaderCompilerVersion : \n");
+    ui->textEdit->insertPlainText(Obj.readFileHeaderCompilerVersion());
+}
+
+void MainWindow::printFileHeaderFlagCommonModuleExist()
+{
+    ui->textEdit->insertPlainText("\n6. FileHeaderFlagCommonModuleExist : ");
+
+    QByteArray data = Obj.readFileHeaderFlagCommonModuleExist().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderCountOfBlock()
+{
+    ui->textEdit->insertPlainText("\n7. FileHeaderCountOfBlock :");
+
+    QByteArray data = Obj.readFileHeaderCountOfBlock().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderOffsetsOfCommon()
+{
+    ui->textEdit->insertPlainText("\n8. FileHeaderOffsetsOfCommon :");
+
+    QByteArray data = Obj.readFileHeaderCountOfBlock().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderOffsetsOfBlocks()
+{
+    ui->textEdit->insertPlainText("\n9. FileHeaderOffsetsOfBlocks :");
+
+    QByteArray data = Obj. readFileHeaderOffsetsOfBlocks().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%64==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderStartAddressArray()
+{
+    ui->textEdit->insertPlainText("\n10. FileHeaderStartAddressArray:");
+
+    QByteArray data = Obj. readFileHeaderStartAddressArray().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%64==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderRemark()
+{
+    ui->textEdit->append("11. FileHeaderRemark : ");
+    ui->textEdit->append(Obj. readFileHeaderRemark());
+}
+
+void MainWindow::printFileHeaderDataOfIlMode()
+{
+    ui->textEdit->insertPlainText("\n12. FileHeaderDataOfIlMode : ");
+
+    QByteArray data = Obj. readFileHeaderDataOfIlMode().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printFileHeaderReserved()
+{
+    ui->textEdit->insertPlainText("\n13. FileHeaderReserved : ");
+
+    QByteArray data = Obj. readFileHeaderReserved().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}

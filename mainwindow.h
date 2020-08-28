@@ -47,6 +47,21 @@ public:
     void printCommonHeaderInTextEdit();
     void printBlockHeaderInTextEdit();
 
+
+    void printFileHeaderDiscemmentCode();
+    void printFileHeaderSourceFileName();
+    void printFileHeaderCompileDate();
+    void printFileHeaderCompileTime();
+    void printFileHeaderCompilerVersion();
+    void printFileHeaderFlagCommonModuleExist();
+    void printFileHeaderCountOfBlock();
+    void printFileHeaderOffsetsOfCommon();
+    void printFileHeaderOffsetsOfBlocks();
+    void printFileHeaderStartAddressArray();
+    void printFileHeaderRemark();
+    void printFileHeaderDataOfIlMode();
+    void printFileHeaderReserved();
+
     void initVariable();
 
     void findAllKeyword(QString keyword);
