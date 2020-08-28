@@ -267,7 +267,7 @@ QByteArray File::readBlock1StartAddress()
 
     for(int i=33567;i<33571;i++)
     {
-         block1StartAddress.append(_patFile.at(i));
+         block1StartAddress.append(_patFile.at(i));        
     }
 
     return block1StartAddress;
