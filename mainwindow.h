@@ -47,7 +47,6 @@ public:
     void printCommonHeaderInTextEdit();
     void printBlockHeaderInTextEdit();
 
-
     void printFileHeaderDiscemmentCode();
     void printFileHeaderSourceFileName();
     void printFileHeaderCompileDate();
@@ -61,6 +60,17 @@ public:
     void printFileHeaderRemark();
     void printFileHeaderDataOfIlMode();
     void printFileHeaderReserved();
+
+    void printCommonHeaderOpcodeNDataSet32_r();
+    void printCommonHeaderOpcodeNDataSet64_s();
+    void printCommonHeaderReserved();
+
+    void printBlock1StartAddress();
+    void printBlock1HeaderOpcodeNDataSet32_r();
+    void printBlock1HeaderOpcodeNDataSet64_s();
+    void printBlock1HeaderMicroPatternCount();
+    void printBlock1HeaderReaserverd();
+
 
     void initVariable();
 

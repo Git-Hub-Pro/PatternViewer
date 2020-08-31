@@ -4,7 +4,7 @@ QString File::getFilePath()
 {
 
     QString filePath = QFileDialog::getOpenFileName(this,
-          tr("Open Image"), "/home/unitest/Documents/QT", tr("Image Files (*.png *.jpg *.bmp *.pat);;Text files (*.txt)"));
+          tr("Open Image"), "/home/unitest/Documents/QT", tr("Image Files (*.pat)"));
 
     return filePath;
 }

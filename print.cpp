@@ -70,27 +70,18 @@ void MainWindow::printFileHeaderInTextEdit()
 
 void MainWindow::printCommonHeaderInTextEdit()
 {
-    ui->textEdit->append("14. readCommonHeaderOpcodeNDataSet32_r : ");
-    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet32_r().toHex());
-    ui->textEdit->append("15. readCommonHeaderOpcodeNDataSet64_s : ");
-    ui->textEdit->append(Obj.readCommonHeaderOpcodeNDataSet64_s().toHex());
-    ui->textEdit->append("16. readCommonHeaderReserved : ");
-    ui->textEdit->append(Obj.readCommonHeaderReserved().toHex());
+    printCommonHeaderOpcodeNDataSet32_r();
+    printCommonHeaderOpcodeNDataSet64_s();
+    printCommonHeaderReserved();
 }
 
 void MainWindow::printBlockHeaderInTextEdit()
 {
-    ui->textEdit->append("17. readBlock1StartAddress : ");
-    ui->textEdit->append(Obj.readBlock1StartAddress().toHex());
-    ui->textEdit->append("18. readBlock1HeaderOpcodeNDataSet32_r : ");
-    ui->textEdit->append(Obj.readBlock1HeaderOpcodeNDataSet32_r().toHex());
-    ui->textEdit->append("19. readBlock1HeaderOpcodeNDataSet64_s : ");
-    ui->textEdit->append(Obj.readBlock1HeaderOpcodeNDataSet64_s().toHex());
-    ui->textEdit->append("20. readBlock1HeaderMicroPatternCount : ");
-    ui->textEdit->append(Obj.readBlock1HeaderMicroPatternCount().toHex());
-    ui->textEdit->append("21. readBlock1HeaderReaserverd : ");
-    ui->textEdit->append(Obj.readBlock1HeaderReaserverd().toHex());
-
+    printBlock1StartAddress();
+    printBlock1HeaderOpcodeNDataSet32_r();
+    printBlock1HeaderOpcodeNDataSet64_s();
+    printBlock1HeaderMicroPatternCount();
+    printBlock1HeaderReaserverd();
 }
 
 void MainWindow::printFileHeaderDiscemmentCode()
@@ -216,7 +207,7 @@ void MainWindow::printFileHeaderOffsetsOfBlocks()
     for(int i=0;i<data.length();i++){
        dataTwo.append(data.at(i));
 
-       if(i%64==0)
+       if(i%100==0)
        ui->textEdit->append("");
 
        if(i!=0&&i%2==1){
@@ -282,6 +273,182 @@ void MainWindow::printFileHeaderReserved()
     ui->textEdit->insertPlainText("\n13. FileHeaderReserved : ");
 
     QByteArray data = Obj. readFileHeaderReserved().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printCommonHeaderOpcodeNDataSet32_r()
+{
+    ui->textEdit->insertPlainText("\n14. CommonHeaderOpcodeNDataSet32_r : ");
+
+    QByteArray data = Obj. readCommonHeaderOpcodeNDataSet32_r().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
+{
+    ui->textEdit->insertPlainText("\n15. CommonHeaderOpcodeNDataSet64_s : ");
+
+    QByteArray data = Obj. readCommonHeaderOpcodeNDataSet64_s().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printCommonHeaderReserved()
+{
+    ui->textEdit->insertPlainText("\n16. CommonHeaderReserved : ");
+
+    QByteArray data = Obj. readCommonHeaderReserved().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printBlock1StartAddress()
+{
+    ui->textEdit->insertPlainText("\n17. Block1StartAddress : ");
+
+    QByteArray data = Obj. readBlock1StartAddress().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
+{
+    ui->textEdit->insertPlainText("\n18. Block1HeaderOpcodeNDataSet32_r : ");
+
+    QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet32_r().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
+{
+    ui->textEdit->insertPlainText("\n19. Block1HeaderOpcodeNDataSet64_s : ");
+
+    QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet64_s().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printBlock1HeaderMicroPatternCount()
+{
+    ui->textEdit->insertPlainText("\n20. Block1HeaderMicroPatternCount : ");
+
+    QByteArray data = Obj. readBlock1HeaderMicroPatternCount().toHex();
+    QByteArray dataTwo;
+
+
+    for(int i=0;i<data.length();i++){
+       dataTwo.append(data.at(i));
+
+       if(i%16==0)
+       ui->textEdit->append("");
+
+       if(i!=0&&i%2==1){
+          ui->textEdit->insertPlainText(dataTwo);
+          ui->textEdit->insertPlainText(" ");
+          dataTwo.clear();
+       }
+    }
+}
+
+void MainWindow::printBlock1HeaderReaserverd()
+{
+    ui->textEdit->insertPlainText("\n21. Block1HeaderReaserverd : ");
+
+    QByteArray data = Obj. readBlock1HeaderReaserverd().toHex();
     QByteArray dataTwo;
 
 

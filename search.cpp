@@ -31,7 +31,7 @@ void MainWindow::findAllKeyword(QString keyword)
             colorFormat.setBackground(Qt::yellow);
 
             while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
-                highlightCursor = document->find(keyword, highlightCursor, QTextDocument::FindCaseSensitively);
+                highlightCursor = document->find(keyword, highlightCursor, QTextDocument::FindWholeWords);
 
                 if (!highlightCursor.isNull()) {
                     _found = true;
