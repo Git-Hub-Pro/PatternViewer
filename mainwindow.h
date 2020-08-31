@@ -14,6 +14,7 @@
 #include <QTextCursor>
 #include <QTextCharFormat>
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -35,6 +36,8 @@ private slots:
     void on_openButton_clicked();
     void on_clearButton_clicked();
     void on_modifyFindButton_clicked();
+
+    void on_tableWidget_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
 }
 
 MainWindow::~MainWindow()
@@ -91,3 +90,29 @@ void MainWindow::on_modifyFindButton_clicked()
 
 }
 
+void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
+{
+    if(index.isValid()){
+        int row = index.row();
+        int column = index.column();
+        int isNum = row*10 + column + 1;
+
+        QString informationFile;
+
+        QByteArray fileData = Obj.readAll();
+
+        informationFile.append("File Name : ");
+        informationFile.append(Obj.readFileHeaderSourceFileName());
+        informationFile.append("  File size : ");
+        informationFile.append(QString::number(fileData.size()));
+        informationFile.append("Byte ");
+
+        informationFile.append("Position : ");
+        informationFile.append(QString::number(isNum));
+        informationFile.append("/");
+        informationFile.append(QString::number(fileData.size()));
+
+        ui->informationLabel->setText(informationFile);
+    }
+
+}

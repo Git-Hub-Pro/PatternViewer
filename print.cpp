@@ -24,6 +24,10 @@ void MainWindow::printHexFileInTableWidget()
 
     int row = fileData.size()/column;
 
+    if(fileData.size() % column > 0)
+        row += 1;
+
+
      ui->tableWidget->setRowCount(row);
      ui->tableWidget->setColumnCount(column);
 

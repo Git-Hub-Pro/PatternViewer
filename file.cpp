@@ -3,8 +3,10 @@
 QString File::getFilePath()
 {
 
+    QString PWDPath = QCoreApplication::applicationDirPath();
+
     QString filePath = QFileDialog::getOpenFileName(this,
-          tr("Open Image"), "/home/unitest/Documents/QT", tr("Image Files (*.pat)"));
+          tr("Open Image"), PWDPath, tr("Image Files (*.pat)"));
 
     return filePath;
 }

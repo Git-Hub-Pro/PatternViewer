@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QDataStream>
+#include <QCoreApplication>
 
 class File : public QWidget
 {
