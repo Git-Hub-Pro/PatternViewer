@@ -130,39 +130,22 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+             <widget class="QPushButton" name="openButton">
+              <property name="text">
+               <string>OPEN</string>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="clearButton">
+              <property name="text">
+               <string>CLEAR</string>
               </property>
-             </spacer>
+             </widget>
             </item>
            </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QPushButton" name="openButton">
-            <property name="text">
-             <string>OPEN</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="clearButton">
-            <property name="text">
-             <string>CLEAR</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </item>
@@ -178,28 +161,9 @@
      </layout>
     </item>
    </layout>
-   <zorder>tableWidget</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>openButton</zorder>
-   <zorder>clearButton</zorder>
-   <zorder>informationLabel</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>nextButton</zorder>
-   <zorder>findButton</zorder>
-   <zorder>textEdit</zorder>
-   <zorder>textEdit</zorder>
-   <zorder>tableWidget</zorder>
    <zorder></zorder>
-   <zorder>horizontalSpacer</zorder>
    <zorder>horizontalSpacer_2</zorder>
    <zorder></zorder>
-   <zorder>originFindButton</zorder>
-   <zorder>originNextButton</zorder>
-   <zorder>modifyFindButton</zorder>
-   <zorder>nextButton2</zorder>
-   <zorder>horizontalSpacer_3</zorder>
-   <zorder>horizontalSpacer</zorder>
    <zorder>verticalSpacer</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">

@@ -29,8 +29,11 @@ void MainWindow::receiveNextButtonSignal(QString keyword)
 void MainWindow::receiveDialogEndSignal()
 {
 
+    ui->textEdit->clear();
+
     QTextCharFormat fmt;
     fmt.setBackground(QBrush(Qt::white));
+
     ui->textEdit->mergeCurrentCharFormat(fmt);
 
     printHexFileInTableWidget();
@@ -38,7 +41,7 @@ void MainWindow::receiveDialogEndSignal()
 
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
-
+    printBlockHeaderInTextEdit();
 }
 
 void MainWindow::on_openButton_clicked()
@@ -46,11 +49,10 @@ void MainWindow::on_openButton_clicked()
     // ASCII : value name / Hex : value name.toHex()
     // Print File information.
 
-
     initVariable();
 
     if(Obj.readPatFile()){
-
+    ui->textEdit->clear();
     printHexFileInTableWidget();
     printFileInformationInLabel();
 

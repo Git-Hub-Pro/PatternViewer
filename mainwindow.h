@@ -83,7 +83,6 @@ public:
     void setCursorPosition(int cursorPosition){_cursorPosition = cursorPosition;}
     int  getCursorPosition(){return _cursorPosition;}
 
-
 private:
     File Obj;
     bool _found;

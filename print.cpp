@@ -86,136 +86,129 @@ void MainWindow::printBlockHeaderInTextEdit()
 
 void MainWindow::printFileHeaderDiscemmentCode()
 {
-    ui->textEdit->insertPlainText("1. FileHeaderDiscemmentCode : ");
+    ui->textEdit->insertPlainText("1. FileHeaderDiscemmentCode : \n");
 
     QByteArray data = Obj.readFileHeaderDiscemmentCode().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
-
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+
+    ui->textEdit->insertPlainText(line);
+    line.clear();
+
 }
 
 void MainWindow::printFileHeaderSourceFileName()
 {
     ui->textEdit->insertPlainText("\n2. FileHeaderSourceFileName : \n");
-    ui->textEdit->insertPlainText(Obj.readFileHeaderSourceFileName());
+    ui->textEdit->insertPlainText((QString)Obj.readFileHeaderSourceFileName());
 }
 
 void MainWindow::printFileHeaderCompileDate()
 {
     ui->textEdit->insertPlainText("\n3. FileHeaderCompileDate : \n");
-    ui->textEdit->insertPlainText(Obj.readFileHeaderCompileDate());
+    ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompileDate());
 }
 
 void MainWindow::printFileHeaderCompileTime()
 {
     ui->textEdit->insertPlainText("\n4. FileHeaderCompileTime : \n");
-    ui->textEdit->insertPlainText(Obj.readFileHeaderCompileTime());
+    ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompileTime());
 }
 
 void MainWindow::printFileHeaderCompilerVersion()
 {
     ui->textEdit->insertPlainText("\n5. FileHeaderCompilerVersion : \n");
-    ui->textEdit->insertPlainText(Obj.readFileHeaderCompilerVersion());
+    ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompilerVersion());
 }
 
 void MainWindow::printFileHeaderFlagCommonModuleExist()
 {
-    ui->textEdit->insertPlainText("\n6. FileHeaderFlagCommonModuleExist : ");
+    ui->textEdit->insertPlainText("\n6. FileHeaderFlagCommonModuleExist : \n");
 
     QByteArray data = Obj.readFileHeaderFlagCommonModuleExist().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
-
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+         line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
+
 }
 
 void MainWindow::printFileHeaderCountOfBlock()
 {
-    ui->textEdit->insertPlainText("\n7. FileHeaderCountOfBlock :");
+    ui->textEdit->insertPlainText("\n7. FileHeaderCountOfBlock :\n");
 
     QByteArray data = Obj.readFileHeaderCountOfBlock().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
-
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+          line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printFileHeaderOffsetsOfCommon()
 {
-    ui->textEdit->insertPlainText("\n8. FileHeaderOffsetsOfCommon :");
+    ui->textEdit->insertPlainText("\n8. FileHeaderOffsetsOfCommon : \n");
 
     QByteArray data = Obj.readFileHeaderCountOfBlock().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+         line+= " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printFileHeaderOffsetsOfBlocks()
 {
-    ui->textEdit->insertPlainText("\n9. FileHeaderOffsetsOfBlocks :");
+    ui->textEdit->insertPlainText("\n9. FileHeaderOffsetsOfBlocks :\n");
 
     QByteArray data = Obj. readFileHeaderOffsetsOfBlocks().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%100==0)
-       ui->textEdit->append("");
-
+       if(i%100==0&&i!=0){
+           ui->textEdit->insertPlainText(line);
+           ui->textEdit->append("");
+           line.clear();
+       }
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+         line += " ";
        }
     }
+
 }
 
 void MainWindow::printFileHeaderStartAddressArray()
@@ -223,19 +216,21 @@ void MainWindow::printFileHeaderStartAddressArray()
     ui->textEdit->insertPlainText("\n10. FileHeaderStartAddressArray:");
 
     QByteArray data = Obj. readFileHeaderStartAddressArray().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
 
-       if(i%64==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
+       if(i%64==0){
+           ui->textEdit->insertPlainText(line);
+           ui->textEdit->append("");
+           line.clear();
+       }
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+        line += " ";
        }
     }
 }
@@ -243,225 +238,208 @@ void MainWindow::printFileHeaderStartAddressArray()
 void MainWindow::printFileHeaderRemark()
 {
     ui->textEdit->append("11. FileHeaderRemark : ");
-    ui->textEdit->append(Obj. readFileHeaderRemark());
+    ui->textEdit->append((QString)Obj. readFileHeaderRemark());
 }
 
 void MainWindow::printFileHeaderDataOfIlMode()
 {
-    ui->textEdit->insertPlainText("\n12. FileHeaderDataOfIlMode : ");
+    ui->textEdit->insertPlainText("\n12. FileHeaderDataOfIlMode : \n");
 
     QByteArray data = Obj. readFileHeaderDataOfIlMode().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
-
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+           line += " ";
        }
     }
+
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printFileHeaderReserved()
 {
-    ui->textEdit->insertPlainText("\n13. FileHeaderReserved : ");
+    ui->textEdit->insertPlainText("\n13. FileHeaderReserved : \n");
 
     QByteArray data = Obj. readFileHeaderReserved().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+         line += " ";
        }
     }
+
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printCommonHeaderOpcodeNDataSet32_r()
 {
-    ui->textEdit->insertPlainText("\n14. CommonHeaderOpcodeNDataSet32_r : ");
+    ui->textEdit->insertPlainText("\n14. CommonHeaderOpcodeNDataSet32_r : \n");
 
     QByteArray data = Obj. readCommonHeaderOpcodeNDataSet32_r().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+        line += " ";
        }
     }
+
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
 {
-    ui->textEdit->insertPlainText("\n15. CommonHeaderOpcodeNDataSet64_s : ");
+    ui->textEdit->insertPlainText("\n15. CommonHeaderOpcodeNDataSet64_s : \n");
 
     QByteArray data = Obj. readCommonHeaderOpcodeNDataSet64_s().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printCommonHeaderReserved()
 {
-    ui->textEdit->insertPlainText("\n16. CommonHeaderReserved : ");
+    ui->textEdit->insertPlainText("\n16. CommonHeaderReserved : \n");
 
     QByteArray data = Obj. readCommonHeaderReserved().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+          line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printBlock1StartAddress()
 {
-    ui->textEdit->insertPlainText("\n17. Block1StartAddress : ");
+    ui->textEdit->insertPlainText("\n17. Block1StartAddress : \n");
 
     QByteArray data = Obj. readBlock1StartAddress().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+
+    ui->textEdit->insertPlainText(line);
+    line.clear();
+
 }
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
 {
-    ui->textEdit->insertPlainText("\n18. Block1HeaderOpcodeNDataSet32_r : ");
+    ui->textEdit->insertPlainText("\n18. Block1HeaderOpcodeNDataSet32_r : \n");
 
     QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet32_r().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
 {
-    ui->textEdit->insertPlainText("\n19. Block1HeaderOpcodeNDataSet64_s : ");
+    ui->textEdit->insertPlainText("\n19. Block1HeaderOpcodeNDataSet64_s : \n");
 
     QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet64_s().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printBlock1HeaderMicroPatternCount()
 {
-    ui->textEdit->insertPlainText("\n20. Block1HeaderMicroPatternCount : ");
+    ui->textEdit->insertPlainText("\n20. Block1HeaderMicroPatternCount : \n");
 
     QByteArray data = Obj. readBlock1HeaderMicroPatternCount().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
 
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
 
 void MainWindow::printBlock1HeaderReaserverd()
 {
-    ui->textEdit->insertPlainText("\n21. Block1HeaderReaserverd : ");
+    ui->textEdit->insertPlainText("\n21. Block1HeaderReaserverd : \n");
 
     QByteArray data = Obj. readBlock1HeaderReaserverd().toHex();
-    QByteArray dataTwo;
+    QString str = (QString) data;
+    QString line;
 
-
-    for(int i=0;i<data.length();i++){
-       dataTwo.append(data.at(i));
-
-       if(i%16==0)
-       ui->textEdit->append("");
+    for(int i=0;i<str.length();i++){
+       line += str[i];
 
        if(i!=0&&i%2==1){
-          ui->textEdit->insertPlainText(dataTwo);
-          ui->textEdit->insertPlainText(" ");
-          dataTwo.clear();
+       line += " ";
        }
     }
+    ui->textEdit->insertPlainText(line);
+    line.clear();
 }
