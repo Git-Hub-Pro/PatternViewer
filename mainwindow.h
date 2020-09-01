@@ -3,6 +3,7 @@
 
 #include "file.h"
 #include "finddialog.h"
+#include "settingdialog.h"
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
@@ -38,6 +39,8 @@ private slots:
     void on_modifyFindButton_clicked();
 
     void on_tableWidget_clicked(const QModelIndex &index);
+
+    void on_settingButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -145,6 +145,13 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QPushButton" name="settingButton">
+              <property name="text">
+               <string>SETTING</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>

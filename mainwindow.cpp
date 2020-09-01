@@ -116,3 +116,14 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
     }
 
 }
+
+void MainWindow::on_settingButton_clicked()
+{
+    SettingDialog *dialog =new SettingDialog(this);
+
+    dialog->show();
+
+    dialog->raise();
+
+    dialog->activateWindow();
+}
