@@ -94,8 +94,13 @@ public:
     void setCursorPosition(int cursorPosition){_cursorPosition = cursorPosition;}
     int  getCursorPosition(){return _cursorPosition;}
 
+
 private:
     File Obj;
+    FileHeaderSize FileHeaderObj;
+    CommonHeaderSize CommonHeaderObj;
+    BlockHeaderSize BlockHeaderObj;
+
     bool _found;
     int _cursorNum;
     int _cursorPosition;

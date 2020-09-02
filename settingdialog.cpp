@@ -114,7 +114,6 @@ void SettingDialog::on_applyPushButton_clicked()
     emit sendBlockHeaderSize(BlockHeader);
     disconnect(this, 0, 0, 0);
 
-    qDebug()<<"send!"<<'\n';
 }
 
 void SettingDialog::setFileHeaderAll()

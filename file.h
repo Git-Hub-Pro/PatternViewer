@@ -15,9 +15,79 @@ class File : public QWidget
 
 private:
     QByteArray _patFile;
+    int fileHeaderDiscemmentCode_Address; //1
+    int fileHeaderSourceFileName_Address; //2
+    int fileHeaderCompileDate_Address; //3
+    int fileHeaderCompileTime_Address; //4
+    int fileHeaderCompilerVersion_Address; //5
+    int fileHeaderFlagCommonModuleExist_Address; //6
+    int fileHeaderCountOfBlock_Address; //7
+    int fileHeaderOffsetsOfCommon_Address; //8
+    int fileHeaderOffsetsOfBlocks_Address; // 9
+    int fileHeaderStartAddressArray_Address; // 10
+    int fileHeaderRemark_Address; // 11
+    int fileHeaderDataOfIlMode_Address; // 12
+    int fileHeaderReserved_Address; //13
 
+    int commonHeaderOpcodeNDataSet32_r_Address;
+    int commonHeaderOpcodeNDataSet64_s_Address;
+    int commonHeaderReserved_Address;
+
+    int block1StartAddress_Address;
+    int block1HeaderOpcodeNDataSet32_r_Address;
+    int block1HeaderOpcodeNDataSet64_s_Address;
+    int block1HeaderMicroPatternCount_Address;
+    int block1HeaderReaserverd_Address;
 
 public:
+     void setFileHeaderDiscemmentCode_Address(int value){fileHeaderDiscemmentCode_Address=value;}
+     int getFileHeaderDiscemmentCode_Address(){return fileHeaderDiscemmentCode_Address;}
+     void setFileHeaderSourceFileName_Address(int value){fileHeaderSourceFileName_Address=value;}
+     int getFileHeaderSourceFileName_Address(){return fileHeaderSourceFileName_Address;}
+     void setFileHeaderCompileDate_Address(int value){fileHeaderCompileDate_Address=value;}
+     int getFileHeaderCompileDate_Address(){return fileHeaderCompileDate_Address;}
+     void setFileHeaderCompileTime_Address(int value){fileHeaderCompileTime_Address=value;}
+     int getFileHeaderCompileTime_Address(){return fileHeaderCompileTime_Address;}
+     void setFileHeaderCompilerVersion_Address(int value){fileHeaderCompilerVersion_Address=value;}
+     int getFileHeaderCompilerVersion_Address(){return fileHeaderCompilerVersion_Address;}
+     void setFileHeaderFlagCommonModuleExist_Address(int value){fileHeaderFlagCommonModuleExist_Address=value;}
+     int getFileHeaderFlagCommonModuleExist_Address(){return fileHeaderFlagCommonModuleExist_Address;}
+     void setFileHeaderCountOfBlock_Address(int value){fileHeaderCountOfBlock_Address=value;}
+     int getFileHeaderCountOfBlock_Address(){return fileHeaderCountOfBlock_Address;}
+     void setFileHeaderOffsetsOfCommon_Address(int value){fileHeaderOffsetsOfCommon_Address=value;}
+     int getFileHeaderOffsetsOfCommon_Address(){return fileHeaderOffsetsOfCommon_Address;}
+     void setFileHeaderOffsetsOfBlocks_Address(int value){fileHeaderOffsetsOfBlocks_Address=value;}
+     int getFileHeaderOffsetsOfBlocks_Address(){return fileHeaderOffsetsOfBlocks_Address;}
+     void setFileHeaderStartAddressArray_Address(int value){fileHeaderStartAddressArray_Address=value;}
+     int getFileHeaderStartAddressArray_Address(){return fileHeaderStartAddressArray_Address;}
+     void setFileHeaderRemark_Address(int value){fileHeaderRemark_Address=value;}
+     int getFileHeaderRemark_Address(){return fileHeaderRemark_Address;}
+     void setFileHeaderDataOfIlMode_Address(int value){fileHeaderDataOfIlMode_Address=value;}
+     int getFileHeaderDataOfIlMode_Address(){return fileHeaderDataOfIlMode_Address;}
+     void setFileHeaderReserved_Address(int value){fileHeaderReserved_Address=value;}
+     int getFileHeaderReserved_Address(){return fileHeaderReserved_Address;}
+
+     void setCommonHeaderOpcodeNDataSet32_r_Address(int value){commonHeaderOpcodeNDataSet32_r_Address=value;}
+     int getCommonHeaderOpcodeNDataSet32_r_Address(){return commonHeaderOpcodeNDataSet32_r_Address;}
+     void setCommonHeaderOpcodeNDataSet64_s_Address(int value){commonHeaderOpcodeNDataSet64_s_Address=value;}
+     int getCommonHeaderOpcodeNDataSet64_s_Address(){return commonHeaderOpcodeNDataSet64_s_Address;}
+     void setCommonHeaderReserved_Address(int value){commonHeaderReserved_Address=value;}
+     int getCommonHeaderReserved_Address(){return commonHeaderReserved_Address;}
+
+     void setBlock1StartAddress_Address(int value){block1StartAddress_Address=value;}
+     int getBlock1StartAddress_Address(){return block1StartAddress_Address;}
+     void setBlock1HeaderOpcodeNDataSet32_r_Address(int value){block1HeaderOpcodeNDataSet32_r_Address=value;}
+     int getBlock1HeaderOpcodeNDataSet32_r_Address(){return block1HeaderOpcodeNDataSet32_r_Address;}
+     void setBlock1HeaderOpcodeNDataSet64_s_Address(int value){block1HeaderOpcodeNDataSet64_s_Address=value;}
+     int getBlock1HeaderOpcodeNDataSet64_s_Address(){return block1HeaderOpcodeNDataSet64_s_Address;}
+     void setBlock1HeaderMicroPatternCount_Address(int value){block1HeaderMicroPatternCount_Address=value;}
+     int getBlock1HeaderMicroPatternCount_Address(){return block1HeaderMicroPatternCount_Address;}
+
+     void setBlock1HeaderReaserverd_Address(int value){block1HeaderReaserverd_Address=value;}
+     int getBlock1HeaderReaserverd_Address(){return block1HeaderReaserverd_Address;}
+
+
+// public:
     QString getFilePath();
 
     bool readPatFile(); // Open patFile
