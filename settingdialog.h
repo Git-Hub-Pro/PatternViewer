@@ -4,67 +4,110 @@
 #include <QDialog>
 #include <QString>
 #include <QDebug>
-
 namespace Ui {
 class SettingDialog;
 }
 
-class FileHeaderSize //: public QDialog
+class FileHeaderSize
 {
     private:
-            int discemmentCodeSize;
-            int sourceFileNameSize;
-            int compileDateSize;
-            int compileTimeSize;
-            int compilerVersionSize;
-            int flagOfPartExistSize;
-            int countOfBlockMSize;
-            int offsetsOfCommonSize;
-            int offsetsBlockSize;
-            int startAddressSize;
-            int remarkSize;
-            int dataILSize;
-            int reservedSize;
+            QString discemmentCodeSize;
+            QString sourceFileNameSize;
+            QString compileDateSize;
+            QString compileTimeSize;
+            QString compilerVersionSize;
+            QString flagOfPartExistSize;
+            QString countOfBlockMSize;
+            QString offsetsOfCommonSize;
+            QString offsetsBlockSize;
+            QString startAddressSize;
+            QString remarkSize;
+            QString dataILSize;
+            QString reservedSize;
    public:
           // 1
-          void setDiscemmentCodeSize(int value){discemmentCodeSize=value;}
-          int getDiscemmentCodeSize(){return discemmentCodeSize;}
+          void setDiscemmentCodeSize(QString value){discemmentCodeSize=value;}
+          QString getDiscemmentCodeSize(){return discemmentCodeSize;}
           // 2
-          void setSourceFileNameSize(int value){sourceFileNameSize=value;}
-          int getSourceFileNameSize(){return sourceFileNameSize;}
+          void setSourceFileNameSize(QString value){sourceFileNameSize=value;}
+          QString getSourceFileNameSize(){return sourceFileNameSize;}
           // 3
-          void setCompileDateSize(int value){compileDateSize=value;}
-          int getCompileDateSize(){return compileDateSize;}
+          void setCompileDateSize(QString value){compileDateSize=value;}
+          QString getCompileDateSize(){return compileDateSize;}
           // 4
-          void setCompileTimeSize(int value){compileTimeSize=value;}
-          int getCompileTimeSize(){return compileTimeSize;}
+          void setCompileTimeSize(QString value){compileTimeSize=value;}
+          QString getCompileTimeSize(){return compileTimeSize;}
           // 5
-          void setCompilerVersionSize(int value){compilerVersionSize=value;}
-          int getCompilerVersionSize(){return compilerVersionSize;}
+          void setCompilerVersionSize(QString value){compilerVersionSize=value;}
+          QString getCompilerVersionSize(){return compilerVersionSize;}
           // 6
-          void setFlagOfPartExistSize(int value){flagOfPartExistSize=value;}
-          int getFlagOfPartExistSize(){return flagOfPartExistSize;}
+          void setFlagOfPartExistSize(QString value){flagOfPartExistSize=value;}
+          QString getFlagOfPartExistSize(){return flagOfPartExistSize;}
           // 7
-          void setCountOfBlockMSize(int value){countOfBlockMSize=value;}
-          int getCountOfBlockMSize(){return countOfBlockMSize;}
+          void setCountOfBlockMSize(QString value){countOfBlockMSize=value;}
+          QString getCountOfBlockMSize(){return countOfBlockMSize;}
           // 8
-          void setOffsetsOfCommonSize(int value){offsetsOfCommonSize=value;}
-          int getOffsetsOfCommonSize(){return offsetsOfCommonSize;}
+          void setOffsetsOfCommonSize(QString value){offsetsOfCommonSize=value;}
+          QString getOffsetsOfCommonSize(){return offsetsOfCommonSize;}
           // 9
-          void setOffsetsBlockSize(int value){offsetsBlockSize=value;}
-          int getOffsetsBlockSize(){return offsetsBlockSize;}
+          void setOffsetsBlockSize(QString value){offsetsBlockSize=value;}
+          QString getOffsetsBlockSize(){return offsetsBlockSize;}
           // 10
-          void setStartAddressSize(int value){startAddressSize=value;}
-          int getStartAddressSize(){return startAddressSize;}
+          void setStartAddressSize(QString value){startAddressSize=value;}
+          QString getStartAddressSize(){return startAddressSize;}
           // 11
-          void setRemarkSize(int value){remarkSize=value;}
-          int getRemarkSize(){return remarkSize;}
+          void setRemarkSize(QString value){remarkSize=value;}
+          QString getRemarkSize(){return remarkSize;}
           // 12
-          void setDataILSize(int value){dataILSize=value;}
-          int getDataILSize(){return dataILSize;}
+          void setDataILSize(QString value){dataILSize=value;}
+          QString getDataILSize(){return dataILSize;}
           // 13
-          void setReservedSize(int value){reservedSize=value;}
-          int getReservedSize(){return reservedSize;}
+          void setReservedSize(QString value){reservedSize=value;}
+          QString getReservedSize(){return reservedSize;}
+
+};
+
+class CommonHeaderSize
+{
+        private:
+        QString dataSetRsize;
+        QString dataSetSsize;
+        QString reservedSize;
+
+        public:
+        void setDataSetRsize(QString value){dataSetRsize=value;}
+        QString getDataSetRsize(){return dataSetRsize;}
+
+        void setDataSetSsize(QString value){dataSetSsize=value;}
+        QString getDataSetSsize(){return dataSetSsize;}
+
+        void setReservedSize(QString value){reservedSize=value;}
+        QString getReservedSize(){return reservedSize;}
+
+};
+class BlockHeaderSize
+{
+private:
+    QString startAddressSize;
+    QString dataSetRSize;
+    QString dataSetSSize;
+    QString patternCountPSize;
+    QString reservedSize;
+public:
+    void setStartAddressSize(QString value){startAddressSize=value;}
+    QString getStartAddressSize(){return startAddressSize;}
+
+    void setDataSetRSize(QString value){dataSetRSize=value;}
+    QString getDataSetRSize(){return dataSetRSize;}
+
+    void setDataSetSSize(QString value){dataSetSSize=value;}
+    QString getDataSetSSize(){return dataSetSSize;}
+
+    void setPatternCountPSize(QString value){patternCountPSize=value;}
+    QString getPatternCountPSize(){return patternCountPSize;}
+
+    void setReservedSize(QString value){reservedSize=value;}
+    QString getReservedSize(){return reservedSize;}
 
 };
 
@@ -87,10 +130,21 @@ private:
 
 public:
     FileHeaderSize FileHeader;
+    CommonHeaderSize CommonHeader;
+    BlockHeaderSize BlockHeader;
 
     void setFileHeaderAll();
+
     void setFileHeaderDefault();
+    void setCommonHeaderDefault();
+    void setBlockHeaderDefault();
+
     void printFileHeader();
+    void printCommonHeader();
+    void printBlockHeader();
+
+
+
 
 };
 

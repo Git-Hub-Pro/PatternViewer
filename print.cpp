@@ -203,14 +203,15 @@ void MainWindow::printFileHeaderOffsetsOfBlocks()
     for(int i=0;i<str.length();i++){
        line += str[i];
 
-       if(i%100==0&&i!=0){
+       if(i%100==99){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
        }
-       if(i!=0&&i%2==1){
+       else if(i%2==1&&i!=0){
          line += " ";
        }
+
     }
 
 }
