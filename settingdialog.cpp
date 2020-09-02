@@ -94,3 +94,58 @@ void SettingDialog::printBlockHeader()
     ui->blockHeaderLineEdit4->setText(BlockHeader.getPatternCountPSize());
     ui->blockHeaderLineEdit5->setText(BlockHeader.getReservedSize());
 }
+
+void SettingDialog::on_applyPushButton_clicked()
+{
+
+    setFileHeaderAll();
+    setCommonHeaderAll();
+    setBlockHeaderAll();
+
+    connect(this,SIGNAL(sendFileHeaderSize(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSize(FileHeaderSize)));
+    emit sendFileHeaderSize(FileHeader);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendCommonHeaderSize(CommonHeaderSize)),parent(),SLOT(receiveCommonHeaderSize(CommonHeaderSize)));
+    emit sendCommonHeaderSize(CommonHeader);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendBlockHeaderSize(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSize(BlockHeaderSize)));
+    emit sendBlockHeaderSize(BlockHeader);
+    disconnect(this, 0, 0, 0);
+
+    qDebug()<<"send!"<<'\n';
+}
+
+void SettingDialog::setFileHeaderAll()
+{
+    FileHeader.setDiscemmentCodeSize(ui->fileHeaderLineEdit1->text());
+    FileHeader.setSourceFileNameSize(ui->fileHeaderLineEdit2->text());
+    FileHeader.setCompileDateSize(ui->fileHeaderLineEdit3->text());
+    FileHeader.setCompileTimeSize(ui->fileHeaderLineEdit4->text());
+    FileHeader.setCompilerVersionSize(ui->fileHeaderLineEdit5->text());
+    FileHeader.setFlagOfPartExistSize(ui->fileHeaderLineEdit6->text());
+    FileHeader.setCountOfBlockMSize(ui->fileHeaderLineEdit7->text());
+    FileHeader.setOffsetsOfCommonSize(ui->fileHeaderLineEdit8->text());
+    FileHeader.setOffsetsBlockSize(ui->fileHeaderLineEdit9->text());
+    FileHeader.setStartAddressSize(ui->fileHeaderLineEdit10->text());
+    FileHeader.setRemarkSize(ui->fileHeaderLineEdit11->text());
+    FileHeader.setDataILSize(ui->fileHeaderLineEdit12->text());
+    FileHeader.setReservedSize(ui->fileHeaderLineEdit13->text());
+}
+
+void SettingDialog::setCommonHeaderAll()
+{
+    CommonHeader.setDataSetRsize(ui->commonHeaderLineEdit1->text());
+    CommonHeader.setDataSetSsize(ui->commonHeaderLineEdit2->text());
+    CommonHeader.setReservedSize(ui->commonHeaderLineEdit3->text());
+}
+
+void SettingDialog::setBlockHeaderAll()
+{
+    BlockHeader.setStartAddressSize(ui->blockHeaderLineEdit1->text());
+    BlockHeader.setDataSetRSize(ui->blockHeaderLineEdit2->text());
+    BlockHeader.setDataSetSSize(ui->blockHeaderLineEdit3->text());
+    BlockHeader.setPatternCountPSize(ui->blockHeaderLineEdit4->text());
+    BlockHeader.setReservedSize(ui->blockHeaderLineEdit5->text());
+}

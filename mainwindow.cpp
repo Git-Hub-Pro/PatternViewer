@@ -43,6 +43,27 @@ void MainWindow::receiveDialogEndSignal()
     printBlockHeaderInTextEdit();
 }
 
+
+void MainWindow::receiveFileHeaderSize(FileHeaderSize fileHeader)
+{
+   qDebug()<<"FH:"<<fileHeader.getDiscemmentCodeSize()<<'\n';
+
+}
+
+
+void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
+{
+    qDebug()<<"CH:"<<commonHeader.getDataSetRsize()<<'\n';
+
+}
+
+
+void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
+{
+  qDebug()<<"BH:"<<blockHeader.getStartAddressSize()<<'\n';
+}
+
+
 void MainWindow::on_openButton_clicked()
 {
     // ASCII : value name / Hex : value name.toHex()

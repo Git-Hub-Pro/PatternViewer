@@ -121,8 +121,14 @@ public:
 
 private slots:
     void on_cancelPushButton_clicked();
-
     void on_defaultPushButton_clicked();
+    void on_applyPushButton_clicked();
+
+signals:
+        void sendFileHeaderSize(FileHeaderSize fileHeader);
+        void sendCommonHeaderSize(CommonHeaderSize commonHeader);
+        void sendBlockHeaderSize(BlockHeaderSize blockHeader);
+
 
 private:
     Ui::SettingDialog *ui;
@@ -134,6 +140,8 @@ public:
     BlockHeaderSize BlockHeader;
 
     void setFileHeaderAll();
+    void setCommonHeaderAll();
+    void setBlockHeaderAll();
 
     void setFileHeaderDefault();
     void setCommonHeaderDefault();

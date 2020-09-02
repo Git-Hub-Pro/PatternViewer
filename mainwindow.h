@@ -34,6 +34,11 @@ private slots:
     void receiveNextButtonSignal(QString keyword);
     void receiveDialogEndSignal();
 
+    void receiveFileHeaderSize(FileHeaderSize fileHeader);
+    void receiveCommonHeaderSize(CommonHeaderSize commonHeader);
+    void receiveBlockHeaderSize(BlockHeaderSize blockHeader);
+
+
     void on_openButton_clicked();
     void on_clearButton_clicked();
     void on_modifyFindButton_clicked();

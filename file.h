@@ -42,34 +42,32 @@ public:
     QByteArray readFileHeaderReserved();                // 13.  readFileHeaderReserved format            | size : 16 byte | scope : 32928~32944| HEX
 
     //Common Header 32944 ~ 32960(total : 16 byte)
-    QByteArray readCommonHeaderOpcodeNDataSet32_r();    // 14.  readCommonHeaderOpcodeNDataSet32 format | size : 4 byte  | scope : 32944~32948 | success
-    QByteArray readCommonHeaderOpcodeNDataSet64_s();    // 15.  readCommonHeaderOpcodeNDataSet64 format | size : 4 byte  | scope : 32948~32952 | success
-    QByteArray readCommonHeaderReserved();              // 16.  readCommonHeaderReserved format         | size : 8 byte  | scope : 32952~32960 | success
+    QByteArray readCommonHeaderOpcodeNDataSet32_r();    // 14.  readCommonHeaderOpcodeNDataSet32 format | size : 4 byte  | scope : 32944~32948 | HEX
+    QByteArray readCommonHeaderOpcodeNDataSet64_s();    // 15.  readCommonHeaderOpcodeNDataSet64 format | size : 4 byte  | scope : 32948~32952 | HEX
+    QByteArray readCommonHeaderReserved();              // 16.  readCommonHeaderReserved format         | size : 8 byte  | scope : 32952~32960 | HEX
 
 
     // Common Reserver(flexible & variable value) 32960~33552(total : 592 byte , r =62, s = 8) *add Division line FFFFF FFFFF FFFFF
 
 
-
-
     //Block Header
-     QByteArray readBlock1StartAddress();             // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 |
-     QByteArray readBlock1HeaderOpcodeNDataSet32_r(); // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 |
-     QByteArray readBlock1HeaderOpcodeNDataSet64_s(); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 |
-     QByteArray readBlock1HeaderMicroPatternCount();  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 |
-     QByteArray readBlock1HeaderReaserverd();         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 |
+     QByteArray readBlock1StartAddress();             // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 | HEX
+     QByteArray readBlock1HeaderOpcodeNDataSet32_r(); // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 | HEX
+     QByteArray readBlock1HeaderOpcodeNDataSet64_s(); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 | HEX
+     QByteArray readBlock1HeaderMicroPatternCount();  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 | HEX
+     QByteArray readBlock1HeaderReaserverd();         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 | HEX
 
 
      //Block1 Body(Register 32 bit, Register 64 bit , Micro Pattern , Reserved)
 
 
 
-     //BlockReserverd 75722 ~ 75726 (Reserved : 4 byte, data : FFFF)
+     //BlockReserverd 75722 ~ 75738 (Reserved : 16 byte, data : FFFF FFFF FFFF FFFF)
 
 
 
 
-     //what is it? 75726 ~ 76004(total : 278 byte)
+     //what is it? 75738 ~ 76004(total : 266 byte)
 
 
 
