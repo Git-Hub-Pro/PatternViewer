@@ -47,7 +47,7 @@ public:
     QByteArray readCommonHeaderReserved();              // 16.  readCommonHeaderReserved format         | size : 8 byte  | scope : 32952~32960 | success
 
 
-    // Common Reserver(flexible & variable value) 32960~33552(total : 592 byte , r =62, s = 8)
+    // Common Reserver(flexible & variable value) 32960~33552(total : 592 byte , r =62, s = 8) *add Division line FFFFF FFFFF FFFFF
 
 
 
@@ -58,6 +58,19 @@ public:
      QByteArray readBlock1HeaderOpcodeNDataSet64_s(); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 |
      QByteArray readBlock1HeaderMicroPatternCount();  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 |
      QByteArray readBlock1HeaderReaserverd();         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 |
+
+
+     //Block1 Body(Register 32 bit, Register 64 bit , Micro Pattern , Reserved)
+
+
+
+     //BlockReserverd 75722 ~ 75726 (Reserved : 4 byte, data : FFFF)
+
+
+
+
+     //what is it? 75726 ~ 76004(total : 278 byte)
+
 
 
 };
