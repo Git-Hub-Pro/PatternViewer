@@ -38,13 +38,13 @@ void File::setPatFile(QByteArray data)
     _patFile = data;
 }
 
-QByteArray File::readFileHeaderDiscemmentCode()
+QByteArray File::readFileHeaderDiscemmentCode(int startAddress,int endAddress)
 {
     // 1. fileHeaderDiscemmentCode format | size : 4 byte  | scope : 0~4
 
     QByteArray fileHeaderDiscemmentCode;
 
-    for(int i=0;i<4;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderDiscemmentCode.append(_patFile.at(i));
     }
@@ -52,13 +52,13 @@ QByteArray File::readFileHeaderDiscemmentCode()
     return fileHeaderDiscemmentCode;
 }
 
-QByteArray File::readFileHeaderSourceFileName()
+QByteArray File::readFileHeaderSourceFileName(int startAddress,int endAddress)
 {
     // 2. fileHeaderSourceFileName format | size : 36 byte | scope : 4~40
 
     QByteArray fileHeaderSourceFileName;
 
-    for(int i=4;i<40;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderSourceFileName.append(_patFile.at(i));
     }
@@ -67,13 +67,13 @@ QByteArray File::readFileHeaderSourceFileName()
 
 }
 
-QByteArray File::readFileHeaderCompileDate()
+QByteArray File::readFileHeaderCompileDate(int startAddress,int endAddress)
 {
     // 3. readFileHeaderCompileDate | size : 8 byte  | scope : 40~48
 
     QByteArray fileHeaderCompileDate;
 
-    for(int i=40;i<48;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderCompileDate.append(_patFile.at(i));
     }
@@ -81,12 +81,12 @@ QByteArray File::readFileHeaderCompileDate()
     return fileHeaderCompileDate;
 }
 
-QByteArray File::readFileHeaderCompileTime()
+QByteArray File::readFileHeaderCompileTime(int startAddress,int endAddress)
 {
     // 4. readFileHeaderCompileTime format | size : 8 byte  | scope : 48~56
     QByteArray fileHeaderCompileTime;
 
-    for(int i=48;i<56;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderCompileTime.append(_patFile.at(i));
     }
@@ -95,13 +95,13 @@ QByteArray File::readFileHeaderCompileTime()
 
 }
 
-QByteArray File::readFileHeaderCompilerVersion()
+QByteArray File::readFileHeaderCompilerVersion(int startAddress,int endAddress)
 {
     // 5. readFileHeaderCompilerVersion format |  size : 8 byte  | scope : 56~64
 
     QByteArray fileHeaderCompilerVersion;
 
-    for(int i=56;i<64;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderCompilerVersion.append(_patFile.at(i));
     }
@@ -110,12 +110,12 @@ QByteArray File::readFileHeaderCompilerVersion()
 
 }
 
-QByteArray File::readFileHeaderFlagCommonModuleExist()
+QByteArray File::readFileHeaderFlagCommonModuleExist(int startAddress,int endAddress)
 {
     // 6. readFileHeaderFlagCommonModuleExist format | size : 4 byte  | scope : 64~68
     QByteArray fileHeaderFlagCommonModuleExist;
 
-    for(int i=64;i<68;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderFlagCommonModuleExist.append(_patFile.at(i));
     }
@@ -123,12 +123,12 @@ QByteArray File::readFileHeaderFlagCommonModuleExist()
     return fileHeaderFlagCommonModuleExist;
 }
 
-QByteArray File::readFileHeaderCountOfBlock()
+QByteArray File::readFileHeaderCountOfBlock(int startAddress,int endAddress)
 {
    // 7. readFileHeaderCountOfBlock() format | size : 4 byte  | scope : 68~72  |
     QByteArray fileHeaderCountOfBlock;
 
-    for(int i=68;i<72;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderCountOfBlock.append(_patFile.at(i));
     }
@@ -136,12 +136,12 @@ QByteArray File::readFileHeaderCountOfBlock()
     return fileHeaderCountOfBlock;
 
 }
-QByteArray File::readFileHeaderOffsetsOfCommon()
+QByteArray File::readFileHeaderOffsetsOfCommon(int startAddress,int endAddress)
 {
     // 8. readFileHeaderOffsetsOfCommon format | size : 4 byte  | scope : 72~76  |
     QByteArray fileHeaderOffsetsOfCommon;
 
-    for(int i=72;i<76;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderOffsetsOfCommon.append(_patFile.at(i));
     }
@@ -149,12 +149,12 @@ QByteArray File::readFileHeaderOffsetsOfCommon()
     return fileHeaderOffsetsOfCommon;
 }
 
-QByteArray File::readFileHeaderOffsetsOfBlocks()
+QByteArray File::readFileHeaderOffsetsOfBlocks(int startAddress,int endAddress)
 {
     // 9. readFileHeaderOffsetsOfBlocks format | size : 16384 byte| scope : 76~16460 |
     QByteArray fileHeaderOffsetsOfBlocks;
 
-    for(int i=76;i<16460;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderOffsetsOfBlocks.append(_patFile.at(i));
     }
@@ -163,12 +163,12 @@ QByteArray File::readFileHeaderOffsetsOfBlocks()
 
 }
 
-QByteArray File::readFileHeaderStartAddressArray()
+QByteArray File::readFileHeaderStartAddressArray(int startAddress,int endAddress)
 {
     // 10. readFileHeaderStartAddressArray | size : 16384 byte| scope : 16460~32844|
     QByteArray fileHeaderStartAddressArray;
 
-    for(int i=16460;i<32844;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderStartAddressArray.append(_patFile.at(i));
     }
@@ -176,12 +176,12 @@ QByteArray File::readFileHeaderStartAddressArray()
     return fileHeaderStartAddressArray;
 }
 
-QByteArray File::readFileHeaderRemark()
+QByteArray File::readFileHeaderRemark(int startAddress,int endAddress)
 {
     // 11. readFileHeaderRemark | size : 80 byte | scope : 32844~32924| HEX
     QByteArray fileHeaderRemark;
 
-    for(int i=32844;i<32924;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderRemark.append(_patFile.at(i));
     }
@@ -190,13 +190,13 @@ QByteArray File::readFileHeaderRemark()
 
 }
 
-QByteArray File::readFileHeaderDataOfIlMode()
+QByteArray File::readFileHeaderDataOfIlMode(int startAddress,int endAddress)
 {
     // 12. readFileHeaderDataOfIlMode | size : 4 byte  | scope : 32924~32928|
 
     QByteArray fileHeaderDataOfIlMode;
 
-    for(int i=32924;i<32928;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderDataOfIlMode.append(_patFile.at(i));
     }
@@ -205,12 +205,12 @@ QByteArray File::readFileHeaderDataOfIlMode()
 
 }
 
-QByteArray File::readFileHeaderReserved()
+QByteArray File::readFileHeaderReserved(int startAddress,int endAddress)
 {
     // 13. readFileHeaderReserved | size : 16 byte | scope : 32928~32944|
     QByteArray fileHeaderReserved;
 
-    for(int i=32928;i<32944;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        fileHeaderReserved.append(_patFile.at(i));
     }
@@ -220,12 +220,12 @@ QByteArray File::readFileHeaderReserved()
 }
 
 
-QByteArray File::readCommonHeaderOpcodeNDataSet32_r()
+QByteArray File::readCommonHeaderOpcodeNDataSet32_r(int startAddress,int endAddress)
 {
     // 14. readCommonHeaderOpcodeNDataSet32 format | size : 4 byte  | scope : 32944~32948
     QByteArray commonHeaderOpcodeNDataSet32;
 
-    for(int i=32944;i<32948;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        commonHeaderOpcodeNDataSet32.append(_patFile.at(i));
     }
@@ -233,12 +233,12 @@ QByteArray File::readCommonHeaderOpcodeNDataSet32_r()
     return commonHeaderOpcodeNDataSet32;
 }
 
-QByteArray File::readCommonHeaderOpcodeNDataSet64_s()
+QByteArray File::readCommonHeaderOpcodeNDataSet64_s(int startAddress,int endAddress)
 {
     // 15. readCommonHeaderOpcodeNDataSet64 format | size : 4 byte | scope : 32948~32952
     QByteArray commonHeaderOpcodeNDataSet64;
 
-    for(int i=32948;i<32952;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        commonHeaderOpcodeNDataSet64.append(_patFile.at(i));
     }
@@ -247,13 +247,13 @@ QByteArray File::readCommonHeaderOpcodeNDataSet64_s()
 
 }
 
-QByteArray File::readCommonHeaderReserved()
+QByteArray File::readCommonHeaderReserved(int startAddress,int endAddress)
 {
     // 16. readCommonHeaderReserved format | size : 8 byte  | scope : 32952~32960  | success
     QByteArray commonHeaderReserved;
 
 
-    for(int i=32952;i<32960;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        commonHeaderReserved.append(_patFile.at(i));
     }
@@ -262,12 +262,39 @@ QByteArray File::readCommonHeaderReserved()
 
 }
 
-QByteArray File::readBlock1StartAddress()
+QByteArray File::readCommonBodyRegister32(int startAddress, int endAddress)
+{
+    // 17. readBlock1StartAddress
+    QByteArray commonBodyRegister32;
+
+    for(int i=startAddress;i<endAddress;i++)
+    {
+         commonBodyRegister32.append(_patFile.at(i));
+    }
+
+    return commonBodyRegister32;
+
+}
+
+QByteArray File::readCommonBodyRegister64(int startAddress, int endAddress)
+{
+    // 18. readBlock1StartAddress
+    QByteArray commonBodyRegister64;
+
+    for(int i=startAddress;i<endAddress;i++)
+    {
+         commonBodyRegister64.append(_patFile.at(i));
+    }
+
+    return commonBodyRegister64;
+}
+
+QByteArray File::readBlock1StartAddress(int startAddress, int endAddress)
 {
     // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 |
     QByteArray block1StartAddress;
 
-    for(int i=33567;i<33571;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
          block1StartAddress.append(_patFile.at(i));        
     }
@@ -275,12 +302,12 @@ QByteArray File::readBlock1StartAddress()
     return block1StartAddress;
 }
 
-QByteArray File::readBlock1HeaderOpcodeNDataSet32_r()
+QByteArray File::readBlock1HeaderOpcodeNDataSet32_r(int startAddress, int endAddress)
 {
     // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 |
     QByteArray block1HeaderOpcodeNDataSet32_r;
 
-    for(int i=33571;i<33575;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        block1HeaderOpcodeNDataSet32_r.append(_patFile.at(i));
     }
@@ -288,12 +315,12 @@ QByteArray File::readBlock1HeaderOpcodeNDataSet32_r()
     return block1HeaderOpcodeNDataSet32_r;
 }
 
-QByteArray File::readBlock1HeaderOpcodeNDataSet64_s()
+QByteArray File::readBlock1HeaderOpcodeNDataSet64_s(int startAddress, int endAddress)
 {
     // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 |
     QByteArray block1HeaderOpcodeNDataSet64_s;
 
-    for(int i=33575;i<33579;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        block1HeaderOpcodeNDataSet64_s.append(_patFile.at(i));
     }
@@ -302,12 +329,12 @@ QByteArray File::readBlock1HeaderOpcodeNDataSet64_s()
 
 }
 
-QByteArray File::readBlock1HeaderMicroPatternCount()
+QByteArray File::readBlock1HeaderMicroPatternCount(int startAddress, int endAddress)
 {
     // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 |
     QByteArray block1HeaderMicroPatternCount;
 
-    for(int i=33579;i<33583;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        block1HeaderMicroPatternCount.append(_patFile.at(i));
     }
@@ -316,12 +343,12 @@ QByteArray File::readBlock1HeaderMicroPatternCount()
 
 }
 
-QByteArray File::readBlock1HeaderReaserverd()
+QByteArray File::readBlock1HeaderReaserverd(int startAddress, int endAddress)
 {
     // 21. readBlock1HeaderReaserverd        format | size : 16 byte| scope : 33583 ~ 33598 |
     QByteArray block1HeaderReaserverd;
 
-    for(int i=33583;i<33598;i++)
+    for(int i=startAddress;i<endAddress;i++)
     {
        block1HeaderReaserverd.append(_patFile.at(i));
     }

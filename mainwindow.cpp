@@ -88,7 +88,7 @@ void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
     Obj.setCommonHeaderOpcodeNDataSet32_r_Address(Obj.getFileHeaderReserved_Address()+FileHeaderObj.getReservedSize().toInt());
     Obj.setCommonHeaderOpcodeNDataSet64_s_Address(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()+commonHeader.getDataSetRsize().toInt());
     Obj.setCommonHeaderReserved_Address(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()+commonHeader.getDataSetSsize().toInt());
-
+    setCommonBodyAddress();
     /*
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet32_r_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet64_s_Address()<<"\n";
@@ -101,12 +101,8 @@ void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
 void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
 {
     BlockHeaderObj = blockHeader;
+    setBlock1BodyAddress();
 
-    Obj.setBlock1StartAddress_Address(blockHeader.getStartAddressSize().toInt());
-    Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(blockHeader.getDataSetRSize().toInt());
-    Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(blockHeader.getDataSetSSize().toInt());
-    Obj.setBlock1HeaderMicroPatternCount_Address(blockHeader.getPatternCountPSize().toInt());
-    Obj.setBlock1HeaderReaserverd_Address(blockHeader.getReservedSize().toInt());
 }
 
 
@@ -119,9 +115,10 @@ void MainWindow::on_openButton_clicked()
 
     if(Obj.readPatFile()){
     ui->textEdit->clear();
+    setDynamicFatFileAddress();
+
     printHexFileInTableWidget();
     printFileInformationInLabel();
-
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
     printBlockHeaderInTextEdit();
@@ -132,6 +129,68 @@ void MainWindow::initVariable()
 {
     _found = false;
 }
+
+int MainWindow::stringToIntLittleEndian(QString hexString)
+{
+    QString temp = hexString;
+    int size = hexString.length();
+
+    for(int i=0;i<size;i++)
+        hexString[size-i-1] = temp[i];
+
+    temp = hexString;
+
+    for(int i=0;i<size/2;i++)
+        for(int j=0;j<2;j++)
+            hexString[i*2+j] = temp[i*2+1-j];
+
+    return hexString.toUInt(false,16);
+
+}
+
+void MainWindow::setDynamicFatFileAddress()
+{
+    setCommonBodyAddress();
+    setBlock1BodyAddress();
+}
+
+void MainWindow::setCommonBodyAddress()
+{
+    QString data = (QString) Obj.readCommonHeaderOpcodeNDataSet32_r(Obj.getCommonHeaderOpcodeNDataSet32_r_Address(),Obj.getCommonHeaderOpcodeNDataSet64_s_Address()).toHex();
+    int value = stringToIntLittleEndian(data);
+
+    Obj.setCommonBodyRegister32_r_Address(Obj.getCommonHeaderReserved_Address()+Obj.CommonHeaderObj.getReservedSize().toInt());
+    Obj.setCommonBodyRegister64_s_Address(Obj.getCommonBodyRegister32_r_Address()+value*8);
+}
+
+void MainWindow::setBlock1BodyAddress()
+{
+    QString data = (QString) Obj.readCommonHeaderOpcodeNDataSet32_r(Obj.getCommonHeaderOpcodeNDataSet64_s_Address(),Obj.getCommonHeaderReserved_Address()).toHex();
+    int value = stringToIntLittleEndian(data);
+
+    Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+value*12+15); // add Division line FFFFF FFFFF FFFFF
+    Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(Obj.getBlock1StartAddress_Address()+Obj.BlockHeaderObj.getStartAddressSize().toInt());
+    Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+Obj.BlockHeaderObj.getDataSetRSize().toInt());
+    Obj.setBlock1HeaderMicroPatternCount_Address(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+Obj.BlockHeaderObj.getDataSetSSize().toInt());
+    Obj.setBlock1HeaderReaserverd_Address(Obj.getBlock1HeaderMicroPatternCount_Address()+Obj.BlockHeaderObj.getPatternCountPSize().toInt());
+
+    data = (QString) Obj.readBlock1HeaderOpcodeNDataSet32_r(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address(),Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()).toHex();
+    value = stringToIntLittleEndian(data);
+
+    Obj.setBlock1BodyRegister32_r_Address(Obj.getBlock1HeaderReaserverd_Address()+Obj.BlockHeaderObj.getReservedSize().toInt());
+    Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+value*8);
+
+    data = (QString) Obj.readBlock1HeaderOpcodeNDataSet64_s(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
+    value = stringToIntLittleEndian(data);
+    Obj.setBlock1BodyMicroPattern_Address(Obj.getBlock1BodyRegister64_s_Address()+value*12);
+
+    data = (QString) Obj.readBlock1HeaderMicroPatternCount(Obj.getBlock1HeaderMicroPatternCount_Address(),Obj.getBlock1HeaderReaserverd_Address()).toHex();
+    value = stringToIntLittleEndian(data);
+    Obj.setBlock1BodyReserved_Address(Obj.getBlock1BodyMicroPattern_Address()+value*116);
+
+}
+
+
 
 void MainWindow::on_clearButton_clicked()
 {
@@ -169,7 +228,7 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
         QByteArray fileData = Obj.readAll();
 
         informationFile.append("File Name : ");
-        informationFile.append(Obj.readFileHeaderSourceFileName());
+        informationFile.append(Obj.readFileHeaderSourceFileName(Obj.getFileHeaderSourceFileName_Address(),Obj.getFileHeaderCompileDate_Address()));
         informationFile.append("  File size : ");
         informationFile.append(QString::number(fileData.size()));
         informationFile.append("Byte ");

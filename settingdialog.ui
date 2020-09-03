@@ -376,7 +376,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -415,7 +415,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -454,7 +454,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -493,7 +493,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -532,28 +532,17 @@
      </item>
     </layout>
    </widget>
-   <zorder>fileHeaderLineEdit1</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>fileHeaderLineEdit2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>fileHeaderLineEdit3</zorder>
-   <zorder>label_4</zorder>
-   <zorder>fileHeaderLineEdit4</zorder>
-   <zorder>horizontalSpacer</zorder>
-   <zorder>horizontalSpacer_2</zorder>
-   <zorder>horizontalSpacer_3</zorder>
-   <zorder>horizontalSpacer_4</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>layoutWidget_2</zorder>
    <zorder>layoutWidget_3</zorder>
    <zorder>layoutWidget_4</zorder>
-   <zorder>label_10</zorder>
    <zorder>layoutWidget_5</zorder>
    <zorder>layoutWidget_8</zorder>
    <zorder>layoutWidget_9</zorder>
-   <zorder>label_47</zorder>
-   <zorder>groupBox_2</zorder>
    <zorder>layoutWidget_39</zorder>
    <zorder>layoutWidget_40</zorder>
   </widget>
@@ -647,7 +636,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -703,12 +692,9 @@
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
    <zorder>layoutWidget_26</zorder>
    <zorder>layoutWidget_32</zorder>
-   <zorder>layoutWidget_33</zorder>
-   <zorder>horizontalSpacer_31</zorder>
-   <zorder>groupBox_3</zorder>
-   <zorder>horizontalSpacer_15</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">

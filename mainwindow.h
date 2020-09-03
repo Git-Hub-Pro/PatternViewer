@@ -56,6 +56,7 @@ public:
 
     void printFileHeaderInTextEdit();
     void printCommonHeaderInTextEdit();
+    void printCommonBodyInTextEdit();
     void printBlockHeaderInTextEdit();
 
     void printFileHeaderDiscemmentCode();
@@ -74,7 +75,10 @@ public:
 
     void printCommonHeaderOpcodeNDataSet32_r();
     void printCommonHeaderOpcodeNDataSet64_s();
-    void printCommonHeaderReserved();
+    void printCommonHeaderReserved();    
+
+    void printCommonBodyRegister32();
+    void printCommonBodyRegister64();
 
     void printBlock1StartAddress();
     void printBlock1HeaderOpcodeNDataSet32_r();
@@ -84,6 +88,11 @@ public:
 
 
     void initVariable();
+    void setDynamicFatFileAddress();
+    void setCommonBodyAddress();
+    void setBlock1BodyAddress();
+
+    int  stringToIntLittleEndian(QString hexString);
 
     void findAllKeyword(QString keyword);
     void findKeywordSequence(QString keyword);
