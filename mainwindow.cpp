@@ -121,7 +121,9 @@ void MainWindow::on_openButton_clicked()
     printFileInformationInLabel();
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
+    printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
+    printBlockBodyInTextEdit();
    }
 }
 
@@ -167,6 +169,7 @@ void MainWindow::setBlock1BodyAddress()
 {
     QString data = (QString) Obj.readCommonHeaderOpcodeNDataSet32_r(Obj.getCommonHeaderOpcodeNDataSet64_s_Address(),Obj.getCommonHeaderReserved_Address()).toHex();
     int value = stringToIntLittleEndian(data);
+    int r,s,p;
 
     Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+value*12+15); // add Division line FFFFF FFFFF FFFFF
     Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(Obj.getBlock1StartAddress_Address()+Obj.BlockHeaderObj.getStartAddressSize().toInt());
@@ -176,18 +179,25 @@ void MainWindow::setBlock1BodyAddress()
 
     data = (QString) Obj.readBlock1HeaderOpcodeNDataSet32_r(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address(),Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()).toHex();
     value = stringToIntLittleEndian(data);
+    r = value;
 
     Obj.setBlock1BodyRegister32_r_Address(Obj.getBlock1HeaderReaserverd_Address()+Obj.BlockHeaderObj.getReservedSize().toInt());
     Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+value*8);
 
     data = (QString) Obj.readBlock1HeaderOpcodeNDataSet64_s(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
     value = stringToIntLittleEndian(data);
+    s = value;
+
     Obj.setBlock1BodyMicroPattern_Address(Obj.getBlock1BodyRegister64_s_Address()+value*12);
 
     data = (QString) Obj.readBlock1HeaderMicroPatternCount(Obj.getBlock1HeaderMicroPatternCount_Address(),Obj.getBlock1HeaderReaserverd_Address()).toHex();
     value = stringToIntLittleEndian(data);
+    p = value;
+
     Obj.setBlock1BodyReserved_Address(Obj.getBlock1BodyMicroPattern_Address()+value*116);
 
+    int x = 16 -(r*8+s*12+p*64) % 16;
+    Obj.setBlock1BodyReserved_size(x);
 }
 
 

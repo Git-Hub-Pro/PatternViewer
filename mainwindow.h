@@ -58,6 +58,7 @@ public:
     void printCommonHeaderInTextEdit();
     void printCommonBodyInTextEdit();
     void printBlockHeaderInTextEdit();
+    void printBlockBodyInTextEdit();
 
     void printFileHeaderDiscemmentCode();
     void printFileHeaderSourceFileName();
@@ -85,6 +86,11 @@ public:
     void printBlock1HeaderOpcodeNDataSet64_s();
     void printBlock1HeaderMicroPatternCount();
     void printBlock1HeaderReaserverd();
+
+    void printBlock1BodyRegister32();
+    void printBlock1BodyRegister64();
+    void printBlock1BodyMicroPattern();
+    void printBlock1Reserved();
 
 
     void initVariable();

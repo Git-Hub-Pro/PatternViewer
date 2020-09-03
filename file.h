@@ -150,6 +150,7 @@ private:
     int block1BodyRegister64_s_Address;
     int block1BodyMicroPattern_Address;
     int block1BodyReserved_Address;
+    int block1BodyReserved_size;
 
 public:
      FileHeaderSize FileHeaderObj;
@@ -216,6 +217,8 @@ public:
      void setBlock1BodyReserved_Address(int value){block1BodyReserved_Address=value;}
      int getBlock1BodyReserved_Address(){return block1BodyReserved_Address;}
 
+     void setBlock1BodyReserved_size(int value){block1BodyReserved_size = value;}
+     int getblock1BodyReserved_size(){return block1BodyReserved_size;}
 
   public:
     QString getFilePath();
@@ -262,11 +265,12 @@ public:
 
 
      //Block1 Body(Register 32 bit, Register 64 bit , Micro Pattern , Reserved)
-
-
+     QByteArray readBlock1BodyRegister32(int startAddress,int endAddress);
+     QByteArray readBlock1BodyRegister64(int startAddress,int endAddress);
+     QByteArray readBlock1BodyMicroPattern(int startAddress,int endAddress);
 
      //Block1 Body Reserverd 75722 ~ 75738 (Reserved : 16 byte, data : FFFF FFFF FFFF FFFF)
-
+     QByteArray readBlock1BodyReserved(int startAddress,int endAddress);
 
 
 
