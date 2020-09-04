@@ -33,9 +33,9 @@ private:
 
 
 public:
-    FileHeaderSize FileHeader;
-    CommonHeaderSize CommonHeader;
-    BlockHeaderSize BlockHeader;
+    FileHeaderSize _FileHeader;
+    CommonHeaderSize _CommonHeader;
+    BlockHeaderSize _BlockHeader;
 
     void setFileHeaderAll();
     void setCommonHeaderAll();

@@ -253,21 +253,21 @@ public:
 
 
     // Common Reserver(flexible & variable value) 32960~33552(total : 592 byte , r =62, s = 8) *add Division line FFFFF FFFFF FFFFF
-    QByteArray readCommonBodyRegister32(int startAddress,int endAddress);
-    QByteArray readCommonBodyRegister64(int startAddress,int endAddress);
+    QByteArray readCommonBodyRegister32(int startAddress,int endAddress);            // 17. readCommonBodyRegister32_r format          | scope:32960~33456
+    QByteArray readCommonBodyRegister64(int startAddress,int endAddress);            // 18. readCommonBodyRegister64_s format          | scope:33456~33567
 
     //Block Header
-     QByteArray readBlock1StartAddress(int startAddress,int endAddress);             // 17. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 | HEX
-     QByteArray readBlock1HeaderOpcodeNDataSet32_r(int startAddress,int endAddress); // 18. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 | HEX
-     QByteArray readBlock1HeaderOpcodeNDataSet64_s(int startAddress,int endAddress); // 19. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 | HEX
-     QByteArray readBlock1HeaderMicroPatternCount(int startAddress,int endAddress);  // 20. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 | HEX
-     QByteArray readBlock1HeaderReaserverd(int startAddress,int endAddress);         // 21. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 | HEX
+     QByteArray readBlock1StartAddress(int startAddress,int endAddress);             // 19. readBlock1StartAddress             format | size : 4 byte | scope : 33567 ~ 33571 | HEX
+     QByteArray readBlock1HeaderOpcodeNDataSet32_r(int startAddress,int endAddress); // 20. readBlock1HeaderOpcodeNDataSet32_r format | size : 4 byte | scope : 33571 ~ 33575 | HEX
+     QByteArray readBlock1HeaderOpcodeNDataSet64_s(int startAddress,int endAddress); // 21. readBlock1HeaderOpcodeNDataSet64_s format | size : 4 byte | scope : 33575 ~ 33579 | HEX
+     QByteArray readBlock1HeaderMicroPatternCount(int startAddress,int endAddress);  // 22. readBlock1HeaderMicroPatternCount  format | size : 4 byte | scope : 33579 ~ 33583 | HEX
+     QByteArray readBlock1HeaderReaserverd(int startAddress,int endAddress);         // 23. readBlock1HeaderReaserverd         format | size : 16 byte| scope : 33583 ~ 33598 | HEX
 
 
      //Block1 Body(Register 32 bit, Register 64 bit , Micro Pattern , Reserved)
-     QByteArray readBlock1BodyRegister32(int startAddress,int endAddress);
-     QByteArray readBlock1BodyRegister64(int startAddress,int endAddress);
-     QByteArray readBlock1BodyMicroPattern(int startAddress,int endAddress);
+     QByteArray readBlock1BodyRegister32(int startAddress,int endAddress);          // 24. readBlock1BodyRegister32 format | scope:33599~34007
+     QByteArray readBlock1BodyRegister64(int startAddress,int endAddress);          // 25. readBlock1BodyRegister64 format | scope:34007~34079
+     QByteArray readBlock1BodyMicroPattern(int startAddress,int endAddress);        // 26.
 
      //Block1 Body Reserverd 75722 ~ 75738 (Reserved : 16 byte, data : FFFF FFFF FFFF FFFF)
      QByteArray readBlock1BodyReserved(int startAddress,int endAddress);

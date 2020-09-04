@@ -104,7 +104,11 @@ void MainWindow::printBlockBodyInTextEdit()
 
 void MainWindow::printFileHeaderDiscemmentCode()
 {
-    ui->textEdit->insertPlainText("1. FileHeaderDiscemmentCode : \n");
+    ui->textEdit->insertPlainText("1. FileHeaderDiscemmentCode : scope : ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderDiscemmentCode_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderSourceFileName_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readFileHeaderDiscemmentCode(Obj.getFileHeaderDiscemmentCode_Address(),Obj.getFileHeaderSourceFileName_Address()).toHex();
     QString str = (QString) data;
@@ -125,31 +129,54 @@ void MainWindow::printFileHeaderDiscemmentCode()
 
 void MainWindow::printFileHeaderSourceFileName()
 {
-    ui->textEdit->insertPlainText("\n2. FileHeaderSourceFileName : \n");
+    ui->textEdit->insertPlainText("\n2. FileHeaderSourceFileName : scope :  ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderSourceFileName_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompileDate_Address()));
+    ui->textEdit->insertPlainText("\n");
     ui->textEdit->insertPlainText((QString)Obj.readFileHeaderSourceFileName(Obj.getFileHeaderSourceFileName_Address(),Obj.getFileHeaderCompileDate_Address()));
 }
 
 void MainWindow::printFileHeaderCompileDate()
 {
-    ui->textEdit->insertPlainText("\n3. FileHeaderCompileDate : \n");
+    ui->textEdit->insertPlainText("\n3. FileHeaderCompileDate : scope : ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompileDate_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompileTime_Address()));
+    ui->textEdit->insertPlainText("\n");
+
     ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompileDate(Obj.getFileHeaderCompileDate_Address(),Obj.getFileHeaderCompileTime_Address()));
 }
 
 void MainWindow::printFileHeaderCompileTime()
 {
-    ui->textEdit->insertPlainText("\n4. FileHeaderCompileTime : \n");
+    ui->textEdit->insertPlainText("\n4. FileHeaderCompileTime : scope :  ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompileTime_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompilerVersion_Address()));
+    ui->textEdit->insertPlainText("\n");
+
     ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompileTime(Obj.getFileHeaderCompileTime_Address(),Obj.getFileHeaderCompilerVersion_Address()));
 }
 
 void MainWindow::printFileHeaderCompilerVersion()
 {
-    ui->textEdit->insertPlainText("\n5. FileHeaderCompilerVersion : \n");
+    ui->textEdit->insertPlainText("\n5. FileHeaderCompilerVersion : scope : ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCompilerVersion_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderFlagCommonModuleExist_Address()));
+    ui->textEdit->insertPlainText("\n");
+
     ui->textEdit->insertPlainText((QString)Obj.readFileHeaderCompilerVersion(Obj.getFileHeaderCompilerVersion_Address(),Obj.getFileHeaderFlagCommonModuleExist_Address()));
 }
 
 void MainWindow::printFileHeaderFlagCommonModuleExist()
 {
-    ui->textEdit->insertPlainText("\n6. FileHeaderFlagCommonModuleExist : \n");
+    ui->textEdit->insertPlainText("\n6. FileHeaderFlagCommonModuleExist : scope: ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderFlagCommonModuleExist_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCountOfBlock_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readFileHeaderFlagCommonModuleExist(Obj.getFileHeaderFlagCommonModuleExist_Address(),Obj.getFileHeaderCountOfBlock_Address()).toHex();
     QString str = (QString) data;
@@ -169,7 +196,11 @@ void MainWindow::printFileHeaderFlagCommonModuleExist()
 
 void MainWindow::printFileHeaderCountOfBlock()
 {
-    ui->textEdit->insertPlainText("\n7. FileHeaderCountOfBlock :\n");
+    ui->textEdit->insertPlainText("\n7. FileHeaderCountOfBlock :scope :");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderCountOfBlock_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderStartAddressArray_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readFileHeaderCountOfBlock(Obj.getFileHeaderCountOfBlock_Address(),Obj.getFileHeaderOffsetsOfCommon_Address()).toHex();
     QString str = (QString) data;
@@ -188,7 +219,11 @@ void MainWindow::printFileHeaderCountOfBlock()
 
 void MainWindow::printFileHeaderOffsetsOfCommon()
 {
-    ui->textEdit->insertPlainText("\n8. FileHeaderOffsetsOfCommon : \n");
+    ui->textEdit->insertPlainText("\n8. FileHeaderOffsetsOfCommon : scope : ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderStartAddressArray_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderRemark_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readFileHeaderCountOfBlock(Obj.getFileHeaderOffsetsOfCommon_Address(),Obj.getFileHeaderStartAddressArray_Address()).toHex();
     QString str = (QString) data;
@@ -208,7 +243,11 @@ void MainWindow::printFileHeaderOffsetsOfCommon()
 
 void MainWindow::printFileHeaderOffsetsOfBlocks()
 {
-    ui->textEdit->insertPlainText("\n9. FileHeaderOffsetsOfBlocks :\n");
+    ui->textEdit->insertPlainText("\n9. FileHeaderOffsetsOfBlocks : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderRemark_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderDataOfIlMode_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readFileHeaderOffsetsOfBlocks(Obj.getFileHeaderOffsetsOfBlocks_Address(),Obj.getFileHeaderRemark_Address()).toHex();
     QString str = (QString) data;
@@ -232,7 +271,11 @@ void MainWindow::printFileHeaderOffsetsOfBlocks()
 
 void MainWindow::printFileHeaderStartAddressArray()
 {
-    ui->textEdit->insertPlainText("\n10. FileHeaderStartAddressArray:");
+    ui->textEdit->insertPlainText("\n10. FileHeaderStartAddressArray: scope :");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderDataOfIlMode_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderReserved_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readFileHeaderStartAddressArray(Obj.getFileHeaderStartAddressArray_Address(),Obj.getFileHeaderDataOfIlMode_Address()).toHex();
     QString str = (QString) data;
@@ -256,13 +299,22 @@ void MainWindow::printFileHeaderStartAddressArray()
 
 void MainWindow::printFileHeaderRemark()
 {
-    ui->textEdit->append("11. FileHeaderRemark : ");
+    ui->textEdit->append("11. FileHeaderRemark : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderReserved_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderDataOfIlMode_Address()));
+    ui->textEdit->insertPlainText("\n");
+
     ui->textEdit->append((QString)Obj. readFileHeaderRemark(Obj.getFileHeaderRemark_Address(),Obj.getFileHeaderDataOfIlMode_Address()));
 }
 
 void MainWindow::printFileHeaderDataOfIlMode()
 {
-    ui->textEdit->insertPlainText("\n12. FileHeaderDataOfIlMode : \n");
+    ui->textEdit->insertPlainText("\n12. FileHeaderDataOfIlMode : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderDataOfIlMode_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderReserved_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readFileHeaderDataOfIlMode(Obj.getFileHeaderDataOfIlMode_Address(),Obj.getFileHeaderReserved_Address()).toHex();
     QString str = (QString) data;
@@ -282,7 +334,11 @@ void MainWindow::printFileHeaderDataOfIlMode()
 
 void MainWindow::printFileHeaderReserved()
 {
-    ui->textEdit->insertPlainText("\n13. FileHeaderReserved : \n");
+    ui->textEdit->insertPlainText("\n13. FileHeaderReserved : scope :");
+    ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderReserved_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readFileHeaderReserved(Obj.getFileHeaderReserved_Address(),Obj.getCommonHeaderOpcodeNDataSet32_r_Address()).toHex();
     QString str = (QString) data;
@@ -303,7 +359,11 @@ void MainWindow::printFileHeaderReserved()
 
 void MainWindow::printCommonHeaderOpcodeNDataSet32_r()
 {
-    ui->textEdit->insertPlainText("\n14. CommonHeaderOpcodeNDataSet32_r : \n");
+    ui->textEdit->insertPlainText("\n14. CommonHeaderOpcodeNDataSet32_r : scope: ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readCommonHeaderOpcodeNDataSet32_r(Obj.getCommonHeaderOpcodeNDataSet32_r_Address(),Obj.getCommonHeaderOpcodeNDataSet64_s_Address()).toHex();
     QString str = (QString) data;
@@ -324,7 +384,11 @@ void MainWindow::printCommonHeaderOpcodeNDataSet32_r()
 
 void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
 {
-    ui->textEdit->insertPlainText("\n15. CommonHeaderOpcodeNDataSet64_s : \n");
+    ui->textEdit->insertPlainText("\n15. CommonHeaderOpcodeNDataSet64_s : scope : ");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderReserved_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readCommonHeaderOpcodeNDataSet64_s(Obj.getCommonHeaderOpcodeNDataSet64_s_Address(),Obj.getCommonHeaderReserved_Address()).toHex();
     QString str = (QString) data;
@@ -344,7 +408,11 @@ void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
 
 void MainWindow::printCommonHeaderReserved()
 {
-    ui->textEdit->insertPlainText("\n16. CommonHeaderReserved : \n");
+    ui->textEdit->insertPlainText("\n16. CommonHeaderReserved : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonHeaderReserved_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonBodyRegister32_r_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readCommonHeaderReserved(Obj.getCommonHeaderReserved_Address(),Obj.getCommonBodyRegister32_r_Address()).toHex();
     QString str = (QString) data;
@@ -364,7 +432,11 @@ void MainWindow::printCommonHeaderReserved()
 
 void MainWindow::printCommonBodyRegister32()
 {
-    ui->textEdit->insertPlainText("\n17. CommonBodyRegister32_r : \n");
+    ui->textEdit->insertPlainText("\n17. CommonBodyRegister32_r : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonBodyRegister32_r_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonBodyRegister64_s_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readCommonBodyRegister32(Obj.getCommonBodyRegister32_r_Address(),Obj.getCommonBodyRegister64_s_Address()).toHex();
     QString str = (QString) data;
@@ -388,7 +460,11 @@ void MainWindow::printCommonBodyRegister32()
 
 void MainWindow::printCommonBodyRegister64()
 {
-    ui->textEdit->insertPlainText("\n18. CommonBodyRegister64_s : \n");
+    ui->textEdit->insertPlainText("\n18. CommonBodyRegister64_s : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getCommonBodyRegister64_s_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1StartAddress_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readCommonBodyRegister64(Obj.getCommonBodyRegister64_s_Address(),Obj.getBlock1StartAddress_Address()).toHex();
     QString str = (QString) data;
@@ -412,7 +488,11 @@ void MainWindow::printCommonBodyRegister64()
 
 void MainWindow::printBlock1StartAddress()
 {
-    ui->textEdit->insertPlainText("\n19. Block1StartAddress : \n");
+    ui->textEdit->insertPlainText("\n19. Block1StartAddress : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1StartAddress_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1StartAddress(Obj.getBlock1StartAddress_Address(),Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()).toHex();
     QString str = (QString) data;
@@ -434,7 +514,11 @@ void MainWindow::printBlock1StartAddress()
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
 {
-    ui->textEdit->insertPlainText("\n20. Block1HeaderOpcodeNDataSet32_r : \n");
+    ui->textEdit->insertPlainText("\n20. Block1HeaderOpcodeNDataSet32_r : scope :");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet32_r(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address(),Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()).toHex();
     QString str = (QString) data;
@@ -454,7 +538,11 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
 {
-    ui->textEdit->insertPlainText("\n21. Block1HeaderOpcodeNDataSet64_s : \n");
+    ui->textEdit->insertPlainText("\n21. Block1HeaderOpcodeNDataSet64_s : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderMicroPatternCount_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1HeaderOpcodeNDataSet64_s(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
     QString str = (QString) data;
@@ -474,7 +562,11 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
 
 void MainWindow::printBlock1HeaderMicroPatternCount()
 {
-    ui->textEdit->insertPlainText("\n22. Block1HeaderMicroPatternCount : \n");
+    ui->textEdit->insertPlainText("\n22. Block1HeaderMicroPatternCount : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderMicroPatternCount_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderReaserverd_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1HeaderMicroPatternCount(Obj.getBlock1HeaderMicroPatternCount_Address(),Obj.getBlock1HeaderReaserverd_Address()).toHex();
     QString str = (QString) data;
@@ -495,6 +587,10 @@ void MainWindow::printBlock1HeaderMicroPatternCount()
 void MainWindow::printBlock1HeaderReaserverd()
 {
     ui->textEdit->insertPlainText("\n23. Block1HeaderReaserverd : \n");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderReaserverd_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister32_r_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1HeaderReaserverd(Obj.getBlock1HeaderReaserverd_Address(),Obj.getBlock1BodyRegister32_r_Address()).toHex();
     QString str = (QString) data;
@@ -513,7 +609,11 @@ void MainWindow::printBlock1HeaderReaserverd()
 
 void MainWindow::printBlock1BodyRegister32()
 {
-    ui->textEdit->insertPlainText("\n24. Block1BodyRegister32 : \n");
+    ui->textEdit->insertPlainText("\n24. Block1BodyRegister32 : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister32_r_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister64_s_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readBlock1BodyRegister32(Obj.getBlock1BodyRegister32_r_Address(),Obj.getBlock1BodyRegister64_s_Address()).toHex();
     QString str = (QString) data;
@@ -537,7 +637,11 @@ void MainWindow::printBlock1BodyRegister32()
 
 void MainWindow::printBlock1BodyRegister64()
 {
-    ui->textEdit->insertPlainText("\n25. Block1BodyRegister64 : \n");
+    ui->textEdit->insertPlainText("\n25. Block1BodyRegister64 : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister64_s_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyMicroPattern_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readBlock1BodyRegister32(Obj.getBlock1BodyRegister64_s_Address(),Obj.getBlock1BodyMicroPattern_Address()).toHex();
     QString str = (QString) data;
@@ -560,7 +664,11 @@ void MainWindow::printBlock1BodyRegister64()
 
 void MainWindow::printBlock1BodyMicroPattern()
 {
-    ui->textEdit->insertPlainText("\n26. Block1BodyMicroPattern : \n");
+    ui->textEdit->insertPlainText("\n26. Block1BodyMicroPattern : scope:");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyMicroPattern_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readBlock1BodyMicroPattern(Obj.getBlock1BodyMicroPattern_Address(),Obj.getBlock1BodyReserved_Address()).toHex();
     QString str = (QString) data;
@@ -583,7 +691,11 @@ void MainWindow::printBlock1BodyMicroPattern()
 
 void MainWindow::printBlock1Reserved()
 {
-    ui->textEdit->insertPlainText("\n27. Block1HeaderReaserverd : \n");
+    ui->textEdit->insertPlainText("\n27. Block1HeaderReaserverd : scope :");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()+1));
+    ui->textEdit->insertPlainText("~");
+    ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()+Obj.getblock1BodyReserved_size()));
+    ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readBlock1HeaderReaserverd(Obj.getBlock1BodyReserved_Address(),Obj.getBlock1BodyReserved_Address()+Obj.getblock1BodyReserved_size()).toHex();
     QString str = (QString) data;

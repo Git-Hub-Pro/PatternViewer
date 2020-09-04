@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1137</width>
-    <height>653</height>
+    <width>1348</width>
+    <height>831</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,19 +43,6 @@
       </item>
       <item>
        <widget class="QTableWidget" name="tableWidget"/>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -96,19 +83,6 @@
        <widget class="QTextEdit" name="textEdit"/>
       </item>
      </layout>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>2</height>
-       </size>
-      </property>
-     </spacer>
     </item>
     <item>
      <spacer name="horizontalSpacer_2">
@@ -171,14 +145,13 @@
    <zorder></zorder>
    <zorder>horizontalSpacer_2</zorder>
    <zorder></zorder>
-   <zorder>verticalSpacer</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1137</width>
+     <width>1348</width>
      <height>25</height>
     </rect>
    </property>
@@ -186,7 +159,7 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionOPEN"/>
+    <addaction name="actionOpen"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -220,11 +193,6 @@
   <action name="actionFind">
    <property name="text">
     <string>Find</string>
-   </property>
-  </action>
-  <action name="actionOPEN">
-   <property name="text">
-    <string>Open</string>
    </property>
   </action>
  </widget>

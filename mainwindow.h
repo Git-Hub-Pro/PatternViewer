@@ -47,6 +47,10 @@ private slots:
 
     void on_settingButton_clicked();
 
+    void on_actionOpen_triggered();
+
+    void on_actionFind_triggered();
+
 private:
     Ui::MainWindow *ui;
 

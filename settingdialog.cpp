@@ -31,68 +31,68 @@ void SettingDialog::on_defaultPushButton_clicked()
 
 void SettingDialog::setFileHeaderDefault()
 {
-    FileHeader.setDiscemmentCodeSize("4");
-    FileHeader.setSourceFileNameSize("36");
-    FileHeader.setCompileDateSize("8");
-    FileHeader.setCompileTimeSize("8");
-    FileHeader.setCompilerVersionSize("8");
-    FileHeader.setFlagOfPartExistSize("4");
-    FileHeader.setCountOfBlockMSize("4");
-    FileHeader.setOffsetsOfCommonSize("4");
-    FileHeader.setOffsetsBlockSize("16384");
-    FileHeader.setStartAddressSize("16384");
-    FileHeader.setRemarkSize("80");
-    FileHeader.setDataILSize("4");
-    FileHeader.setReservedSize("16");
+    _FileHeader.setDiscemmentCodeSize("4");
+    _FileHeader.setSourceFileNameSize("36");
+    _FileHeader.setCompileDateSize("8");
+    _FileHeader.setCompileTimeSize("8");
+    _FileHeader.setCompilerVersionSize("8");
+    _FileHeader.setFlagOfPartExistSize("4");
+    _FileHeader.setCountOfBlockMSize("4");
+    _FileHeader.setOffsetsOfCommonSize("4");
+    _FileHeader.setOffsetsBlockSize("16384");
+    _FileHeader.setStartAddressSize("16384");
+    _FileHeader.setRemarkSize("80");
+    _FileHeader.setDataILSize("4");
+    _FileHeader.setReservedSize("16");
 }
 
 void SettingDialog::setCommonHeaderDefault()
 {
-    CommonHeader.setDataSetRsize("4");
-    CommonHeader.setDataSetSsize("4");
-    CommonHeader.setReservedSize("8");
+    _CommonHeader.setDataSetRsize("4");
+    _CommonHeader.setDataSetSsize("4");
+    _CommonHeader.setReservedSize("8");
 }
 
 void SettingDialog::setBlockHeaderDefault()
 {
-    BlockHeader.setStartAddressSize("4");
-    BlockHeader.setDataSetRSize("4");
-    BlockHeader.setDataSetSSize("4");
-    BlockHeader.setPatternCountPSize("4");
-    BlockHeader.setReservedSize("4");
+    _BlockHeader.setStartAddressSize("4");
+    _BlockHeader.setDataSetRSize("4");
+    _BlockHeader.setDataSetSSize("4");
+    _BlockHeader.setPatternCountPSize("4");
+    _BlockHeader.setReservedSize("4");
 }
 
 void SettingDialog::printFileHeader()
 {
-    ui->fileHeaderLineEdit1->setText(FileHeader.getDiscemmentCodeSize());
-    ui->fileHeaderLineEdit2->setText(FileHeader.getSourceFileNameSize());
-    ui->fileHeaderLineEdit3->setText(FileHeader.getCompileDateSize());
-    ui->fileHeaderLineEdit4->setText(FileHeader.getCompileTimeSize());
-    ui->fileHeaderLineEdit5->setText(FileHeader.getCompilerVersionSize());
-    ui->fileHeaderLineEdit6->setText(FileHeader.getFlagOfPartExistSize());
-    ui->fileHeaderLineEdit7->setText(FileHeader.getCountOfBlockMSize());
-    ui->fileHeaderLineEdit8->setText(FileHeader.getOffsetsOfCommonSize());
-    ui->fileHeaderLineEdit9->setText(FileHeader.getOffsetsBlockSize());
-    ui->fileHeaderLineEdit10->setText(FileHeader.getStartAddressSize());
-    ui->fileHeaderLineEdit11->setText(FileHeader.getRemarkSize());
-    ui->fileHeaderLineEdit12->setText(FileHeader.getDataILSize());
-    ui->fileHeaderLineEdit13->setText(FileHeader.getReservedSize());
+    ui->fileHeaderLineEdit1->setText(_FileHeader.getDiscemmentCodeSize());
+    ui->fileHeaderLineEdit2->setText(_FileHeader.getSourceFileNameSize());
+    ui->fileHeaderLineEdit3->setText(_FileHeader.getCompileDateSize());
+    ui->fileHeaderLineEdit4->setText(_FileHeader.getCompileTimeSize());
+    ui->fileHeaderLineEdit5->setText(_FileHeader.getCompilerVersionSize());
+    ui->fileHeaderLineEdit6->setText(_FileHeader.getFlagOfPartExistSize());
+    ui->fileHeaderLineEdit7->setText(_FileHeader.getCountOfBlockMSize());
+    ui->fileHeaderLineEdit8->setText(_FileHeader.getOffsetsOfCommonSize());
+    ui->fileHeaderLineEdit9->setText(_FileHeader.getOffsetsBlockSize());
+    ui->fileHeaderLineEdit10->setText(_FileHeader.getStartAddressSize());
+    ui->fileHeaderLineEdit11->setText(_FileHeader.getRemarkSize());
+    ui->fileHeaderLineEdit12->setText(_FileHeader.getDataILSize());
+    ui->fileHeaderLineEdit13->setText(_FileHeader.getReservedSize());
 }
 
 void SettingDialog::printCommonHeader()
 {
-    ui->commonHeaderLineEdit1->setText(CommonHeader.getDataSetRsize());
-    ui->commonHeaderLineEdit2->setText(CommonHeader.getDataSetSsize());
-    ui->commonHeaderLineEdit3->setText(CommonHeader.getReservedSize());
+    ui->commonHeaderLineEdit1->setText(_CommonHeader.getDataSetRsize());
+    ui->commonHeaderLineEdit2->setText(_CommonHeader.getDataSetSsize());
+    ui->commonHeaderLineEdit3->setText(_CommonHeader.getReservedSize());
 }
 
 void SettingDialog::printBlockHeader()
 {
-    ui->blockHeaderLineEdit1->setText(BlockHeader.getStartAddressSize());
-    ui->blockHeaderLineEdit2->setText(BlockHeader.getDataSetRSize());
-    ui->blockHeaderLineEdit3->setText(BlockHeader.getDataSetSSize());
-    ui->blockHeaderLineEdit4->setText(BlockHeader.getPatternCountPSize());
-    ui->blockHeaderLineEdit5->setText(BlockHeader.getReservedSize());
+    ui->blockHeaderLineEdit1->setText(_BlockHeader.getStartAddressSize());
+    ui->blockHeaderLineEdit2->setText(_BlockHeader.getDataSetRSize());
+    ui->blockHeaderLineEdit3->setText(_BlockHeader.getDataSetSSize());
+    ui->blockHeaderLineEdit4->setText(_BlockHeader.getPatternCountPSize());
+    ui->blockHeaderLineEdit5->setText(_BlockHeader.getReservedSize());
 }
 
 void SettingDialog::on_applyPushButton_clicked()
@@ -103,48 +103,48 @@ void SettingDialog::on_applyPushButton_clicked()
     setBlockHeaderAll();
 
     connect(this,SIGNAL(sendFileHeaderSize(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSize(FileHeaderSize)));
-    emit sendFileHeaderSize(FileHeader);
+    emit sendFileHeaderSize(_FileHeader);
     disconnect(this, 0, 0, 0);
 
     connect(this,SIGNAL(sendCommonHeaderSize(CommonHeaderSize)),parent(),SLOT(receiveCommonHeaderSize(CommonHeaderSize)));
-    emit sendCommonHeaderSize(CommonHeader);
+    emit sendCommonHeaderSize(_CommonHeader);
     disconnect(this, 0, 0, 0);
 
     connect(this,SIGNAL(sendBlockHeaderSize(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSize(BlockHeaderSize)));
-    emit sendBlockHeaderSize(BlockHeader);
+    emit sendBlockHeaderSize(_BlockHeader);
     disconnect(this, 0, 0, 0);
 
 }
 
 void SettingDialog::setFileHeaderAll()
 {
-    FileHeader.setDiscemmentCodeSize(ui->fileHeaderLineEdit1->text());
-    FileHeader.setSourceFileNameSize(ui->fileHeaderLineEdit2->text());
-    FileHeader.setCompileDateSize(ui->fileHeaderLineEdit3->text());
-    FileHeader.setCompileTimeSize(ui->fileHeaderLineEdit4->text());
-    FileHeader.setCompilerVersionSize(ui->fileHeaderLineEdit5->text());
-    FileHeader.setFlagOfPartExistSize(ui->fileHeaderLineEdit6->text());
-    FileHeader.setCountOfBlockMSize(ui->fileHeaderLineEdit7->text());
-    FileHeader.setOffsetsOfCommonSize(ui->fileHeaderLineEdit8->text());
-    FileHeader.setOffsetsBlockSize(ui->fileHeaderLineEdit9->text());
-    FileHeader.setStartAddressSize(ui->fileHeaderLineEdit10->text());
-    FileHeader.setRemarkSize(ui->fileHeaderLineEdit11->text());
-    FileHeader.setDataILSize(ui->fileHeaderLineEdit12->text());
-    FileHeader.setReservedSize(ui->fileHeaderLineEdit13->text());
+    _FileHeader.setDiscemmentCodeSize(ui->fileHeaderLineEdit1->text());
+    _FileHeader.setSourceFileNameSize(ui->fileHeaderLineEdit2->text());
+    _FileHeader.setCompileDateSize(ui->fileHeaderLineEdit3->text());
+    _FileHeader.setCompileTimeSize(ui->fileHeaderLineEdit4->text());
+    _FileHeader.setCompilerVersionSize(ui->fileHeaderLineEdit5->text());
+    _FileHeader.setFlagOfPartExistSize(ui->fileHeaderLineEdit6->text());
+    _FileHeader.setCountOfBlockMSize(ui->fileHeaderLineEdit7->text());
+    _FileHeader.setOffsetsOfCommonSize(ui->fileHeaderLineEdit8->text());
+    _FileHeader.setOffsetsBlockSize(ui->fileHeaderLineEdit9->text());
+    _FileHeader.setStartAddressSize(ui->fileHeaderLineEdit10->text());
+    _FileHeader.setRemarkSize(ui->fileHeaderLineEdit11->text());
+    _FileHeader.setDataILSize(ui->fileHeaderLineEdit12->text());
+    _FileHeader.setReservedSize(ui->fileHeaderLineEdit13->text());
 }
 
 void SettingDialog::setCommonHeaderAll()
 {
-    CommonHeader.setDataSetRsize(ui->commonHeaderLineEdit1->text());
-    CommonHeader.setDataSetSsize(ui->commonHeaderLineEdit2->text());
-    CommonHeader.setReservedSize(ui->commonHeaderLineEdit3->text());
+    _CommonHeader.setDataSetRsize(ui->commonHeaderLineEdit1->text());
+    _CommonHeader.setDataSetSsize(ui->commonHeaderLineEdit2->text());
+    _CommonHeader.setReservedSize(ui->commonHeaderLineEdit3->text());
 }
 
 void SettingDialog::setBlockHeaderAll()
 {
-    BlockHeader.setStartAddressSize(ui->blockHeaderLineEdit1->text());
-    BlockHeader.setDataSetRSize(ui->blockHeaderLineEdit2->text());
-    BlockHeader.setDataSetSSize(ui->blockHeaderLineEdit3->text());
-    BlockHeader.setPatternCountPSize(ui->blockHeaderLineEdit4->text());
-    BlockHeader.setReservedSize(ui->blockHeaderLineEdit5->text());
+    _BlockHeader.setStartAddressSize(ui->blockHeaderLineEdit1->text());
+    _BlockHeader.setDataSetRSize(ui->blockHeaderLineEdit2->text());
+    _BlockHeader.setDataSetSSize(ui->blockHeaderLineEdit3->text());
+    _BlockHeader.setPatternCountPSize(ui->blockHeaderLineEdit4->text());
+    _BlockHeader.setReservedSize(ui->blockHeaderLineEdit5->text());
 }

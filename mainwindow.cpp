@@ -88,7 +88,9 @@ void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
     Obj.setCommonHeaderOpcodeNDataSet32_r_Address(Obj.getFileHeaderReserved_Address()+FileHeaderObj.getReservedSize().toInt());
     Obj.setCommonHeaderOpcodeNDataSet64_s_Address(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()+commonHeader.getDataSetRsize().toInt());
     Obj.setCommonHeaderReserved_Address(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()+commonHeader.getDataSetSsize().toInt());
+
     setCommonBodyAddress();
+
     /*
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet32_r_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet64_s_Address()<<"\n";
@@ -176,28 +178,24 @@ void MainWindow::setBlock1BodyAddress()
     Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+Obj.BlockHeaderObj.getDataSetRSize().toInt());
     Obj.setBlock1HeaderMicroPatternCount_Address(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+Obj.BlockHeaderObj.getDataSetSSize().toInt());
     Obj.setBlock1HeaderReaserverd_Address(Obj.getBlock1HeaderMicroPatternCount_Address()+Obj.BlockHeaderObj.getPatternCountPSize().toInt());
-
     data = (QString) Obj.readBlock1HeaderOpcodeNDataSet32_r(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address(),Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()).toHex();
     value = stringToIntLittleEndian(data);
     r = value;
-
     Obj.setBlock1BodyRegister32_r_Address(Obj.getBlock1HeaderReaserverd_Address()+Obj.BlockHeaderObj.getReservedSize().toInt());
     Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+value*8);
-
     data = (QString) Obj.readBlock1HeaderOpcodeNDataSet64_s(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
     value = stringToIntLittleEndian(data);
     s = value;
-
     Obj.setBlock1BodyMicroPattern_Address(Obj.getBlock1BodyRegister64_s_Address()+value*12);
 
     data = (QString) Obj.readBlock1HeaderMicroPatternCount(Obj.getBlock1HeaderMicroPatternCount_Address(),Obj.getBlock1HeaderReaserverd_Address()).toHex();
     value = stringToIntLittleEndian(data);
     p = value;
-
     Obj.setBlock1BodyReserved_Address(Obj.getBlock1BodyMicroPattern_Address()+value*116);
 
     int x = 16 -(r*8+s*12+p*64) % 16;
     Obj.setBlock1BodyReserved_size(x);
+
 }
 
 
@@ -257,4 +255,37 @@ void MainWindow::on_settingButton_clicked()
 {
     SettingDialog *dialog =new SettingDialog(this);
     dialog->exec();
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    // ASCII : value name / Hex : value name.toHex()
+    // Print File information.
+
+    initVariable();
+
+    if(Obj.readPatFile()){
+    ui->textEdit->clear();
+    setDynamicFatFileAddress();
+
+    printHexFileInTableWidget();
+    printFileInformationInLabel();
+    printFileHeaderInTextEdit();
+    printCommonHeaderInTextEdit();
+    printCommonBodyInTextEdit();
+    printBlockHeaderInTextEdit();
+    printBlockBodyInTextEdit();
+   }
+}
+
+void MainWindow::on_actionFind_triggered()
+{
+    FindDialog *dialog =new FindDialog(this);
+
+    dialog->show();
+
+    dialog->raise();
+
+    dialog->activateWindow();
+
 }
