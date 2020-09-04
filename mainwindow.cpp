@@ -42,7 +42,6 @@ void MainWindow::receiveDialogEndSignal()
     printCommonHeaderInTextEdit();
     printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
-    printBlockBodyInTextEdit();
 }
 
 
@@ -145,12 +144,12 @@ int MainWindow::stringToIntLittleEndian(QString hexString)
         hexString[size-i-1] = temp[i];
 
     temp = hexString;
-
+    bool ok;
     for(int i=0;i<size/2;i++)
         for(int j=0;j<2;j++)
             hexString[i*2+j] = temp[i*2+1-j];
 
-    return hexString.toUInt(false,16);
+    return hexString.toUInt(&ok,16);
 
 }
 
