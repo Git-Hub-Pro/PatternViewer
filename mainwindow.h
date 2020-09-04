@@ -51,6 +51,8 @@ private slots:
 
     void on_actionFind_triggered();
 
+    void on_actionSetting_triggered();
+
 private:
     Ui::MainWindow *ui;
 

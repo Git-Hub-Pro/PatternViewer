@@ -40,7 +40,9 @@ void MainWindow::receiveDialogEndSignal()
 
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
+    printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
+    printBlockBodyInTextEdit();
 }
 
 
@@ -288,4 +290,10 @@ void MainWindow::on_actionFind_triggered()
 
     dialog->activateWindow();
 
+}
+
+void MainWindow::on_actionSetting_triggered()
+{
+    SettingDialog *dialog =new SettingDialog(this);
+    dialog->exec();
 }
