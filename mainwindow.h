@@ -59,6 +59,7 @@ private:
 public:
     void printFileInformationInLabel();
     void printHexFileInTableWidget();
+    void printBinaryFileInTable_Widget2();
 
     void printFileHeaderInTextEdit();
     void printCommonHeaderInTextEdit();
@@ -107,6 +108,8 @@ public:
     void setDynamicFatFileAddress();
 
     int  stringToIntLittleEndian(QString hexString);
+
+    QString hexStringToBinaryString(QString hexString);
 
     void findAllKeyword(QString keyword);
     void findKeywordSequence(QString keyword);

@@ -35,13 +35,11 @@ void MainWindow::receiveDialogEndSignal()
 
     ui->textEdit->mergeCurrentCharFormat(fmt);
 
-    printHexFileInTableWidget();
-    printFileInformationInLabel();
-
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
     printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
+    printBlockBodyInTextEdit();
 }
 
 
@@ -108,7 +106,10 @@ void MainWindow::on_openButton_clicked()
     printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
     printBlockBodyInTextEdit();
-   }
+
+    printBinaryFileInTable_Widget2();
+
+    }
 }
 
 void MainWindow::initVariable()
@@ -161,6 +162,27 @@ int MainWindow::stringToIntLittleEndian(QString hexString)
 
     return hexString.toUInt(&ok,16);
 
+}
+
+QString MainWindow::hexStringToBinaryString(QString hexString)
+{
+    QString binaryString;
+    const int byteSize = 4;
+    bool ok;
+
+    for(int i=0;i<hexString.length();i+=byteSize){
+
+        QString binary_4Byte_String ="";
+
+        for(int j=0;j<byteSize;j++){
+            binary_4Byte_String += hexString[i+j];
+        }
+
+        binaryString += QString("%1").arg(binary_4Byte_String.toULongLong(&ok,16),32,2,QChar('0'));
+    }
+
+
+    return binaryString;
 }
 
 void MainWindow::setDynamicFatFileAddress()
@@ -223,6 +245,8 @@ void MainWindow::on_clearButton_clicked()
 
     ui->informationLabel->setText("");
 
+    ui->tableWidget_2->setRowCount(0);
+    ui->tableWidget_2->setColumnCount(0);
 }
 
 void MainWindow::on_modifyFindButton_clicked()

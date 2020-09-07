@@ -54,6 +54,36 @@ void MainWindow::printHexFileInTableWidget()
     }
 }
 
+void MainWindow::printBinaryFileInTable_Widget2()
+{
+    QByteArray fileData = Obj.readPatFile(Obj.getBlock1BodyMicroPattern_Address(),Obj.getBlock1BodyReserved_Address()).toHex();
+
+    int column = 32;
+    int row = fileData.size()/4;
+
+    QString hexString = (QString) fileData;
+    QString binaryString = hexStringToBinaryString(hexString);
+
+
+     ui->tableWidget_2->setRowCount(row);
+     ui->tableWidget_2->setColumnCount(column);
+
+     for(int i=0;i<row;i++){
+         for(int j=0;j<column;j++){
+            QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+            if(!item){
+                item = new QTableWidgetItem();
+                ui->tableWidget_2->setItem(i,j,item);
+            }
+
+            QString binraryStringOne = binaryString.at(i*32+j);
+            item->setText(binraryStringOne);
+
+         }
+     }
+
+}
+
 void MainWindow::printFileHeaderInTextEdit()
 {
     printFileHeaderDiscemmentCode();
