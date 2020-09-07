@@ -45,9 +45,9 @@ void MainWindow::receiveDialogEndSignal()
 
 void MainWindow::receiveFileHeaderSize(FileHeaderSize fileHeader)
 {
+    FileHeaderObj = fileHeader;
 
-
-    setFileHeaderAddress(fileHeader);
+    if(getIsOpenFile()) setFileHeaderAddress();
 
     /*
     qDebug()<<Obj.getFileHeaderDiscemmentCode_Address()<<"\n";
@@ -69,8 +69,12 @@ void MainWindow::receiveFileHeaderSize(FileHeaderSize fileHeader)
 
 void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
 {
-    setCommonHeaderAddress(commonHeader);
+    CommonHeaderObj = commonHeader;
+
+    if(getIsOpenFile()){
+    setCommonHeaderAddress();
     setCommonBodyAddress();
+    }
     /*
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet32_r_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet64_s_Address()<<"\n";
@@ -83,8 +87,11 @@ void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
 void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
 {
     BlockHeaderObj = blockHeader;
-    setBlock1BodyAddress();
 
+    if(getIsOpenFile())
+    {
+      setBlock1BodyAddress();
+    }
 }
 
 
@@ -96,6 +103,7 @@ void MainWindow::on_openButton_clicked()
     initVariable();
 
     if(Obj.readPatFile()){
+    setIsOpenFile(true);
     ui->textEdit->clear();
     setDynamicFatFileAddress();
 
@@ -117,33 +125,28 @@ void MainWindow::initVariable()
     _found = false;
 }
 
-void MainWindow::setFileHeaderAddress(FileHeaderSize fileHeader)
+void MainWindow::setFileHeaderAddress()
 {
-    FileHeaderObj = fileHeader;
-
     Obj.setFileHeaderDiscemmentCode_Address(0);
-    Obj.setFileHeaderSourceFileName_Address(Obj.getFileHeaderDiscemmentCode_Address()+fileHeader.getDiscemmentCodeSize().toInt());
-    Obj.setFileHeaderCompileDate_Address(Obj.getFileHeaderSourceFileName_Address()+fileHeader.getSourceFileNameSize().toInt());
-    Obj.setFileHeaderCompileTime_Address(Obj.getFileHeaderCompileDate_Address()+fileHeader.getCompileDateSize().toInt());
-    Obj.setFileHeaderCompilerVersion_Address(Obj.getFileHeaderCompileTime_Address()+fileHeader.getCompileTimeSize().toInt());
-    Obj.setFileHeaderFlagCommonModuleExist_Address(Obj.getFileHeaderCompilerVersion_Address()+fileHeader.getCompilerVersionSize().toInt());
-    Obj.setFileHeaderCountOfBlock_Address(Obj.getFileHeaderFlagCommonModuleExist_Address()+fileHeader.getFlagOfPartExistSize().toInt());
-    Obj.setFileHeaderOffsetsOfCommon_Address(Obj.getFileHeaderCountOfBlock_Address()+fileHeader.getCountOfBlockMSize().toInt());
-    Obj.setFileHeaderOffsetsOfBlocks_Address(Obj.getFileHeaderOffsetsOfCommon_Address()+fileHeader.getOffsetsOfCommonSize().toInt());
-    Obj.setFileHeaderStartAddressArray_Address(Obj.getFileHeaderOffsetsOfBlocks_Address()+fileHeader.getOffsetsBlockSize().toInt());
-    Obj.setFileHeaderRemark_Address(Obj.getFileHeaderStartAddressArray_Address()+fileHeader.getStartAddressSize().toInt());
-    Obj.setFileHeaderDataOfIlMode_Address(Obj.getFileHeaderRemark_Address()+fileHeader.getRemarkSize().toInt());
-    Obj.setFileHeaderReserved_Address(Obj.getFileHeaderDataOfIlMode_Address()+fileHeader.getDataILSize().toInt());
+    Obj.setFileHeaderSourceFileName_Address(Obj.getFileHeaderDiscemmentCode_Address()+FileHeaderObj.getDiscemmentCodeSize().toInt());
+    Obj.setFileHeaderCompileDate_Address(Obj.getFileHeaderSourceFileName_Address()+FileHeaderObj.getSourceFileNameSize().toInt());
+    Obj.setFileHeaderCompileTime_Address(Obj.getFileHeaderCompileDate_Address()+FileHeaderObj.getCompileDateSize().toInt());
+    Obj.setFileHeaderCompilerVersion_Address(Obj.getFileHeaderCompileTime_Address()+FileHeaderObj.getCompileTimeSize().toInt());
+    Obj.setFileHeaderFlagCommonModuleExist_Address(Obj.getFileHeaderCompilerVersion_Address()+FileHeaderObj.getCompilerVersionSize().toInt());
+    Obj.setFileHeaderCountOfBlock_Address(Obj.getFileHeaderFlagCommonModuleExist_Address()+FileHeaderObj.getFlagOfPartExistSize().toInt());
+    Obj.setFileHeaderOffsetsOfCommon_Address(Obj.getFileHeaderCountOfBlock_Address()+FileHeaderObj.getCountOfBlockMSize().toInt());
+    Obj.setFileHeaderOffsetsOfBlocks_Address(Obj.getFileHeaderOffsetsOfCommon_Address()+FileHeaderObj.getOffsetsOfCommonSize().toInt());
+    Obj.setFileHeaderStartAddressArray_Address(Obj.getFileHeaderOffsetsOfBlocks_Address()+FileHeaderObj.getOffsetsBlockSize().toInt());
+    Obj.setFileHeaderRemark_Address(Obj.getFileHeaderStartAddressArray_Address()+FileHeaderObj.getStartAddressSize().toInt());
+    Obj.setFileHeaderDataOfIlMode_Address(Obj.getFileHeaderRemark_Address()+FileHeaderObj.getRemarkSize().toInt());
+    Obj.setFileHeaderReserved_Address(Obj.getFileHeaderDataOfIlMode_Address()+FileHeaderObj.getDataILSize().toInt());
 }
 
-void MainWindow::setCommonHeaderAddress(CommonHeaderSize commonHeader)
+void MainWindow::setCommonHeaderAddress()
 {
-    CommonHeaderObj = commonHeader;
-
     Obj.setCommonHeaderOpcodeNDataSet32_r_Address(Obj.getFileHeaderReserved_Address()+FileHeaderObj.getReservedSize().toInt());
-    Obj.setCommonHeaderOpcodeNDataSet64_s_Address(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()+commonHeader.getDataSetRsize().toInt());
-    Obj.setCommonHeaderReserved_Address(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()+commonHeader.getDataSetSsize().toInt());
-
+    Obj.setCommonHeaderOpcodeNDataSet64_s_Address(Obj.getCommonHeaderOpcodeNDataSet32_r_Address()+CommonHeaderObj.getDataSetRsize().toInt());
+    Obj.setCommonHeaderReserved_Address(Obj.getCommonHeaderOpcodeNDataSet64_s_Address()+CommonHeaderObj.getDataSetSsize().toInt());
 }
 
 int MainWindow::stringToIntLittleEndian(QString hexString)
@@ -204,11 +207,13 @@ void MainWindow::setBlock1BodyAddress()
 {
     QString data = (QString) Obj.readPatFile(Obj.getCommonHeaderOpcodeNDataSet64_s_Address(),Obj.getCommonHeaderReserved_Address()).toHex();
     int value = stringToIntLittleEndian(data);
+    int commonBody_Data_set_64_s = value;
+
     int block_Data_Set_32_r;
     int block_Data_Set_64_s;
     int block_Micro_Pattern_Count_p;
 
-    Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+value*12+15); // add Division line FFFFF FFFFF FFFFF
+    Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+commonBody_Data_set_64_s*12+15); // add Division line FFFFF FFFFF FFFFF
     Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(Obj.getBlock1StartAddress_Address()+Obj.BlockHeaderObj.getStartAddressSize().toInt());
     Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+Obj.BlockHeaderObj.getDataSetRSize().toInt());
     Obj.setBlock1HeaderMicroPatternCount_Address(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+Obj.BlockHeaderObj.getDataSetSSize().toInt());
@@ -238,6 +243,7 @@ void MainWindow::setBlock1BodyAddress()
 
 void MainWindow::on_clearButton_clicked()
 {
+    setIsOpenFile(false);
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->setColumnCount(0);
 

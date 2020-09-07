@@ -101,8 +101,8 @@ public:
 
 
     void initVariable();
-    void setFileHeaderAddress(FileHeaderSize fileHeader);
-    void setCommonHeaderAddress(CommonHeaderSize commonHeader);
+    void setFileHeaderAddress();
+    void setCommonHeaderAddress();
     void setCommonBodyAddress();
     void setBlock1BodyAddress();
     void setDynamicFatFileAddress();
@@ -120,6 +120,8 @@ public:
     void setCursorPosition(int cursorPosition){_cursorPosition = cursorPosition;}
     int  getCursorPosition(){return _cursorPosition;}
 
+    void setIsOpenFile(bool isOpen){_isOpenFile = isOpen;}
+    bool getIsOpenFile(){return _isOpenFile;}
 
 private:
     File Obj;
@@ -128,6 +130,7 @@ private:
     BlockHeaderSize BlockHeaderObj;
 
     bool _found;
+    bool _isOpenFile = false;
     int _cursorNum;
     int _cursorPosition;
     int _count =0;
