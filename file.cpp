@@ -33,11 +33,24 @@ QByteArray File::readAll()
     return _patFile;
 }
 
+QByteArray File::readPatFile(int startAddress, int endAddress)
+{
+    QByteArray patFile;
+
+    for(int i=startAddress;i<endAddress;i++)
+    {
+       patFile.append(_patFile.at(i));
+    }
+
+    return patFile;
+
+}
+
 void File::setPatFile(QByteArray data)
 {
     _patFile = data;
 }
-
+/*
 QByteArray File::readFileHeaderDiscemmentCode(int startAddress,int endAddress)
 {
     // 1. fileHeaderDiscemmentCode format | size : 4 byte  | scope : 0~4
@@ -409,4 +422,4 @@ QByteArray File::readBlock1BodyReserved(int startAddress, int endAddress)
 
     return block1BodyReserved;
 }
-
+*/

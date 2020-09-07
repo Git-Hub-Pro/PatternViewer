@@ -100,9 +100,11 @@ public:
 
 
     void initVariable();
-    void setDynamicFatFileAddress();
+    void setFileHeaderAddress(FileHeaderSize fileHeader);
+    void setCommonHeaderAddress(CommonHeaderSize commonHeader);
     void setCommonBodyAddress();
     void setBlock1BodyAddress();
+    void setDynamicFatFileAddress();
 
     int  stringToIntLittleEndian(QString hexString);
 
