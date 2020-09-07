@@ -34,7 +34,8 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     file.h \
     finddialog.h \
-    settingdialog.h
+    settingdialog.h \
+    print.h
 
 FORMS    += mainwindow.ui \
     finddialog.ui \

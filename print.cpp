@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "print.h"
 
 void MainWindow::printFileInformationInLabel()
 {
@@ -59,7 +60,7 @@ void MainWindow::printBinaryFileInTable_Widget2()
     QByteArray fileData = Obj.readPatFile(Obj.getBlock1BodyMicroPattern_Address(),Obj.getBlock1BodyReserved_Address()).toHex();
 
     int column = 32;
-    int row = fileData.size()/4;
+    int row = fileData.size()/2;
 
     QString hexString = (QString) fileData;
     QString binaryString = hexStringToBinaryString(hexString);
@@ -68,20 +69,53 @@ void MainWindow::printBinaryFileInTable_Widget2()
      ui->tableWidget_2->setRowCount(row);
      ui->tableWidget_2->setColumnCount(column);
 
+
+     int microBitTable_row_num = 0;
+     int microPattern_row_num = 0;
+     int changeColor = 0;
+
      for(int i=0;i<row;i++){
-         for(int j=0;j<column;j++){
-            QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
-            if(!item){
-                item = new QTableWidgetItem();
-                ui->tableWidget_2->setItem(i,j,item);
-            }
 
-            QString binraryStringOne = binaryString.at(i*32+j);
-            item->setText(binraryStringOne);
+         if(i%2==0){
+             for(int j=0;j<column;j++){
+                QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+                if(!item){
+                    item = new QTableWidgetItem();
 
+                    if(changeColor%2==0) item->setBackground(Qt::gray);
+                    else item->setBackground(Qt::darkGreen);
+
+                    ui->tableWidget_2->setItem(i,j,item);
+                }
+
+                QString binraryStringOne = MicroBitTable[microBitTable_row_num][j];
+
+                item->setText(binraryStringOne);
+             }
+             microBitTable_row_num += 1;
+             microBitTable_row_num %= 29;
+
+             if(microBitTable_row_num==0){
+                   changeColor += 1;
+                   changeColor %= 2;
+             }
          }
-     }
+         else{
+             for(int j=0;j<column;j++){
+                QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+                if(!item){
+                    item = new QTableWidgetItem();
+                    ui->tableWidget_2->setItem(i,j,item);
+                }
 
+                QString binraryStringOne = binaryString.at(microPattern_row_num*32+j);
+
+                item->setText(binraryStringOne);
+             }
+             microPattern_row_num += 1;
+         }
+
+     }
 }
 
 void MainWindow::printFileHeaderInTextEdit()

@@ -18,9 +18,8 @@ void FindDialog::on_findButton_clicked()
     QString keyword = ui->lineEdit->text();
 
     connect(this,SIGNAL(sendKeyword(QString)),parent(),SLOT(receiveKeyword(QString)));
-
     emit sendKeyword(keyword);
-
+    disconnect(this, 0, 0, 0);
 }
 
 void FindDialog::on_nextButton_clicked()
