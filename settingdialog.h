@@ -5,6 +5,7 @@
 #include <QString>
 #include <QDebug>
 #include <file.h>
+#include <QMessageBox>
 
 namespace Ui {
 class SettingDialog;
@@ -22,6 +23,7 @@ private slots:
     void receiveCommonHeaderSizeFromMainWindow(CommonHeaderSize commonHeaderSize);
     void receiveBlockHeaderSizeFromMainWindow(BlockHeaderSize blockHeaderSize);
     void receiveBlockNumberFromMainWindow(QString blockNumber);
+    void receiveFileSizeFromMainWindow(int fileSize);
 
     void on_cancelPushButton_clicked();
     void on_defaultPushButton_clicked();
@@ -43,6 +45,7 @@ public:
     CommonHeaderSize _CommonHeader;
     BlockHeaderSize _BlockHeader;
     QString _blockNum = "1";
+    int _fileSize = 0;
 
     void setFileHeaderAll();
     void setCommonHeaderAll();
@@ -52,10 +55,15 @@ public:
     void setBlockNum(QString num){_blockNum = num;}
     QString getBlockNum(){return _blockNum;}
 
+    void setFileSize(int size){_fileSize = size;}
+    int getFileSize(){return _fileSize;}
+
     void setFileHeaderDefault();
     void setCommonHeaderDefault();
     void setBlockHeaderDefault();
     void setBlockNumDefault(){_blockNum = "1";}
+
+    bool checkError();
 
 
     void printFileHeader();
@@ -63,7 +71,7 @@ public:
     void printBlockHeader();
     void printBlockNum();
 
-
+    void constraintInputbyInt();
 
 };
 

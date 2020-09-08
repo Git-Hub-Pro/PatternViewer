@@ -33,6 +33,7 @@ signals:
     void sendCommonHeaderSizeToSettingDialog(CommonHeaderSize);
     void sendBlockHeaderSizeToSettingDialog(BlockHeaderSize);
     void sendBlockNumberToSettingDialog(QString);
+    void sendFileSizeToSettingDialog(int);
 
 private slots:
 

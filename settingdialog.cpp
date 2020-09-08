@@ -6,7 +6,7 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui(new Ui::SettingDialog)
 {
     ui->setupUi(this);
-
+    constraintInputbyInt();
 }
 
 SettingDialog::~SettingDialog()
@@ -36,6 +36,11 @@ void SettingDialog::receiveBlockNumberFromMainWindow(QString blockNumber)
 {
     _blockNum = blockNumber;
     printBlockNum();
+}
+
+void SettingDialog::receiveFileSizeFromMainWindow(int fileSize)
+{
+    setFileSize(fileSize);
 }
 
 void SettingDialog::on_cancelPushButton_clicked()
@@ -89,6 +94,20 @@ void SettingDialog::setBlockHeaderDefault()
     _BlockHeader.setReservedSize("4");
 }
 
+bool SettingDialog::checkError()
+{
+    int blockNum = getBlockNum().toInt();
+
+    if(blockNum<1||blockNum>64){
+        QMessageBox msgBox;
+        msgBox.setText("Block Num must be between 1 and 64 \n");
+        msgBox.exec();
+        return false;
+    }
+
+    return true;
+}
+
 void SettingDialog::printFileHeader()
 {
     ui->fileHeaderLineEdit1->setText(_FileHeader.getDiscemmentCodeSize());
@@ -127,6 +146,36 @@ void SettingDialog::printBlockNum()
     ui->blockNumlineEdit->setText(getBlockNum());
 }
 
+void SettingDialog::constraintInputbyInt()
+{
+    ui->fileHeaderLineEdit1->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit2->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit3->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit4->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit5->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit6->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit7->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit8->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit9->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit10->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit11->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit12->setValidator(new QIntValidator(1,999999,this));
+    ui->fileHeaderLineEdit13->setValidator(new QIntValidator(1,999999,this));
+
+    ui->commonHeaderLineEdit1->setValidator(new QIntValidator(1,999999,this));
+    ui->commonHeaderLineEdit2->setValidator(new QIntValidator(1,999999,this));
+    ui->commonHeaderLineEdit3->setValidator(new QIntValidator(1,999999,this));
+
+    ui->blockHeaderLineEdit1->setValidator(new QIntValidator(1,999999,this));
+    ui->blockHeaderLineEdit2->setValidator(new QIntValidator(1,999999,this));
+    ui->blockHeaderLineEdit3->setValidator(new QIntValidator(1,999999,this));
+    ui->blockHeaderLineEdit4->setValidator(new QIntValidator(1,999999,this));
+    ui->blockHeaderLineEdit5->setValidator(new QIntValidator(1,999999,this));
+
+    ui->blockNumlineEdit->setValidator(new QIntValidator(1,64,this));
+
+}
+
 void SettingDialog::on_applyPushButton_clicked()
 {
 
@@ -135,6 +184,7 @@ void SettingDialog::on_applyPushButton_clicked()
     setBlockHeaderAll();
     setBlockNumFromTextEdit();
 
+    if(checkError()){
     connect(this,SIGNAL(sendFileHeaderSizeToMainWindow(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSizeFromSettingDialog(FileHeaderSize)));
     emit sendFileHeaderSizeToMainWindow(_FileHeader);
     disconnect(this, 0, 0, 0);
@@ -150,7 +200,7 @@ void SettingDialog::on_applyPushButton_clicked()
     connect(this,SIGNAL(sendBlockNumberToMainWindow(QString)),parent(),SLOT(receiveBlockNumberFromSettingDialog(QString)));
     emit sendBlockNumberToMainWindow(getBlockNum());
     disconnect(this, 0, 0, 0);
-
+    }
 }
 
 void SettingDialog::setFileHeaderAll()

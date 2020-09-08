@@ -93,7 +93,6 @@
        </layout>
        <zorder>textEdit</zorder>
        <zorder></zorder>
-       <zorder></zorder>
        <zorder>tableWidget</zorder>
       </widget>
       <widget class="QWidget" name="tab_4">

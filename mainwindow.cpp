@@ -75,6 +75,7 @@ void MainWindow::receiveCommonHeaderSizeFromSettingDialog(CommonHeaderSize commo
     setCommonHeaderAddress();
     setCommonBodyAddress();
     }
+
     /*
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet32_r_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet64_s_Address()<<"\n";
@@ -88,8 +89,7 @@ void MainWindow::receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize blockHe
 {
     BlockHeaderObj = blockHeader;
 
-    if(getIsOpenFile())
-    {
+    if(getIsOpenFile()){
       setBlock1BodyAddress();
     }
 }
@@ -110,8 +110,12 @@ void MainWindow::on_openButton_clicked()
     if(Obj.readPatFile()){
     setIsOpenFile(true);
     ui->textEdit->clear();
-    setDynamicFatFileAddress();
+    QString str = "Modify Pat file by Pat format";
+    str += "  Block is ";
+    str += Obj.getBlockNumber();
+    ui->label_2->setText(str);
 
+    setDynamicFatFileAddress();
     printHexFileInTableWidget();
     printFileInformationInLabel();
     printFileHeaderInTextEdit();
@@ -243,11 +247,18 @@ void MainWindow::setBlock1BodyAddress()
     Obj.setBlock1BodyReserved_size(x);
 
     int BlockSize = Obj.getBlock1BodyReserved_Address() - Obj.getBlock1StartAddress_Address() + x;
-    int blockNumber = getBlockNumber().toInt();
+    int blockNumber = Obj.getBlockNumber().toInt();
 
-    /*
+
     if(blockNumber>1){
         int nBlockSize = BlockSize * blockNumber;
+        if(Obj.getBlock1BodyReserved_Address()+Obj.getblock1BodyReserved_size()+nBlockSize >Obj.getFileSize())
+        {
+            QMessageBox msgBox;
+            msgBox.setText("Over the file size. please check block number\n");
+            msgBox.exec();
+            return;
+        }
         Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+commonBody_Data_set_64_s*12+15+nBlockSize); // add Division line FFFFF FFFFF FFFFF
         Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(Obj.getBlock1StartAddress_Address()+Obj.BlockHeaderObj.getStartAddressSize().toInt()+nBlockSize);
         Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+Obj.BlockHeaderObj.getDataSetRSize().toInt()+nBlockSize);
@@ -261,7 +272,7 @@ void MainWindow::setBlock1BodyAddress()
         Obj.setBlock1BodyReserved_Address(Obj.getBlock1BodyMicroPattern_Address()+value*116+nBlockSize);
         Obj.setBlock1BodyReserved_size(x);
     }
-    */
+
 }
 
 
@@ -339,6 +350,10 @@ void MainWindow::on_settingButton_clicked()
 
     connect(this,SIGNAL(sendBlockNumberToSettingDialog(QString)),dialog,SLOT(receiveBlockNumberFromMainWindow(QString)));
     emit sendBlockNumberToSettingDialog(Obj.getBlockNumber());
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendFileSizeToSettingDialog(int)),dialog,SLOT(receiveFileSizeFromMainWindow(int)));
+    emit sendFileSizeToSettingDialog(Obj.getFileSize());
     disconnect(this, 0, 0, 0);
 
     dialog->exec();

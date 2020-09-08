@@ -605,7 +605,7 @@ void MainWindow::printCommonBodyRegister64()
 
 void MainWindow::printBlock1StartAddress()
 {
-    ui->textEdit->insertPlainText("\n\n19. Block1StartAddress : scope:");
+    ui->textEdit->insertPlainText("\n\n19. BlockStartAddress : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1StartAddress_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()));
@@ -631,7 +631,7 @@ void MainWindow::printBlock1StartAddress()
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
 {
-    ui->textEdit->insertPlainText("\n\n20. Block1HeaderOpcodeNDataSet32_r : scope :");
+    ui->textEdit->insertPlainText("\n\n20. BlockHeaderOpcodeNDataSet32_r : scope :");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()));
@@ -655,7 +655,7 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
 {
-    ui->textEdit->insertPlainText("\n\n21. Block1HeaderOpcodeNDataSet64_s : scope:");
+    ui->textEdit->insertPlainText("\n\n21. BlockHeaderOpcodeNDataSet64_s : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderMicroPatternCount_Address()));
@@ -679,7 +679,7 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
 
 void MainWindow::printBlock1HeaderMicroPatternCount()
 {
-    ui->textEdit->insertPlainText("\n\n22. Block1HeaderMicroPatternCount : scope:");
+    ui->textEdit->insertPlainText("\n\n22. BlockHeaderMicroPatternCount : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderMicroPatternCount_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderReaserverd_Address()));
@@ -703,7 +703,7 @@ void MainWindow::printBlock1HeaderMicroPatternCount()
 
 void MainWindow::printBlock1HeaderReaserverd()
 {
-    ui->textEdit->insertPlainText("\n\n23. Block1HeaderReserverd : scope : ");
+    ui->textEdit->insertPlainText("\n\n23. BlockHeaderReserverd : scope : ");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1HeaderReaserverd_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister32_r_Address()));
@@ -726,7 +726,7 @@ void MainWindow::printBlock1HeaderReaserverd()
 
 void MainWindow::printBlock1BodyRegister32()
 {
-    ui->textEdit->insertPlainText("\n\n24. Block1BodyRegister32 : scope:");
+    ui->textEdit->insertPlainText("\n\n24. BlockBodyRegister32 : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister32_r_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister64_s_Address()));
@@ -769,7 +769,7 @@ void MainWindow::printBlock1BodyRegister32()
 
 void MainWindow::printBlock1BodyRegister64()
 {
-    ui->textEdit->insertPlainText("\n\n25. Block1BodyRegister64 : scope:");
+    ui->textEdit->insertPlainText("\n\n25. BlockBodyRegister64 : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyRegister64_s_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyMicroPattern_Address()));
@@ -811,7 +811,7 @@ void MainWindow::printBlock1BodyRegister64()
 
 void MainWindow::printBlock1BodyMicroPattern()
 {
-    ui->textEdit->insertPlainText("\n\n26. Block1BodyMicroPattern : scope:");
+    ui->textEdit->insertPlainText("\n\n26. BlockBodyMicroPattern : scope:");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyMicroPattern_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()));
@@ -848,7 +848,7 @@ void MainWindow::printBlock1BodyMicroPattern()
 
 void MainWindow::printBlock1Reserved()
 {
-    ui->textEdit->insertPlainText("\n\n27. Block1HeaderReaserverd : scope :");
+    ui->textEdit->insertPlainText("\n\n27. BlockBodyReserverd : scope :");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()+1));
     ui->textEdit->insertPlainText("~");
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1BodyReserved_Address()+Obj.getblock1BodyReserved_size()));
