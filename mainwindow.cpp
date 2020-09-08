@@ -206,10 +206,12 @@ void MainWindow::setDynamicFatFileAddress()
 void MainWindow::setCommonBodyAddress()
 {
     QString data = (QString) Obj.readPatFile(Obj.getCommonHeaderOpcodeNDataSet32_r_Address(),Obj.getCommonHeaderOpcodeNDataSet64_s_Address()).toHex();
-    int value = stringToIntLittleEndian(data);
+    int commonBody_Data_set_32_r = stringToIntLittleEndian(data);
 
     Obj.setCommonBodyRegister32_r_Address(Obj.getCommonHeaderReserved_Address()+Obj.CommonHeaderObj.getReservedSize().toInt());
-    Obj.setCommonBodyRegister64_s_Address(Obj.getCommonBodyRegister32_r_Address()+value*8);
+    Obj.setCommonBodyRegister64_s_Address(Obj.getCommonBodyRegister32_r_Address()+commonBody_Data_set_32_r*8);
+    qDebug()<<"CommonBody_size"<<Obj.getCommonBodyRegister64_s_Address()-Obj.getCommonBodyRegister32_r_Address()<<'\n';
+
 }
 
 void MainWindow::setBlock1BodyAddress()

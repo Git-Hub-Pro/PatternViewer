@@ -244,7 +244,6 @@ void MainWindow::printFileHeaderFlagCommonModuleExist()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj.readPatFile(Obj.getFileHeaderFlagCommonModuleExist_Address(),Obj.getFileHeaderCountOfBlock_Address()).toHex();
-    // QByteArray data = Obj.readFileHeaderFlagCommonModuleExist(Obj.getFileHeaderFlagCommonModuleExist_Address(),Obj.getFileHeaderCountOfBlock_Address()).toHex();
     QString str = (QString) data;
     QString line;
 
@@ -524,14 +523,14 @@ void MainWindow::printCommonBodyRegister32()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getCommonBodyRegister32_r_Address(),Obj.getCommonBodyRegister64_s_Address()).toHex();
-
     QString str = (QString) data;
     QString line;
     int number = 1;
+    qDebug()<<"str length "<<str.length()<<'\n';
 
     for(int i=0;i<str.length();i++){
 
-       if(i%8==0){
+       if(i%16==0){
            ui->textEdit->insertPlainText("line ");
            ui->textEdit->insertPlainText(QString::number(number));
            ui->textEdit->insertPlainText("   :   ");
@@ -540,10 +539,10 @@ void MainWindow::printCommonBodyRegister32()
 
        line += str[i];
 
-       if(i%8==3){
+       if(i%16==7){
            line += "    DATA : ";
        }
-       if(i%8==7){
+       if(i%16==15){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
@@ -568,7 +567,7 @@ void MainWindow::printCommonBodyRegister64()
     ui->textEdit->insertPlainText(QString::number(Obj.getBlock1StartAddress_Address()));
     ui->textEdit->insertPlainText("\n");
 
-    QByteArray data = Obj. readPatFile(Obj.getCommonBodyRegister64_s_Address(),Obj.getBlock1StartAddress_Address()).toHex();
+    QByteArray data = Obj. readPatFile(Obj.getCommonBodyRegister64_s_Address(),Obj.getBlock1StartAddress_Address()-15).toHex(); //minus 15 byte FFFFF FFFFF FFFFF
     QString str = (QString) data;
     QString line;
     int number = 1;
@@ -576,7 +575,7 @@ void MainWindow::printCommonBodyRegister64()
 
     for(int i=0;i<str.length();i++){
 
-       if(i%12==0){
+       if(i%24==0){
            ui->textEdit->insertPlainText("line ");
            ui->textEdit->insertPlainText(QString::number(number));
            ui->textEdit->insertPlainText("   :   ");
@@ -585,10 +584,10 @@ void MainWindow::printCommonBodyRegister64()
 
        line += str[i];
 
-       if(i%12==3){
+       if(i%24==7){
            line += "    DATA : ";
        }
-       if(i%12==11){
+       if(i%24==23){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
@@ -740,7 +739,7 @@ void MainWindow::printBlock1BodyRegister32()
 
     for(int i=0;i<str.length();i++){
 
-       if(i%8==0){
+       if(i%16==0){
            ui->textEdit->insertPlainText("line ");
            ui->textEdit->insertPlainText(QString::number(number));
            ui->textEdit->insertPlainText("   :   ");
@@ -748,11 +747,11 @@ void MainWindow::printBlock1BodyRegister32()
        }
        line += str[i];
 
-       if(i%8==3){
+       if(i%16==7){
          line += "    DATA : ";
        }
 
-       if(i%8==7){
+       if(i%16==15){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
@@ -782,7 +781,7 @@ void MainWindow::printBlock1BodyRegister64()
 
 
     for(int i=0;i<str.length();i++){
-       if(i%12==0){
+       if(i%24==0){
            ui->textEdit->insertPlainText("line ");
            ui->textEdit->insertPlainText(QString::number(number));
            ui->textEdit->insertPlainText("   :   ");
@@ -791,10 +790,10 @@ void MainWindow::printBlock1BodyRegister64()
 
        line += str[i];
 
-       if(i%12==7){
+       if(i%24==7){
            line += "    DATA : ";
        }
-       if(i%12==11){
+       if(i%24==23){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
@@ -825,12 +824,13 @@ void MainWindow::printBlock1BodyMicroPattern()
     for(int i=0;i<str.length();i++){
        line += str[i];
 
-       if(i%116==0){
+       if(i%232==0){
            ui->textEdit->insertPlainText("line ");
            ui->textEdit->insertPlainText(QString::number(number));
            ui->textEdit->insertPlainText("   :   ");
+           ui->textEdit->append("");
        }
-       if(i%116==115){
+       if(i%232==231){
            ui->textEdit->insertPlainText(line);
            ui->textEdit->append("");
            line.clear();
