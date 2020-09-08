@@ -36,14 +36,14 @@ signals:
 
 private slots:
 
-    void receiveKeyword(QString keyword);
-    void receiveNextButtonSignal(QString keyword);
-    void receiveDialogEndSignal();
+    void receiveKeywordFromFindDialog(QString keyword);
+    void receiveNextButtonSignalFromFindDialog(QString keyword);
+    void receiveDialogEndSignalFromFindDialog();
 
-    void receiveFileHeaderSize(FileHeaderSize fileHeader);
-    void receiveCommonHeaderSize(CommonHeaderSize commonHeader);
-    void receiveBlockHeaderSize(BlockHeaderSize blockHeader);
-    void receiveBlockNumber(QString blockNumber);
+    void receiveFileHeaderSizeFromSettingDialog(FileHeaderSize fileHeader);
+    void receiveCommonHeaderSizeFromSettingDialog(CommonHeaderSize commonHeader);
+    void receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize blockHeader);
+    void receiveBlockNumberFromSettingDialog(QString blockNumber);
 
     void on_openButton_clicked();
     void on_clearButton_clicked();

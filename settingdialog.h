@@ -28,10 +28,10 @@ private slots:
     void on_applyPushButton_clicked();
 
 signals:
-        void sendFileHeaderSize(FileHeaderSize fileHeader);
-        void sendCommonHeaderSize(CommonHeaderSize commonHeader);
-        void sendBlockHeaderSize(BlockHeaderSize blockHeader);
-        void sendBlockNumber(QString number);
+        void sendFileHeaderSizeToMainWindow(FileHeaderSize fileHeader);
+        void sendCommonHeaderSizeToMainWindow(CommonHeaderSize commonHeader);
+        void sendBlockHeaderSizeToMainWindow(BlockHeaderSize blockHeader);
+        void sendBlockNumberToMainWindow(QString number);
 
 
 private:

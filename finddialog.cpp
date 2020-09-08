@@ -17,8 +17,8 @@ void FindDialog::on_findButton_clicked()
 {
     QString keyword = ui->lineEdit->text();
 
-    connect(this,SIGNAL(sendKeyword(QString)),parent(),SLOT(receiveKeyword(QString)));
-    emit sendKeyword(keyword);
+    connect(this,SIGNAL(sendKeywordToMainWindow(QString)),parent(),SLOT(receiveKeywordFromFindDialog(QString)));
+    emit sendKeywordToMainWindow(keyword);
     disconnect(this, 0, 0, 0);
 }
 
@@ -26,9 +26,9 @@ void FindDialog::on_nextButton_clicked()
 {
     QString keyword = ui->lineEdit->text();
 
-    connect(this,SIGNAL(sendNextButtonSignal(QString)),parent(),SLOT(receiveNextButtonSignal(QString)));
+    connect(this,SIGNAL(sendNextButtonSignalToMainWindow(QString)),parent(),SLOT(receiveNextButtonSignalFromFindDialog(QString)));
 
-    emit sendNextButtonSignal(keyword);
+    emit sendNextButtonSignalToMainWindow(keyword);
 
     disconnect(this, 0, 0, 0);
 }
@@ -40,8 +40,8 @@ void FindDialog::closeEvent(QCloseEvent *event)
     if(keyword.length()==0)
         return;
 
-    connect(this,SIGNAL(sendDialogEndSignal()),parent(),SLOT(receiveDialogEndSignal()));
-    emit sendDialogEndSignal();
+    connect(this,SIGNAL(sendDialogEndSignalToMainWindow()),parent(),SLOT(receiveDialogEndSignalFromFindDialog()));
+    emit sendDialogEndSignalToMainWindow();
     disconnect(this,0,0,0);
 
     QDialog::closeEvent(event);

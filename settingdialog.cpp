@@ -135,20 +135,20 @@ void SettingDialog::on_applyPushButton_clicked()
     setBlockHeaderAll();
     setBlockNumFromTextEdit();
 
-    connect(this,SIGNAL(sendFileHeaderSize(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSize(FileHeaderSize)));
-    emit sendFileHeaderSize(_FileHeader);
+    connect(this,SIGNAL(sendFileHeaderSizeToMainWindow(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSizeFromSettingDialog(FileHeaderSize)));
+    emit sendFileHeaderSizeToMainWindow(_FileHeader);
     disconnect(this, 0, 0, 0);
 
-    connect(this,SIGNAL(sendCommonHeaderSize(CommonHeaderSize)),parent(),SLOT(receiveCommonHeaderSize(CommonHeaderSize)));
-    emit sendCommonHeaderSize(_CommonHeader);
+    connect(this,SIGNAL(sendCommonHeaderSizeToMainWindow(CommonHeaderSize)),parent(),SLOT(receiveCommonHeaderSizeFromSettingDialog(CommonHeaderSize)));
+    emit sendCommonHeaderSizeToMainWindow(_CommonHeader);
     disconnect(this, 0, 0, 0);
 
-    connect(this,SIGNAL(sendBlockHeaderSize(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSize(BlockHeaderSize)));
-    emit sendBlockHeaderSize(_BlockHeader);
+    connect(this,SIGNAL(sendBlockHeaderSizeToMainWindow(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize)));
+    emit sendBlockHeaderSizeToMainWindow(_BlockHeader);
     disconnect(this, 0, 0, 0);
 
-    connect(this,SIGNAL(sendBlockNumber(QString)),parent(),SLOT(receiveBlockNumber(QString)));
-    emit sendBlockNumber(getBlockNum());
+    connect(this,SIGNAL(sendBlockNumberToMainWindow(QString)),parent(),SLOT(receiveBlockNumberFromSettingDialog(QString)));
+    emit sendBlockNumberToMainWindow(getBlockNum());
     disconnect(this, 0, 0, 0);
 
 }

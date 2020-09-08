@@ -20,9 +20,9 @@ public:
     ~FindDialog();
 
 signals:
-        void sendKeyword(QString keyword);
-        void sendNextButtonSignal(QString keyword);
-        void sendDialogEndSignal();
+        void sendKeywordToMainWindow(QString keyword);
+        void sendNextButtonSignalToMainWindow(QString keyword);
+        void sendDialogEndSignalToMainWindow();
 
 
 private slots:

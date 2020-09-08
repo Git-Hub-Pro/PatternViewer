@@ -13,19 +13,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::receiveKeyword(QString keyword)
+void MainWindow::receiveKeywordFromFindDialog(QString keyword)
 {
     initVariable();
     findAllKeyword(keyword);
 
 }
 
-void MainWindow::receiveNextButtonSignal(QString keyword)
+void MainWindow::receiveNextButtonSignalFromFindDialog(QString keyword)
 {
     findKeywordSequence(keyword);
 }
 
-void MainWindow::receiveDialogEndSignal()
+void MainWindow::receiveDialogEndSignalFromFindDialog()
 {
 
     ui->textEdit->clear();
@@ -43,7 +43,7 @@ void MainWindow::receiveDialogEndSignal()
 }
 
 
-void MainWindow::receiveFileHeaderSize(FileHeaderSize fileHeader)
+void MainWindow::receiveFileHeaderSizeFromSettingDialog(FileHeaderSize fileHeader)
 {
     FileHeaderObj = fileHeader;
 
@@ -67,7 +67,7 @@ void MainWindow::receiveFileHeaderSize(FileHeaderSize fileHeader)
 }
 
 
-void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
+void MainWindow::receiveCommonHeaderSizeFromSettingDialog(CommonHeaderSize commonHeader)
 {
     CommonHeaderObj = commonHeader;
 
@@ -84,7 +84,7 @@ void MainWindow::receiveCommonHeaderSize(CommonHeaderSize commonHeader)
 }
 
 
-void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
+void MainWindow::receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize blockHeader)
 {
     BlockHeaderObj = blockHeader;
 
@@ -94,10 +94,9 @@ void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
     }
 }
 
-void MainWindow::receiveBlockNumber(QString blockNumber)
+void MainWindow::receiveBlockNumberFromSettingDialog(QString blockNumber)
 {
     Obj.setBlockNumber(blockNumber);
-    // qDebug()<<getBlockNumber()<<'\n';
 }
 
 
@@ -246,8 +245,6 @@ void MainWindow::setBlock1BodyAddress()
     int BlockSize = Obj.getBlock1BodyReserved_Address() - Obj.getBlock1StartAddress_Address() + x;
     int blockNumber = getBlockNumber().toInt();
 
-    qDebug()<<"blockNumber : "<<blockNumber<<'\n';
-    qDebug()<<"Block Size : "<<BlockSize<<'\n';
     /*
     if(blockNumber>1){
         int nBlockSize = BlockSize * blockNumber;
