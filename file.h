@@ -151,6 +151,8 @@ private:
     int block1BodyReserved_Address;
     int block1BodyReserved_size;
 
+    QString blockNum = "1";
+
 public:
      FileHeaderSize FileHeaderObj;
      CommonHeaderSize CommonHeaderObj;
@@ -218,6 +220,9 @@ public:
 
      void setBlock1BodyReserved_size(int value){block1BodyReserved_size = value;}
      int getblock1BodyReserved_size(){return block1BodyReserved_size;}
+
+     void setBlockNumber(QString value){blockNum = value;}
+     QString getBlockNumber(){return blockNum;}
 
   public:
     QString getFilePath();

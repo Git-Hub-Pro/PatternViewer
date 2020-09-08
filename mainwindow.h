@@ -28,6 +28,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void sendFileHeaderSizeToSettingDialog(FileHeaderSize);
+    void sendCommonHeaderSizeToSettingDialog(CommonHeaderSize);
+    void sendBlockHeaderSizeToSettingDialog(BlockHeaderSize);
+    void sendBlockNumberToSettingDialog(QString);
+
 private slots:
 
     void receiveKeyword(QString keyword);
@@ -138,6 +144,8 @@ private:
     int _cursorPosition;
     int _count =0;
     QString _blockNumber = "1";
+
+
 
 };
 

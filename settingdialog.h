@@ -18,6 +18,11 @@ public:
     ~SettingDialog();
 
 private slots:
+    void receiveFileHeaderSizeFromMainWindow(FileHeaderSize fileHeadersize);
+    void receiveCommonHeaderSizeFromMainWindow(CommonHeaderSize commonHeaderSize);
+    void receiveBlockHeaderSizeFromMainWindow(BlockHeaderSize blockHeaderSize);
+    void receiveBlockNumberFromMainWindow(QString blockNumber);
+
     void on_cancelPushButton_clicked();
     void on_defaultPushButton_clicked();
     void on_applyPushButton_clicked();

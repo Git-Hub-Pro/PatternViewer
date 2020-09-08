@@ -6,11 +6,36 @@ SettingDialog::SettingDialog(QWidget *parent) :
     ui(new Ui::SettingDialog)
 {
     ui->setupUi(this);
+
 }
 
 SettingDialog::~SettingDialog()
 {
     delete ui;
+}
+
+void SettingDialog::receiveFileHeaderSizeFromMainWindow(FileHeaderSize fileHeadersize)
+{
+   _FileHeader = fileHeadersize;
+   printFileHeader();
+}
+
+void SettingDialog::receiveCommonHeaderSizeFromMainWindow(CommonHeaderSize commonHeaderSize)
+{
+   _CommonHeader = commonHeaderSize;
+   printCommonHeader();
+}
+
+void SettingDialog::receiveBlockHeaderSizeFromMainWindow(BlockHeaderSize blockHeaderSize)
+{
+    _BlockHeader = blockHeaderSize;
+    printBlockHeader();
+}
+
+void SettingDialog::receiveBlockNumberFromMainWindow(QString blockNumber)
+{
+    _blockNum = blockNumber;
+    printBlockNum();
 }
 
 void SettingDialog::on_cancelPushButton_clicked()

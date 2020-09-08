@@ -96,8 +96,7 @@ void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
 
 void MainWindow::receiveBlockNumber(QString blockNumber)
 {
-    setBlockNumber(blockNumber);
-
+    Obj.setBlockNumber(blockNumber);
     // qDebug()<<getBlockNumber()<<'\n';
 }
 
@@ -309,7 +308,6 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
         QByteArray fileData = Obj.readAll();
 
         informationFile.append("File Name : ");
-        //informationFile.append(Obj.readFileHeaderSourceFileName(Obj.getFileHeaderSourceFileName_Address(),Obj.getFileHeaderCompileDate_Address()));
         informationFile.append(Obj.readPatFile(Obj.getFileHeaderSourceFileName_Address(),Obj.getFileHeaderCompileDate_Address()));
 
         informationFile.append("  File size : ");
@@ -329,6 +327,23 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
 void MainWindow::on_settingButton_clicked()
 {
     SettingDialog *dialog =new SettingDialog(this);
+
+    connect(this,SIGNAL(sendFileHeaderSizeToSettingDialog(FileHeaderSize)),dialog,SLOT(receiveFileHeaderSizeFromMainWindow(FileHeaderSize)));
+    emit sendFileHeaderSizeToSettingDialog(FileHeaderObj);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendCommonHeaderSizeToSettingDialog(CommonHeaderSize)),dialog,SLOT(receiveCommonHeaderSizeFromMainWindow(CommonHeaderSize)));
+    emit sendCommonHeaderSizeToSettingDialog(CommonHeaderObj);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendBlockHeaderSizeToSettingDialog(BlockHeaderSize)),dialog,SLOT(receiveBlockHeaderSizeFromMainWindow(BlockHeaderSize)));
+    emit sendBlockHeaderSizeToSettingDialog(BlockHeaderObj);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendBlockNumberToSettingDialog(QString)),dialog,SLOT(receiveBlockNumberFromMainWindow(QString)));
+    emit sendBlockNumberToSettingDialog(Obj.getBlockNumber());
+    disconnect(this, 0, 0, 0);
+
     dialog->exec();
 }
 
@@ -358,15 +373,15 @@ void MainWindow::on_actionFind_triggered()
     FindDialog *dialog =new FindDialog(this);
 
     dialog->show();
-
     dialog->raise();
-
-    dialog->activateWindow();
-
+    dialog->activateWindow();    
 }
 
 void MainWindow::on_actionSetting_triggered()
 {
+
     SettingDialog *dialog =new SettingDialog(this);
     dialog->exec();
+
 }
+
