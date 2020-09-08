@@ -94,6 +94,13 @@ void MainWindow::receiveBlockHeaderSize(BlockHeaderSize blockHeader)
     }
 }
 
+void MainWindow::receiveBlockNumber(QString blockNumber)
+{
+    setBlockNumber(blockNumber);
+
+    // qDebug()<<getBlockNumber()<<'\n';
+}
+
 
 void MainWindow::on_openButton_clicked()
 {
@@ -223,7 +230,7 @@ void MainWindow::setBlock1BodyAddress()
     value = stringToIntLittleEndian(data);
     block_Data_Set_32_r = value;
     Obj.setBlock1BodyRegister32_r_Address(Obj.getBlock1HeaderReaserverd_Address()+Obj.BlockHeaderObj.getReservedSize().toInt());
-    Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+value*8);
+    Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+block_Data_Set_32_r*8);
     data = (QString) Obj.readPatFile(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
     value = stringToIntLittleEndian(data);
     block_Data_Set_64_s = value;
@@ -237,6 +244,28 @@ void MainWindow::setBlock1BodyAddress()
     int x = 16 -(block_Data_Set_32_r*8+block_Data_Set_64_s*12+block_Micro_Pattern_Count_p*64) % 16;
     Obj.setBlock1BodyReserved_size(x);
 
+    int BlockSize = Obj.getBlock1BodyReserved_Address() - Obj.getBlock1StartAddress_Address() + x;
+    int blockNumber = getBlockNumber().toInt();
+
+    qDebug()<<"blockNumber : "<<blockNumber<<'\n';
+    qDebug()<<"Block Size : "<<BlockSize<<'\n';
+    /*
+    if(blockNumber>1){
+        int nBlockSize = BlockSize * blockNumber;
+        Obj.setBlock1StartAddress_Address(Obj.getCommonBodyRegister64_s_Address()+commonBody_Data_set_64_s*12+15+nBlockSize); // add Division line FFFFF FFFFF FFFFF
+        Obj.setBlock1HeaderOpcodeNDataSet32_r_Address(Obj.getBlock1StartAddress_Address()+Obj.BlockHeaderObj.getStartAddressSize().toInt()+nBlockSize);
+        Obj.setBlock1HeaderOpcodeNDataSet64_s_Address(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address()+Obj.BlockHeaderObj.getDataSetRSize().toInt()+nBlockSize);
+        Obj.setBlock1HeaderMicroPatternCount_Address(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()+Obj.BlockHeaderObj.getDataSetSSize().toInt()+nBlockSize);
+        Obj.setBlock1HeaderReaserverd_Address(Obj.getBlock1HeaderMicroPatternCount_Address()+Obj.BlockHeaderObj.getPatternCountPSize().toInt()+nBlockSize);
+
+        Obj.setBlock1BodyRegister32_r_Address(Obj.getBlock1HeaderReaserverd_Address()+Obj.BlockHeaderObj.getReservedSize().toInt()+nBlockSize);
+        Obj.setBlock1BodyRegister64_s_Address(Obj.getBlock1BodyRegister32_r_Address()+block_Data_Set_32_r*8+nBlockSize);
+
+        Obj.setBlock1BodyMicroPattern_Address(Obj.getBlock1BodyRegister64_s_Address()+value*12+nBlockSize);
+        Obj.setBlock1BodyReserved_Address(Obj.getBlock1BodyMicroPattern_Address()+value*116+nBlockSize);
+        Obj.setBlock1BodyReserved_size(x);
+    }
+    */
 }
 
 

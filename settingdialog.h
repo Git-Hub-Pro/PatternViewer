@@ -26,6 +26,7 @@ signals:
         void sendFileHeaderSize(FileHeaderSize fileHeader);
         void sendCommonHeaderSize(CommonHeaderSize commonHeader);
         void sendBlockHeaderSize(BlockHeaderSize blockHeader);
+        void sendBlockNumber(QString number);
 
 
 private:
@@ -36,19 +37,26 @@ public:
     FileHeaderSize _FileHeader;
     CommonHeaderSize _CommonHeader;
     BlockHeaderSize _BlockHeader;
+    QString _blockNum = "1";
 
     void setFileHeaderAll();
     void setCommonHeaderAll();
     void setBlockHeaderAll();
+    void setBlockNumFromTextEdit();
+
+    void setBlockNum(QString num){_blockNum = num;}
+    QString getBlockNum(){return _blockNum;}
 
     void setFileHeaderDefault();
     void setCommonHeaderDefault();
     void setBlockHeaderDefault();
+    void setBlockNumDefault(){_blockNum = "1";}
+
 
     void printFileHeader();
     void printCommonHeader();
     void printBlockHeader();
-
+    void printBlockNum();
 
 
 

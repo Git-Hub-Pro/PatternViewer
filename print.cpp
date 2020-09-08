@@ -118,6 +118,7 @@ void MainWindow::printBinaryFileInTable_Widget2()
      }
 }
 
+
 void MainWindow::printFileHeaderInTextEdit()
 {
     printFileHeaderDiscemmentCode();

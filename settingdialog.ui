@@ -58,7 +58,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit5">
        <property name="text">
-        <string>8</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -97,7 +97,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit6">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -136,7 +136,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit7">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -175,7 +175,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit9">
        <property name="text">
-        <string>16384</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -214,7 +214,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit11">
        <property name="text">
-        <string>80</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -253,7 +253,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit12">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -292,7 +292,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit13">
        <property name="text">
-        <string>16</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -331,7 +331,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit8">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -370,7 +370,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit10">
        <property name="text">
-        <string>16384</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -409,7 +409,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit1">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -448,7 +448,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit2">
        <property name="text">
-        <string>36</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -487,7 +487,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit3">
        <property name="text">
-        <string>8</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -526,7 +526,7 @@
      <item>
       <widget class="QLineEdit" name="fileHeaderLineEdit4">
        <property name="text">
-        <string>8</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -591,7 +591,7 @@
      <item>
       <widget class="QLineEdit" name="commonHeaderLineEdit3">
        <property name="text">
-        <string>8</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -630,7 +630,7 @@
      <item>
       <widget class="QLineEdit" name="commonHeaderLineEdit1">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -671,7 +671,7 @@
        <item>
         <widget class="QLineEdit" name="commonHeaderLineEdit2">
          <property name="text">
-          <string>4</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -777,7 +777,7 @@
      <item>
       <widget class="QLineEdit" name="blockHeaderLineEdit4">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -816,7 +816,7 @@
      <item>
       <widget class="QLineEdit" name="blockHeaderLineEdit5">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -855,7 +855,7 @@
      <item>
       <widget class="QLineEdit" name="blockHeaderLineEdit1">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -894,7 +894,7 @@
      <item>
       <widget class="QLineEdit" name="blockHeaderLineEdit2">
        <property name="text">
-        <string>4</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -933,7 +933,59 @@
      <item>
       <widget class="QLineEdit" name="blockHeaderLineEdit3">
        <property name="text">
-        <string>4</string>
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>10</y>
+     <width>331</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Select Block Number</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>268</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>1. Block Num</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="blockNumlineEdit">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>

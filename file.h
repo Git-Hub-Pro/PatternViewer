@@ -134,7 +134,7 @@ private:
     int commonHeaderOpcodeNDataSet32_r_Address=32944;
     int commonHeaderOpcodeNDataSet64_s_Address=32948;
     int commonHeaderReserved_Address=32952;
-    // not yet
+
     int commonBodyRegister32_r_Address;
     int commonBodyRegister64_s_Address;
 
@@ -144,7 +144,7 @@ private:
     int block1HeaderOpcodeNDataSet64_s_Address;
     int block1HeaderMicroPatternCount_Address;
     int block1HeaderReaserverd_Address;
-    // not yet
+
     int block1BodyRegister32_r_Address;
     int block1BodyRegister64_s_Address;
     int block1BodyMicroPattern_Address;

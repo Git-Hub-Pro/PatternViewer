@@ -23,10 +23,12 @@ void SettingDialog::on_defaultPushButton_clicked()
     setFileHeaderDefault();
     setCommonHeaderDefault();
     setBlockHeaderDefault();
+    setBlockNumDefault();
 
     printFileHeader();
     printCommonHeader();
     printBlockHeader();
+    printBlockNum();
 }
 
 void SettingDialog::setFileHeaderDefault()
@@ -95,12 +97,18 @@ void SettingDialog::printBlockHeader()
     ui->blockHeaderLineEdit5->setText(_BlockHeader.getReservedSize());
 }
 
+void SettingDialog::printBlockNum()
+{
+    ui->blockNumlineEdit->setText(getBlockNum());
+}
+
 void SettingDialog::on_applyPushButton_clicked()
 {
 
     setFileHeaderAll();
     setCommonHeaderAll();
     setBlockHeaderAll();
+    setBlockNumFromTextEdit();
 
     connect(this,SIGNAL(sendFileHeaderSize(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSize(FileHeaderSize)));
     emit sendFileHeaderSize(_FileHeader);
@@ -112,6 +120,10 @@ void SettingDialog::on_applyPushButton_clicked()
 
     connect(this,SIGNAL(sendBlockHeaderSize(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSize(BlockHeaderSize)));
     emit sendBlockHeaderSize(_BlockHeader);
+    disconnect(this, 0, 0, 0);
+
+    connect(this,SIGNAL(sendBlockNumber(QString)),parent(),SLOT(receiveBlockNumber(QString)));
+    emit sendBlockNumber(getBlockNum());
     disconnect(this, 0, 0, 0);
 
 }
@@ -147,4 +159,9 @@ void SettingDialog::setBlockHeaderAll()
     _BlockHeader.setDataSetSSize(ui->blockHeaderLineEdit3->text());
     _BlockHeader.setPatternCountPSize(ui->blockHeaderLineEdit4->text());
     _BlockHeader.setReservedSize(ui->blockHeaderLineEdit5->text());
+}
+
+void SettingDialog::setBlockNumFromTextEdit()
+{
+    setBlockNum(ui->blockNumlineEdit->text());
 }

@@ -37,7 +37,7 @@ private slots:
     void receiveFileHeaderSize(FileHeaderSize fileHeader);
     void receiveCommonHeaderSize(CommonHeaderSize commonHeader);
     void receiveBlockHeaderSize(BlockHeaderSize blockHeader);
-
+    void receiveBlockNumber(QString blockNumber);
 
     void on_openButton_clicked();
     void on_clearButton_clicked();
@@ -123,6 +123,9 @@ public:
     void setIsOpenFile(bool isOpen){_isOpenFile = isOpen;}
     bool getIsOpenFile(){return _isOpenFile;}
 
+    void setBlockNumber(QString number){_blockNumber=number;}
+    QString getBlockNumber(){return _blockNumber;}
+
 private:
     File Obj;
     FileHeaderSize FileHeaderObj;
@@ -134,6 +137,7 @@ private:
     int _cursorNum;
     int _cursorPosition;
     int _count =0;
+    QString _blockNumber = "1";
 
 };
 
