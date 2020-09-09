@@ -185,6 +185,10 @@ void SettingDialog::on_applyPushButton_clicked()
     setBlockNumFromTextEdit();
 
     if(checkError()){
+    connect(this,SIGNAL(sendBlockNumberToMainWindow(QString)),parent(),SLOT(receiveBlockNumberFromSettingDialog(QString)));
+    emit sendBlockNumberToMainWindow(getBlockNum());
+    disconnect(this, 0, 0, 0);
+
     connect(this,SIGNAL(sendFileHeaderSizeToMainWindow(FileHeaderSize)),parent(),SLOT(receiveFileHeaderSizeFromSettingDialog(FileHeaderSize)));
     emit sendFileHeaderSizeToMainWindow(_FileHeader);
     disconnect(this, 0, 0, 0);
@@ -195,10 +199,6 @@ void SettingDialog::on_applyPushButton_clicked()
 
     connect(this,SIGNAL(sendBlockHeaderSizeToMainWindow(BlockHeaderSize)),parent(),SLOT(receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize)));
     emit sendBlockHeaderSizeToMainWindow(_BlockHeader);
-    disconnect(this, 0, 0, 0);
-
-    connect(this,SIGNAL(sendBlockNumberToMainWindow(QString)),parent(),SLOT(receiveBlockNumberFromSettingDialog(QString)));
-    emit sendBlockNumberToMainWindow(getBlockNum());
     disconnect(this, 0, 0, 0);
     }
 }

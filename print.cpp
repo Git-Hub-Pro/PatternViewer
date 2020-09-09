@@ -59,12 +59,13 @@ void MainWindow::printBinaryFileInTable_Widget2()
 {
     QByteArray fileData = Obj.readPatFile(Obj.getBlock1BodyMicroPattern_Address(),Obj.getBlock1BodyReserved_Address()).toHex();
 
-    int column = 32;
-    int row = fileData.size()/2;
-
     QString hexString = (QString) fileData;
+
     QString binaryString = hexStringToBinaryString(hexString);
 
+
+    int column = 32;
+    int row = binaryString.length()/column;
 
      ui->tableWidget_2->setRowCount(row);
      ui->tableWidget_2->setColumnCount(column);
@@ -526,7 +527,6 @@ void MainWindow::printCommonBodyRegister32()
     QString str = (QString) data;
     QString line;
     int number = 1;
-    qDebug()<<"str length "<<str.length()<<'\n';
 
     for(int i=0;i<str.length();i++){
 

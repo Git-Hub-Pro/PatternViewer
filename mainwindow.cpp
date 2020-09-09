@@ -49,7 +49,7 @@ void MainWindow::receiveFileHeaderSizeFromSettingDialog(FileHeaderSize fileHeade
 
     if(getIsOpenFile()) setFileHeaderAddress();
 
-    /*
+     /*
     qDebug()<<Obj.getFileHeaderDiscemmentCode_Address()<<"\n";
     qDebug()<<Obj.getFileHeaderSourceFileName_Address()<<"\n";
     qDebug()<<Obj.getFileHeaderCompileDate_Address()<<"\n";
@@ -63,7 +63,7 @@ void MainWindow::receiveFileHeaderSizeFromSettingDialog(FileHeaderSize fileHeade
     qDebug()<<Obj.getFileHeaderRemark_Address()<<"\n";
     qDebug()<<Obj.getFileHeaderDataOfIlMode_Address()<<"\n";
     qDebug()<<Obj.getFileHeaderReserved_Address()<<"\n";
-    */
+     */
 }
 
 
@@ -80,8 +80,7 @@ void MainWindow::receiveCommonHeaderSizeFromSettingDialog(CommonHeaderSize commo
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet32_r_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderOpcodeNDataSet64_s_Address()<<"\n";
     qDebug()<<Obj.getCommonHeaderReserved_Address()<<"\n";
-    */
-
+     */
 }
 
 
@@ -92,6 +91,7 @@ void MainWindow::receiveBlockHeaderSizeFromSettingDialog(BlockHeaderSize blockHe
     if(getIsOpenFile()){
       setBlock1BodyAddress();
     }
+
 }
 
 void MainWindow::receiveBlockNumberFromSettingDialog(QString blockNumber)
@@ -168,9 +168,9 @@ int MainWindow::stringToIntLittleEndian(QString hexString)
 
     stringBuffer = hexString;
     bool ok;
-    for(int i=0;i<size/2;i++)
+    for(int i=0;i<size;i+=2)
         for(int j=0;j<2;j++)
-            hexString[i*2+j] = stringBuffer[i*2+1-j];
+            hexString[i+j] = stringBuffer[i+1-j];
 
     return hexString.toUInt(&ok,16);
 
@@ -179,20 +179,43 @@ int MainWindow::stringToIntLittleEndian(QString hexString)
 QString MainWindow::hexStringToBinaryString(QString hexString)
 {
     QString binaryString;
-    const int byteSize = 4;
+
+    const int byteSize = 4*2; // string is recoginized 0x00 -> 0 | 0
+    const int interval_232 = 232;
+
     bool ok;
 
-    for(int i=0;i<hexString.length();i+=byteSize){
+    // 1. divide string into 232 intervals
+    for(int i=0;i<hexString.length();i+=interval_232){
+        QString hex_String_116Byte = "";
+        for(int j=0;j<interval_232;j++){
+            hex_String_116Byte += hexString[i+j];
+        }
+        /*
+        // 2. flip the String
+        QString stringBuffer = hex_String_116Byte;
+        for(int j=0;j<interval_232;j++){
+            hex_String_116Byte[j] = stringBuffer[interval_232-j-1];
+        // 3. Swapping neighboring digits
+        stringBuffer = hex_String_116Byte;
+        for(int j=0;j<interval_232;j+=2)
+            for(int k=0;k<2;k++)
+                hex_String_116Byte[j+k] = stringBuffer[j+1-k];
+        */
 
-        QString binary_4Byte_String ="";
+        // 4. Change to binary file
+        for(int j=0;j<hex_String_116Byte.length();j+=byteSize){
 
-        for(int j=0;j<byteSize;j++){
-            binary_4Byte_String += hexString[i+j];
+            QString binary_String_4Byte ="";
+
+            for(int k=0;k<byteSize;k++){
+                binary_String_4Byte += hex_String_116Byte[j+k];
+            }
+
+            binaryString += QString("%1").arg(binary_String_4Byte.toULongLong(&ok,16),32,2,QChar('0'));
         }
 
-        binaryString += QString("%1").arg(binary_4Byte_String.toULongLong(&ok,16),32,2,QChar('0'));
     }
-
 
     return binaryString;
 }
@@ -210,8 +233,6 @@ void MainWindow::setCommonBodyAddress()
 
     Obj.setCommonBodyRegister32_r_Address(Obj.getCommonHeaderReserved_Address()+Obj.CommonHeaderObj.getReservedSize().toInt());
     Obj.setCommonBodyRegister64_s_Address(Obj.getCommonBodyRegister32_r_Address()+commonBody_Data_set_32_r*8);
-    qDebug()<<"CommonBody_size"<<Obj.getCommonBodyRegister64_s_Address()-Obj.getCommonBodyRegister32_r_Address()<<'\n';
-
 }
 
 void MainWindow::setBlock1BodyAddress()
@@ -252,8 +273,9 @@ void MainWindow::setBlock1BodyAddress()
     int blockNumber = Obj.getBlockNumber().toInt();
 
 
-    if(blockNumber>1){
+    if(blockNumber > 1){
         int nBlockSize = BlockSize * blockNumber;
+
         if(Obj.getBlock1BodyReserved_Address()+Obj.getblock1BodyReserved_size()+nBlockSize >Obj.getFileSize())
         {
             QMessageBox msgBox;
