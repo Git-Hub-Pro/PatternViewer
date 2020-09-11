@@ -175,6 +175,23 @@ public:
          commonHeaderOpcodeNDataSet32_r_Address=32944;
          commonHeaderOpcodeNDataSet64_s_Address=32948;
          commonHeaderReserved_Address=32952;
+
+         commonBodyRegister32_r_Address = 0;
+         commonBodyRegister64_s_Address = 0;
+
+
+         block1StartAddress_Address = 0;
+         block1HeaderOpcodeNDataSet32_r_Address = 0;
+         block1HeaderOpcodeNDataSet64_s_Address = 0;
+         block1HeaderMicroPatternCount_Address = 0;
+         block1HeaderReaserverd_Address = 0;
+
+         block1BodyRegister32_r_Address = 0;
+         block1BodyRegister64_s_Address = 0;
+         block1BodyMicroPattern_Address = 0;
+         block1BodyReserved_Address = 0;
+         block1BodyReserved_size = 0;
+
          blockNum = "1";
      }
 
