@@ -117,23 +117,23 @@ class File : public QWidget
 private:
     QByteArray _patFile;
 
-    int fileHeaderDiscemmentCode_Address = 0; //1
-    int fileHeaderSourceFileName_Address = 4; //2
-    int fileHeaderCompileDate_Address = 40; //3
-    int fileHeaderCompileTime_Address = 48; //4
-    int fileHeaderCompilerVersion_Address = 56; //5
-    int fileHeaderFlagCommonModuleExist_Address = 64; //6
-    int fileHeaderCountOfBlock_Address = 68; //7
-    int fileHeaderOffsetsOfCommon_Address = 72; //8
-    int fileHeaderOffsetsOfBlocks_Address = 76; // 9
-    int fileHeaderStartAddressArray_Address = 16460; // 10
-    int fileHeaderRemark_Address = 32844; // 11
-    int fileHeaderDataOfIlMode_Address = 32924; // 12
-    int fileHeaderReserved_Address = 32928; //13
+    int fileHeaderDiscemmentCode_Address; //1
+    int fileHeaderSourceFileName_Address; //2
+    int fileHeaderCompileDate_Address; //3
+    int fileHeaderCompileTime_Address; //4
+    int fileHeaderCompilerVersion_Address; //5
+    int fileHeaderFlagCommonModuleExist_Address; //6
+    int fileHeaderCountOfBlock_Address; //7
+    int fileHeaderOffsetsOfCommon_Address; //8
+    int fileHeaderOffsetsOfBlocks_Address; // 9
+    int fileHeaderStartAddressArray_Address; // 10
+    int fileHeaderRemark_Address; // 11
+    int fileHeaderDataOfIlMode_Address; // 12
+    int fileHeaderReserved_Address; //13
 
-    int commonHeaderOpcodeNDataSet32_r_Address=32944;
-    int commonHeaderOpcodeNDataSet64_s_Address=32948;
-    int commonHeaderReserved_Address=32952;
+    int commonHeaderOpcodeNDataSet32_r_Address;
+    int commonHeaderOpcodeNDataSet64_s_Address;
+    int commonHeaderReserved_Address;
 
     int commonBodyRegister32_r_Address;
     int commonBodyRegister64_s_Address;
@@ -151,12 +151,32 @@ private:
     int block1BodyReserved_Address;
     int block1BodyReserved_size;
 
-    QString blockNum = "1";
+    QString blockNum;
 
 public:
      FileHeaderSize FileHeaderObj;
      CommonHeaderSize CommonHeaderObj;
      BlockHeaderSize BlockHeaderObj;
+     File(){
+         fileHeaderDiscemmentCode_Address = 0; //1
+         fileHeaderSourceFileName_Address = 4; //2
+         fileHeaderCompileDate_Address = 40; //3
+         fileHeaderCompileTime_Address = 48; //4
+         fileHeaderCompilerVersion_Address = 56; //5
+         fileHeaderFlagCommonModuleExist_Address = 64; //6
+         fileHeaderCountOfBlock_Address = 68; //7
+         fileHeaderOffsetsOfCommon_Address = 72; //8
+         fileHeaderOffsetsOfBlocks_Address = 76; // 9
+         fileHeaderStartAddressArray_Address = 16460; // 10
+         fileHeaderRemark_Address = 32844; // 11
+         fileHeaderDataOfIlMode_Address = 32924; // 12
+         fileHeaderReserved_Address = 32928; //13
+
+         commonHeaderOpcodeNDataSet32_r_Address=32944;
+         commonHeaderOpcodeNDataSet64_s_Address=32948;
+         commonHeaderReserved_Address=32952;
+         blockNum = "1";
+     }
 
      void setFileHeaderDiscemmentCode_Address(int value){fileHeaderDiscemmentCode_Address=value;}
      int getFileHeaderDiscemmentCode_Address(){return fileHeaderDiscemmentCode_Address;}
