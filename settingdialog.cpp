@@ -91,7 +91,7 @@ void SettingDialog::setBlockHeaderDefault()
     _BlockHeader.setDataSetRSize("4");
     _BlockHeader.setDataSetSSize("4");
     _BlockHeader.setPatternCountPSize("4");
-    _BlockHeader.setReservedSize("4");
+    _BlockHeader.setReservedSize("16");
 }
 
 bool SettingDialog::checkError()

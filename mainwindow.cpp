@@ -191,7 +191,7 @@ QString MainWindow::hexStringToBinaryString(QString hexString)
         for(int j=0;j<interval_232;j++){
             hex_String_116Byte += hexString[i+j];
         }
-        /*
+/*
         // 2. flip the String
         QString stringBuffer = hex_String_116Byte;
         for(int j=0;j<interval_232;j++){
@@ -201,7 +201,7 @@ QString MainWindow::hexStringToBinaryString(QString hexString)
         for(int j=0;j<interval_232;j+=2)
             for(int k=0;k<2;k++)
                 hex_String_116Byte[j+k] = stringBuffer[j+1-k];
-        */
+*/
 
         // 4. Change to binary file
         for(int j=0;j<hex_String_116Byte.length();j+=byteSize){
