@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=patternViewer
+Comment=View pat File
+Exec=patternViewer
+Icon=patternViewer
+Categories=Office;
+X-AppImage-Version=
+
+Name[en_US]=patternViewer.desktop

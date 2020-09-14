@@ -35,11 +35,13 @@ void MainWindow::receiveDialogEndSignalFromFindDialog()
 
     ui->textEdit->mergeCurrentCharFormat(fmt);
 
+    if(getIsOpenFile()){
     printFileHeaderInTextEdit();
     printCommonHeaderInTextEdit();
     printCommonBodyInTextEdit();
     printBlockHeaderInTextEdit();
     printBlockBodyInTextEdit();
+    }
 }
 
 
