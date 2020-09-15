@@ -61,8 +61,9 @@ void MainWindow::printBinaryFileInTable_Widget2()
 
     QString hexString = (QString) fileData;
 
+    qDebug()<<"hexString size: "<<hexString.length();
     QString binaryString = hexStringToBinaryString(hexString);
-
+    qDebug()<<"binaryString size: "<<binaryString.length();
 
     int column = 32;
     int row = binaryString.length()/column;
@@ -73,8 +74,77 @@ void MainWindow::printBinaryFileInTable_Widget2()
 
      int microBitTable_row_num = 0;
      int microPattern_row_num = 0;
+     int subLineNum = 0;
      int changeColor = 0;
 
+     for(int i=0;i<row;i++){
+         if(i%2==0){
+             for(int j=0;j<column+1;j++){
+                QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+                if(!item){
+                    item = new QTableWidgetItem();
+                    ui->tableWidget_2->setItem(i,j,item);
+                }
+
+                if(j==0){
+                    QString lineNum = "line ";
+                    QString strNum;
+                    int num = i/58;
+                    strNum = strNum.setNum(num+1);
+                    lineNum += strNum;
+                    lineNum += " - ";
+                    strNum = strNum.setNum(subLineNum+1);
+                    lineNum += strNum;
+                    item->setText(lineNum);
+
+                }else{
+
+                    QString binraryStringOne = MicroBitTable[microBitTable_row_num][j-1];
+                    item->setText(binraryStringOne);
+                }
+
+             }
+             microBitTable_row_num += 1;
+             microBitTable_row_num %= 29;
+
+             if(microBitTable_row_num==0){
+                   changeColor += 1;
+                   changeColor %= 2;
+             }
+         }
+         else{
+             for(int j=0;j<column+1;j++){
+                QTableWidgetItem *item = ui->tableWidget_2->item(i,j);
+                if(!item){
+                    item = new QTableWidgetItem();
+                    ui->tableWidget_2->setItem(i,j,item);
+                }
+
+                if(j==0){
+                    QString lineNum = "line ";
+                    QString strNum;
+                    int num = i/58;
+                    strNum = strNum.setNum(num+1);
+                    lineNum += strNum;
+                    lineNum += " - ";
+                    strNum = strNum.setNum(subLineNum+1);
+                    lineNum += strNum;
+
+                    item->setText(lineNum);
+
+                    subLineNum += 1;
+                    subLineNum %= 29;
+
+                }else{
+                    QString binraryStringOne = binaryString.at(microPattern_row_num*32+j);
+                    item->setText(binraryStringOne);
+                }
+             }
+             microPattern_row_num += 1;
+         }
+
+     }
+     /*
      for(int i=0;i<row;i++){
 
          if(i%2==0){
@@ -117,6 +187,7 @@ void MainWindow::printBinaryFileInTable_Widget2()
          }
 
      }
+     */
 }
 
 
@@ -270,18 +341,10 @@ void MainWindow::printFileHeaderCountOfBlock()
 
     QByteArray data = Obj.readPatFile(Obj.getFileHeaderCountOfBlock_Address(),Obj.getFileHeaderOffsetsOfCommon_Address()).toHex();
 
-    QString str = (QString) data;
     QString line;
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-          line += " ";
-       }
-    }
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printFileHeaderOffsetsOfCommon()
@@ -402,19 +465,20 @@ void MainWindow::printFileHeaderDataOfIlMode()
     ui->textEdit->insertPlainText(QString::number(Obj.getFileHeaderReserved_Address()));
     ui->textEdit->insertPlainText("\n");
     QByteArray data = Obj. readPatFile(Obj.getFileHeaderDataOfIlMode_Address(),Obj.getFileHeaderReserved_Address()).toHex();
-    QString str = (QString) data;
     QString line;
 
-    for(int i=0;i<str.length();i++){
-       line += str[i];
+    int mode = stringToIntLittleEndian(data);
 
-       if(i!=0&&i%2==1){
-           line += " ";
-       }
+    if(mode==0){
+        line = "1way";
+    }else if(mode==1){
+        line = "2way";
+    }else{
+        line = "error";
     }
 
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printFileHeaderReserved()
@@ -451,20 +515,11 @@ void MainWindow::printCommonHeaderOpcodeNDataSet32_r()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getCommonHeaderOpcodeNDataSet32_r_Address(),Obj.getCommonHeaderOpcodeNDataSet64_s_Address()).toHex();
-    QString str = (QString) data;
     QString line;
 
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-        line += " ";
-       }
-    }
-
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
@@ -476,19 +531,11 @@ void MainWindow::printCommonHeaderOpcodeNDataSet64_s()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getCommonHeaderOpcodeNDataSet64_s_Address(),Obj.getCommonHeaderReserved_Address()).toHex();
-    QString str = (QString) data;
     QString line;
 
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-       line += " ";
-       }
-    }
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printCommonHeaderReserved()
@@ -637,19 +684,11 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet32_r()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getBlock1HeaderOpcodeNDataSet32_r_Address(),Obj.getBlock1HeaderOpcodeNDataSet64_s_Address()).toHex();
-    QString str = (QString) data;
     QString line;
 
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-       line += " ";
-       }
-    }
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
@@ -661,19 +700,10 @@ void MainWindow::printBlock1HeaderOpcodeNDataSet64_s()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getBlock1HeaderOpcodeNDataSet64_s_Address(),Obj.getBlock1HeaderMicroPatternCount_Address()).toHex();
-    QString str = (QString) data;
     QString line;
-
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-       line += " ";
-       }
-    }
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printBlock1HeaderMicroPatternCount()
@@ -685,19 +715,10 @@ void MainWindow::printBlock1HeaderMicroPatternCount()
     ui->textEdit->insertPlainText("\n");
 
     QByteArray data = Obj. readPatFile(Obj.getBlock1HeaderMicroPatternCount_Address(),Obj.getBlock1HeaderReaserverd_Address()).toHex();
-    QString str = (QString) data;
     QString line;
-
-
-    for(int i=0;i<str.length();i++){
-       line += str[i];
-
-       if(i!=0&&i%2==1){
-       line += " ";
-       }
-    }
+    line = line.setNum(stringToIntLittleEndian(data));
     ui->textEdit->insertPlainText(line);
-    line.clear();
+
 }
 
 void MainWindow::printBlock1HeaderReaserverd()
