@@ -27,10 +27,12 @@
 
 
 # 구현
-[MainWindow]
+# MainWindow 
 ![image](https://user-images.githubusercontent.com/58155067/144032374-7775420c-2b59-4604-b9d2-c40fcd1cc346.png)
-[파일 로드 후 1/2]
+
+# 파일 로드 후 1/2 
 ![image](https://user-images.githubusercontent.com/58155067/144032576-d3b37fd6-7fe7-48d5-811b-2423a3041281.png)
-[파일 로드 후 2/2]
+
+# 파일 로드 후 2/2 
 ![image](https://user-images.githubusercontent.com/58155067/144032647-cc0db992-0429-41b4-9bb2-2e6ecbd2155a.png)
 
